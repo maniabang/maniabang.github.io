@@ -1,1 +1,674 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이광훈 - 프론트엔드 개발자</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+        
+        .container {
+            max-width: 210mm;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="20" cy="80" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="80" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+            animation: float 20s infinite linear;
+        }
+        
+        @keyframes float {
+            0% { transform: translateX(-100px) translateY(-100px); }
+            100% { transform: translateX(100px) translateY(100px); }
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .name {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .title {
+            font-size: 24px;
+            font-weight: 300;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            font-size: 16px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .main-content {
+            padding: 50px 40px;
+        }
+        
+        .section {
+            margin-bottom: 50px;
+        }
+        
+        .section-title {
+            font-size: 28px;
+            font-weight: 600;
+            color: #667eea;
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(to right, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .skill-category {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .skill-category h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .skill-tag {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .experience-item {
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .experience-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .company-name {
+            font-size: 22px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .position {
+            font-size: 18px;
+            color: #667eea;
+            font-weight: 500;
+            margin: 5px 0;
+        }
+        
+        .period {
+            font-size: 16px;
+            color: #6c757d;
+            background: #f8f9fa;
+            padding: 8px 15px;
+            border-radius: 20px;
+            white-space: nowrap;
+        }
+        
+        .project-highlight {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+        
+        .project-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .tech-stack {
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        
+        .tech-stack h4 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+        
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .tech-tag-white {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 13px;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        
+        .achievements {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .achievements li {
+            margin-bottom: 12px;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .achievements li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+        
+        .project-achievements li::before {
+            color: rgba(255,255,255,0.8);
+        }
+        
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .project-card {
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .project-name {
+            font-size: 20px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .project-description {
+            color: #6c757d;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 15px;
+        }
+        
+        .tech-tag {
+            background: #e9ecef;
+            color: #495057;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+        }
+        
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .project-link:hover {
+            color: #764ba2;
+        }
+        
+        .education-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .degree {
+            font-weight: 600;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        
+        .school {
+            color: #667eea;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        
+        .github-stats {
+            background: linear-gradient(135deg, #24292e, #444d56);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        
+        .stats-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .github-link {
+            color: #64b5f6;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+        }
+        
+        .github-link:hover {
+            text-decoration: underline;
+        }
+        
+        .highlight-box {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .detail-item {
+            margin-bottom: 15px;
+        }
+        
+        .detail-label {
+            font-weight: 600;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+        
+        @media print {
+            body { background: white; }
+            .container { box-shadow: none; max-width: none; }
+            .header::before { animation: none; }
+            .experience-item:hover,
+            .project-card:hover {
+                transform: none;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .container { margin: 0; }
+            .header { padding: 40px 20px; }
+            .main-content { padding: 30px 20px; }
+            .name { font-size: 36px; }
+            .title { font-size: 20px; }
+            .contact-info { flex-direction: column; gap: 15px; }
+            .experience-header { flex-direction: column; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <h1 class="name">이광훈</h1>
+                <p class="title">프론트엔드 개발자 & React 전문가</p>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <span>📧</span>
+                        <span>****@naver.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <span>📱</span>
+                        <span>010-7210-****</span>
+                    </div>
+                    <div class="contact-item">
+                        <span>📍</span>
+                        <span>수원특별시 팔달구</span>
+                    </div>
+                    <div class="contact-item">
+                        <span>🎂</span>
+                        <span>1990.02.13 (만 35세)</span>
+                    </div>
+                </div>
+            </div>
+        </header>
 
+        <main class="main-content">
+            <section class="section">
+                <h2 class="section-title">경력 사항</h2>
+                
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <div class="company-name">㈜인텔리코드</div>
+                            <div class="position">Data Service팀 / 사원</div>
+                        </div>
+                        <div class="period">2023.10 ~ 현재 (1년 8개월)</div>
+                    </div>
+                    
+                    <div class="project-highlight">
+                        <div class="project-title">🗳️ 필리핀 선거관리위원회 CCS(Consolidation and Canvassing System)</div>
+                        <p style="margin-bottom: 15px; opacity: 0.9;">
+                            필리핀 전역에서 사용되는 디지털 전자투표 시스템의 SPA 기반 웹페이지 개발 및 배포
+                        </p>
+                        
+                        <div class="tech-stack">
+                            <h4>🛠️ 기술 스택</h4>
+                            <div class="tech-tags">
+                                <span class="tech-tag-white">React (Vite)</span>
+                                <span class="tech-tag-white">Redux</span>
+                                <span class="tech-tag-white">React Query</span>
+                                <span class="tech-tag-white">Material-UI (v5)</span>
+                                <span class="tech-tag-white">Axios</span>
+                                <span class="tech-tag-white">React Router</span>
+                            </div>
+                        </div>
+                        
+                        <ul class="achievements project-achievements">
+                            <li><strong>지역별 계층 구조 기반 모니터링 UI 구현</strong> - Region/Province/City/Municipality/Precinct 5단계 계층 구조</li>
+                            <li><strong>다단계 인증 기반 UX 흐름 설계</strong> - BOC(Board of Canvassers) 2중/3중 인증 로직 구현</li>
+                            <li><strong>Redux + React Query 기반 상태 관리</strong> - 서버 상태와 클라이언트 상태 효율적 분리</li>
+                            <li><strong>Chart.js를 활용한 실시간 데이터 시각화</strong> - 선거 결과 및 진행 상황 모니터링</li>
+                            <li><strong>영어 소통을 통한 국제 협업</strong> - 필리핀 선거관리위원회와 직접 소통 및 요구사항 대응</li>
+                        </ul>
+                        
+                        <div class="highlight-box" style="background: rgba(255,255,255,0.1); border-left-color: rgba(255,255,255,0.5);">
+                            <div class="detail-label" style="color: rgba(255,255,255,0.9);">주요 성과</div>
+                            <p style="color: rgba(255,255,255,0.8); margin: 0;">
+                                팀 구성: FE 2명, BE 4명, 인프라 2명으로 대규모 프로젝트 성공적 완료.<br>
+                                실제 필리핀 전국 선거에서 사용되는 공식 시스템 개발 참여.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="project-highlight" style="background: linear-gradient(135deg, #28a745, #20c997);">
+                        <div class="project-title">🌐 CCS Web Portal - 공개 선거 결과 포털</div>
+                        <p style="margin-bottom: 15px; opacity: 0.9;">
+                            실시간 선거 결과를 시각화하고, 지역별 단계별 집계할 수 있는 UI/UX 제공
+                        </p>
+                        
+                        <div class="tech-stack">
+                            <h4>🛠️ 기술 스택</h4>
+                            <div class="tech-tags">
+                                <span class="tech-tag-white">Vue 2.6.14</span>
+                                <span class="tech-tag-white">Vuex 3.6.2</span>
+                                <span class="tech-tag-white">Vuetify 2.6.0</span>
+                                <span class="tech-tag-white">Chart.js</span>
+                                <span class="tech-tag-white">Vue Router</span>
+                                <span class="tech-tag-white">Axios</span>
+                            </div>
+                        </div>
+                        
+                        <ul class="achievements project-achievements">
+                            <li><strong>Vue CLI 5 기반 프로젝트 생성</strong> - dotenv-cli로 환경별 설정 분리</li>
+                            <li><strong>Vuex + PersistedState</strong> - LocalStorage 자동 저장으로 새로고침 시에도 상태 유지</li>
+                            <li><strong>AutoComplete 컴포넌트</strong> - 지역별 필터링 기능으로 직관적인 검색 제공</li>
+                            <li><strong>Chart.js로 투표율 시각화</strong> - Bar, Pie, Line 차트로 선거 데이터 수신율(%) 표시</li>
+                        </ul>
+                        
+                        <div class="detail-item">
+                            <div class="detail-label" style="color: rgba(255,255,255,0.9);">🔗 배포 URL</div>
+                            <p style="color: rgba(255,255,255,0.8); margin: 0;">
+                                https://2025electionresults.comelec.gov.ph/dashboard
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <ul class="achievements">
+                        <li><strong>라이프집 커뮤니티</strong> - 반응형 웹 + 모바일 앱 개발, TinyMCE 에디터 커스터마이징</li>
+                        <li><strong>LG 하드웨어 성능 시각화</strong> - 외부 DB 연동 및 차트 시각화 시스템 구축</li>
+                        <li>AWS S3 업로드 + 이미지 리사이즈 최적화, Figma 기반 디자이너 협업</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <div class="company-name">㈜제이앤퍼스트</div>
+                            <div class="position">개발부 / 대리</div>
+                        </div>
+                        <div class="period">2021.11 ~ 2023.09 (1년 11개월)</div>
+                    </div>
+                    
+                    <div class="highlight-box">
+                        <div class="detail-label">🏢 회사 소개</div>
+                        <p>글로벌 기업 라인 협력사 (eCommerce 플랫폼 개발 전문업체)</p>
+                    </div>
+                    
+                    <ul class="achievements">
+                        <li><strong>Monary CMS Line 백오피스</strong> - 금융 컨텐츠 관리 시스템 개발 (팀구성: FE 5인 BE 1인)</li>
+                        <li><strong>WDM Line 백오피스</strong> - Redis 정보 관리 및 암호화 시스템 구현 (팀구성: FE 4인, BE 3인)</li>
+                        <li><strong>My Dashboard 분리작업</strong> - Next.js 리팩토링 및 성능 최적화 (팀구성: FE 2인)</li>
+                        <li><strong>Wallet Campaign CMS</strong> - Line 클라이언트 앱 이벤트 관리 시스템 (팀구성: FE 2인)</li>
+                        <li>react-hook-form의 useFieldArray 활용한 동적 배열 관리</li>
+                        <li>Yup 라이브러리 lazy() 함수로 복잡한 데이터 유효성 검사 처리</li>
+                        <li>Lottie .json 파일의 헤더 값 추출을 통해 미리보기 이미지로 사용</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">핵심 역량</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>프론트엔드 기술</h3>
+                        <div class="skill-list">
+                            <span class="skill-tag">React</span>
+                            <span class="skill-tag">Next.js</span>
+                            <span class="skill-tag">Vue.js</span>
+                            <span class="skill-tag">TypeScript</span>
+                            <span class="skill-tag">JavaScript</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>상태 관리 & API</h3>
+                        <div class="skill-list">
+                            <span class="skill-tag">Redux</span>
+                            <span class="skill-tag">Vuex</span>
+                            <span class="skill-tag">React Query</span>
+                            <span class="skill-tag">SWR</span>
+                            <span class="skill-tag">Axios</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>UI 프레임워크</h3>
+                        <div class="skill-list">
+                            <span class="skill-tag">Material-UI</span>
+                            <span class="skill-tag">Vuetify</span>
+                            <span class="skill-tag">Chart.js</span>
+                            <span class="skill-tag">GSAP</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>개발 도구</h3>
+                        <div class="skill-list">
+                            <span class="skill-tag">GitHub</span>
+                            <span class="skill-tag">Vite</span>
+                            <span class="skill-tag">Webpack</span>
+                            <span class="skill-tag">Node.js</span>
+                            <span class="skill-tag">REST API</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">학력 사항</h2>
+                <div class="education-item">
+                    <div class="degree">기계자동차공학 전공</div>
+                    <div class="school">울산대학교</div>
+                    <div class="period">2008.03 ~ 2016.02 (학점 3.46/4.5)</div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">사이드 프로젝트</h2>
+                <div class="project-grid">
+                    <div class="project-card">
+                        <h3 class="project-name">MatchMate Cursor App</h3>
+                        <p class="project-description">
+                            AI 기반 매칭 서비스를 위한 TypeScript 기반 웹 애플리케이션. 
+                            현대적인 프론트엔드 기술 스택을 활용한 실시간 매칭 시스템.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">TypeScript</span>
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Cursor AI</span>
+                            <span class="tech-tag">Real-time</span>
+                        </div>
+                        <a href="https://github.com/maniabang/matchmate-cursor-app" class="project-link">
+                            GitHub 보기 →
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">GitHub & 포트폴리오</h2>
+                <div class="github-stats">
+                    <h3 class="stats-title">개발 활동</h3>
+                    <p>지속적인 사이드 프로젝트와 기술 학습을 통한 성장</p>
+                    <br>
+                    <a href="https://github.com/maniabang" class="github-link">
+                        🔗 github.com/maniabang
+                    </a>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // 부드러운 스크롤 효과
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.experience-item, .project-card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            });
+            
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+        });
+
+        // 인쇄 기능
+        function printResume() {
+            window.print();
+        }
+        
+        // PDF 내보내기 버튼 (브라우저의 인쇄 기능 활용)
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.key === 'p') {
+                e.preventDefault();
+                printResume();
+            }
+        });
+    </script>
+</body>
+</html>
