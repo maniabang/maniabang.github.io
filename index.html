@@ -18,6 +18,9 @@
             line-height: 1.6;
             color: #333;
             background: #f8f9fa;
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100vw;
         }
         
         .container {
@@ -25,6 +28,8 @@
             margin: 0 auto;
             background: white;
             box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            width: 100%;
+            overflow-x: hidden;
         }
         
         .header {
@@ -116,6 +121,8 @@
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 30px;
             margin-bottom: 30px;
+            width: 100%;
+            overflow-x: hidden;
         }
         
         .skill-category {
@@ -224,6 +231,8 @@
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
+            width: 100%;
+            overflow-x: auto;
         }
         
         .tech-tag-white {
@@ -394,13 +403,107 @@
         }
         
         @media (max-width: 768px) {
-            .container { margin: 0; }
-            .header { padding: 40px 20px; }
-            .main-content { padding: 30px 20px; }
-            .name { font-size: 36px; }
-            .title { font-size: 20px; }
-            .contact-info { flex-direction: column; gap: 15px; }
-            .experience-header { flex-direction: column; align-items: flex-start; }
+            .container { 
+                margin: 0; 
+                width: 100%;
+                max-width: 100vw;
+                overflow-x: hidden;
+            }
+            .header { 
+                padding: 40px 15px; 
+                overflow-x: hidden;
+            }
+            .main-content { 
+                padding: 30px 15px; 
+                overflow-x: hidden;
+            }
+            .name { 
+                font-size: 32px; 
+                word-break: keep-all;
+                line-height: 1.2;
+            }
+            .title { 
+                font-size: 18px; 
+                word-break: keep-all;
+            }
+            .contact-info { 
+                flex-direction: column; 
+                gap: 12px;
+                width: 100%;
+            }
+            .contact-item {
+                font-size: 14px;
+                word-break: break-all;
+            }
+            .experience-header { 
+                flex-direction: column; 
+                align-items: flex-start; 
+                gap: 10px;
+            }
+            .company-name {
+                font-size: 20px;
+                word-break: keep-all;
+            }
+            .position {
+                font-size: 16px;
+                word-break: keep-all;
+            }
+            .period {
+                font-size: 14px;
+                white-space: normal;
+                text-align: center;
+                width: fit-content;
+            }
+            .project-title {
+                font-size: 18px;
+                word-break: keep-all;
+                line-height: 1.3;
+            }
+            .tech-tags {
+                gap: 6px;
+            }
+            .tech-tag-white {
+                font-size: 12px;
+                padding: 3px 8px;
+            }
+            .skills-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .skill-category {
+                padding: 20px 15px;
+            }
+            .project-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .project-card {
+                padding: 20px 15px;
+            }
+            .achievements li {
+                word-break: keep-all;
+                font-size: 14px;
+                line-height: 1.4;
+            }
+            .detail-item {
+                word-break: break-all;
+            }
+            .github-link {
+                font-size: 16px;
+                word-break: break-all;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header { padding: 30px 10px; }
+            .main-content { padding: 20px 10px; }
+            .name { font-size: 28px; }
+            .title { font-size: 16px; }
+            .section-title { font-size: 24px; }
+            .experience-item { padding: 20px 15px; }
+            .project-highlight { padding: 20px 15px; }
+            .skill-category { padding: 15px 10px; }
+            .project-card { padding: 15px 10px; }
         }
     </style>
 </head>
@@ -409,16 +512,7 @@
         <header class="header">
             <div class="header-content">
                 <h1 class="name">이광훈</h1>
-                <p class="title">프론트엔드 개발자 & React 전문가</p>
                 <div class="contact-info">
-                    <div class="contact-item">
-                        <span>📧</span>
-                        <span>****@naver.com</span>
-                    </div>
-                    <div class="contact-item">
-                        <span>📱</span>
-                        <span>010-7210-****</span>
-                    </div>
                     <div class="contact-item">
                         <span>📍</span>
                         <span>수원특별시 팔달구</span>
@@ -426,6 +520,14 @@
                     <div class="contact-item">
                         <span>🎂</span>
                         <span>1990.02.13 (만 35세)</span>
+                    </div>
+                    <div class="contact-item">
+                        <span>💼</span>
+                        <span>프론트엔드 개발자 (3년 7개월)</span>
+                    </div>
+                    <div class="contact-item">
+                        <span>🔗</span>
+                        <span>github.com/maniabang</span>
                     </div>
                 </div>
             </div>
@@ -463,10 +565,12 @@
                         </div>
                         
                         <ul class="achievements project-achievements">
-                            <li><strong>지역별 계층 구조 기반 모니터링 UI 구현</strong> - Region/Province/City/Municipality/Precinct 5단계 계층 구조</li>
-                            <li><strong>다단계 인증 기반 UX 흐름 설계</strong> - BOC(Board of Canvassers) 2중/3중 인증 로직 구현</li>
-                            <li><strong>Redux + React Query 기반 상태 관리</strong> - 서버 상태와 클라이언트 상태 효율적 분리</li>
-                            <li><strong>Chart.js를 활용한 실시간 데이터 시각화</strong> - 선거 결과 및 진행 상황 모니터링</li>
+                            <li><strong>Vite 기반 빌드 최적화</strong> - React SPA 빠른 개발 환경 구축, HMR로 개발 생산성 향상</li>
+                            <li><strong>Redux Toolkit + React Query 하이브리드 상태 관리</strong> - 서버/클라이언트 상태 분리로 성능 최적화</li>
+                            <li><strong>Suspense + React Query로 로딩 UX 개선</strong> - 사용자 체감 성능 대폭 향상</li>
+                            <li><strong>Material-UI v5 + 커스텀 훅 패턴</strong> - 재사용 가능한 Dialog 시스템 구축</li>
+                            <li><strong>Chart.js 실시간 데이터 시각화</strong> - 5단계 지역 계층 구조 모니터링 최적화</li>
+                            <li><strong>AWS 프록시 서버 연동</strong> - CORS 해결 및 API 통신 안정성 확보</li>
                             <li><strong>영어 소통을 통한 국제 협업</strong> - 필리핀 선거관리위원회와 직접 소통 및 요구사항 대응</li>
                         </ul>
                         
@@ -498,24 +602,92 @@
                         </div>
                         
                         <ul class="achievements project-achievements">
-                            <li><strong>Vue CLI 5 기반 프로젝트 생성</strong> - dotenv-cli로 환경별 설정 분리</li>
-                            <li><strong>Vuex + PersistedState</strong> - LocalStorage 자동 저장으로 새로고침 시에도 상태 유지</li>
-                            <li><strong>AutoComplete 컴포넌트</strong> - 지역별 필터링 기능으로 직관적인 검색 제공</li>
-                            <li><strong>Chart.js로 투표율 시각화</strong> - Bar, Pie, Line 차트로 선거 데이터 수신율(%) 표시</li>
+                            <li><strong>Vue CLI 5 + dotenv-cli로 환경 분리</strong> - .env.local, .env.prd 설정 분리하여 사용</li>
+                            <li><strong>Vuex + PersistedState 상태 관리</strong> - LocalStorage 자동 저장으로 새로고침 시에도 상태 유지</li>
+                            <li><strong>AutoComplete 컴포넌트 최적화</strong> - 지역별 필터링 기능으로 직관적인 검색 UX 제공</li>
+                            <li><strong>Chart.js 투표율 시각화</strong> - Bar, Pie, Line 차트로 선거 데이터 수신율(%) 실시간 표시</li>
+                            <li><strong>Vuetify Grid + Breakpoints API 활용</strong> - 모바일 퍼스트 반응형 웹 디자인 구현</li>
+                            <li><strong>AbortController API 성능 최적화</strong> - 불필요한 네트워크 요청 취소로 메모리 효율성 개선</li>
+                        </ul>
+                        
+                        <div class="detail-item">
+                            <div class="detail-label" style="color: rgba(255,255,255,0.9);">🔗 배포 URL</div>
+                            <p style="color: rgba(255,255,255,0.8); margin: 0; line-height: 1.4;">
+                                <a href="https://2025electionresults.comelec.gov.ph/dashboard" 
+                                   style="color: rgba(255,255,255,0.9); text-decoration: underline;"
+                                   target="_blank">
+                                   https://2025electionresults.comelec.gov.ph/dashboard
+                                </a><br>
+                                <small style="opacity: 0.7;">※ 와이파이 환경에서는 방화벽으로 접근 불가 (모바일 데이터 권장)</small>
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="project-highlight" style="background: linear-gradient(135deg, #20c997, #17a2b8);">
+                        <div class="project-title">📱 라이프집 커뮤니티 플랫폼</div>
+                        <p style="margin-bottom: 15px; opacity: 0.95; font-size: 16px;">
+                            사용자들의 일상 기록과 콘텐츠 공유를 위한 SNS형 웹 플랫폼 구축
+                        </p>
+                        
+                        <div class="tech-stack">
+                            <h4>🛠️ 핵심 기술 스택</h4>
+                            <div class="tech-tags">
+                                <span class="tech-tag-white">React</span>
+                                <span class="tech-tag-white">TypeScript</span>
+                                <span class="tech-tag-white">TinyMCE</span>
+                                <span class="tech-tag-white">Zustand</span>
+                                <span class="tech-tag-white">Dropzone</span>
+                                <span class="tech-tag-white">AWS S3</span>
+                            </div>
+                        </div>
+                        
+                        <ul class="achievements project-achievements">
+                            <li><strong>TinyMCE 에디터 커스터마이징</strong> - 유튜브 썸네일 자동 삽입, 이미지 업로드 최적화</li>
+                            <li><strong>useEditorHook 커스텀 훅 개발</strong> - 이미지 자동 압축 (600KB 이상 리사이징)</li>
+                            <li><strong>Dropzone 파일 업로드 최적화</strong> - 드래그 앤 드롭 UI로 사용자 경험 개선</li>
+                            <li><strong>Zustand 전역 상태 관리</strong> - prop drilling 없이 간결한 상태 관리 구조</li>
+                            <li><strong>AWS S3 업로드 최적화</strong> - 이미지 리사이즈 및 압축 자동화</li>
                         </ul>
                         
                         <div class="detail-item">
                             <div class="detail-label" style="color: rgba(255,255,255,0.9);">🔗 배포 URL</div>
                             <p style="color: rgba(255,255,255,0.8); margin: 0;">
-                                https://2025electionresults.comelec.gov.ph/dashboard
+                                <a href="https://lifezip.kr" 
+                                   style="color: rgba(255,255,255,0.9); text-decoration: underline;"
+                                   target="_blank">
+                                   https://lifezip.kr
+                                </a>
                             </p>
                         </div>
                     </div>
                     
+                    <div class="project-highlight" style="background: linear-gradient(135deg, #6f42c1, #e83e8c);">
+                        <div class="project-title">📊 LG 하드웨어 성능 시각화 시스템</div>
+                        <p style="margin-bottom: 15px; opacity: 0.95; font-size: 16px;">
+                            LG 하드웨어 설계/성능 데이터를 Web 기반 시각화 시스템으로 전환하는 프로젝트
+                        </p>
+                        
+                        <div class="tech-stack">
+                            <h4>🛠️ 핵심 기술 스택</h4>
+                            <div class="tech-tags">
+                                <span class="tech-tag-white">React</span>
+                                <span class="tech-tag-white">AG Grid (유료)</span>
+                                <span class="tech-tag-white">데이터 필터링</span>
+                                <span class="tech-tag-white">성능 최적화</span>
+                            </div>
+                        </div>
+                        
+                        <ul class="achievements project-achievements">
+                            <li><strong>AG Grid 유료 버전 활용</strong> - 기업 제출용 고성능 데이터 그리드 구현</li>
+                            <li><strong>검색어 필터 기능 구현</strong> - AG Grid의 강력한 필터링 기능으로 대용량 데이터 처리</li>
+                            <li><strong>성능 측정값 시각화</strong> - 하드웨어 데이터를 직관적인 테이블 형태로 표시</li>
+                            <li><strong>사용자 친화적 관리 페이지</strong> - 복잡한 데이터를 효율적으로 관리하는 인터페이스 구현</li>
+                        </ul>
+                    </div>
+                    
                     <ul class="achievements">
-                        <li><strong>라이프집 커뮤니티</strong> - 반응형 웹 + 모바일 앱 개발, TinyMCE 에디터 커스터마이징</li>
-                        <li><strong>LG 하드웨어 성능 시각화</strong> - 외부 DB 연동 및 차트 시각화 시스템 구축</li>
-                        <li>AWS S3 업로드 + 이미지 리사이즈 최적화, Figma 기반 디자이너 협업</li>
+                        <li><strong>Figma 기반 디자이너 협업</strong> - 디자인 시스템 구축 및 컴포넌트 라이브러리 개발</li>
+                        <li><strong>운영 중 서비스 유지보수 및 버그 대응</strong> - 안정적인 서비스 운영 경험</li>
                     </ul>
                 </div>
 
@@ -536,11 +708,11 @@
                     <ul class="achievements">
                         <li><strong>Monary CMS Line 백오피스</strong> - 금융 컨텐츠 관리 시스템 개발 (팀구성: FE 5인 BE 1인)</li>
                         <li><strong>WDM Line 백오피스</strong> - Redis 정보 관리 및 암호화 시스템 구현 (팀구성: FE 4인, BE 3인)</li>
-                        <li><strong>My Dashboard 분리작업</strong> - Next.js 리팩토링 및 성능 최적화 (팀구성: FE 2인)</li>
+                        <li><strong>My Dashboard Next.js 리팩토링</strong> - 성능 최적화 및 코드 분할을 통한 초기 로딩 시간 단축</li>
                         <li><strong>Wallet Campaign CMS</strong> - Line 클라이언트 앱 이벤트 관리 시스템 (팀구성: FE 2인)</li>
-                        <li>react-hook-form의 useFieldArray 활용한 동적 배열 관리</li>
-                        <li>Yup 라이브러리 lazy() 함수로 복잡한 데이터 유효성 검사 처리</li>
-                        <li>Lottie .json 파일의 헤더 값 추출을 통해 미리보기 이미지로 사용</li>
+                        <li><strong>react-hook-form + useFieldArray</strong> - 동적 배열 관리로 복잡한 폼 상태 최적화</li>
+                        <li><strong>Yup lazy() 함수 활용</strong> - 복잡한 중첩 객체 구조의 유효성 검사 처리</li>
+                        <li><strong>Lottie JSON 파일 헤더 추출</strong> - 미리보기 이미지 자동 생성으로 UX 개선</li>
                     </ul>
                 </div>
             </section>
@@ -573,6 +745,7 @@
                         <div class="skill-list">
                             <span class="skill-tag">Material-UI</span>
                             <span class="skill-tag">Vuetify</span>
+                            <span class="skill-tag">AG Grid</span>
                             <span class="skill-tag">Chart.js</span>
                             <span class="skill-tag">GSAP</span>
                         </div>
@@ -591,32 +764,113 @@
             </section>
 
             <section class="section">
-                <h2 class="section-title">학력 사항</h2>
-                <div class="education-item">
-                    <div class="degree">기계자동차공학 전공</div>
-                    <div class="school">울산대학교</div>
-                    <div class="period">2008.03 ~ 2016.02 (학점 3.46/4.5)</div>
-                </div>
-            </section>
-
-            <section class="section">
                 <h2 class="section-title">사이드 프로젝트</h2>
-                <div class="project-grid">
-                    <div class="project-card">
-                        <h3 class="project-name">MatchMate Cursor App</h3>
-                        <p class="project-description">
-                            AI 기반 매칭 서비스를 위한 TypeScript 기반 웹 애플리케이션. 
-                            현대적인 프론트엔드 기술 스택을 활용한 실시간 매칭 시스템.
+                
+                <div class="project-card" style="max-width: none; margin-bottom: 0;">
+                    <div class="project-highlight" style="background: linear-gradient(135deg, #ff6b9d, #ff8e91); margin: 0;">
+                        <div class="project-title">💘 MatchMate Cursor App (현재 개발 중)</div>
+                        <p style="margin-bottom: 20px; opacity: 0.95; font-size: 16px;">
+                            소개팅 기반 매칭 플랫폼 사이드 프로젝트. Next.js 기반의 PWA 앱으로, 
+                            Supabase를 이용한 인증과 실시간 기능을 포함한 실사용 가능한 수준의 매칭 서비스 구현 중
                         </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">TypeScript</span>
-                            <span class="tech-tag">React</span>
-                            <span class="tech-tag">Cursor AI</span>
-                            <span class="tech-tag">Real-time</span>
+                        
+                        <div class="tech-stack">
+                            <h4>🛠️ 핵심 기술 스택</h4>
+                            <div class="tech-tags">
+                                <span class="tech-tag-white">Next.js 13+</span>
+                                <span class="tech-tag-white">TypeScript</span>
+                                <span class="tech-tag-white">Supabase</span>
+                                <span class="tech-tag-white">React Query</span>
+                                <span class="tech-tag-white">Zustand</span>
+                                <span class="tech-tag-white">PWA</span>
+                                <span class="tech-tag-white">Vercel</span>
+                            </div>
                         </div>
-                        <a href="https://github.com/maniabang/matchmate-cursor-app" class="project-link">
-                            GitHub 보기 →
-                        </a>
+                        
+                        <ul class="achievements project-achievements">
+                            <li><strong>Next.js 13+ App Router 구조</strong> - SSR(서버사이드 렌더링) 기반 최신 아키텍처 적용</li>
+                            <li><strong>Supabase 풀스택 연동</strong> - Database, Auth, Storage 통합 백엔드 서비스</li>
+                            <li><strong>SSR/CSR 하이브리드 인증</strong> - 쿠키 기반 서버 인증 + 클라이언트 상태 관리</li>
+                            <li><strong>React Query로 서버 상태 관리</strong> - 캐싱, 동기화, 백그라운드 업데이트</li>
+                            <li><strong>PWA 구현</strong> - 오프라인 지원, 앱 설치 가능한 웹 애플리케이션</li>
+                            <li><strong>Zustand 전역 상태 관리</strong> - 가벼운 상태 관리로 사용자 경험 최적화</li>
+                        </ul>
+                        
+                        <div class="highlight-box" style="background: rgba(255,255,255,0.15); border-left-color: rgba(255,255,255,0.5); margin-top: 20px;">
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                                <div>
+                                    <div class="detail-label" style="color: rgba(255,255,255,0.9);">🎨 디자인</div>
+                                    <p style="color: rgba(255,255,255,0.8); margin: 0; font-size: 14px;">
+                                        Figma 기반 UI/UX<br>모바일 퍼스트 디자인
+                                    </p>
+                                </div>
+                                <div>
+                                    <div class="detail-label" style="color: rgba(255,255,255,0.9);">🚀 배포</div>
+                                    <p style="color: rgba(255,255,255,0.8); margin: 0; font-size: 14px;">
+                                        Vercel 자동 배포<br>GitHub 연동 CI/CD
+                                    </p>
+                                </div>
+                                <div>
+                                    <div class="detail-label" style="color: rgba(255,255,255,0.9);">⚡ 성능</div>
+                                    <p style="color: rgba(255,255,255,0.8); margin: 0; font-size: 14px;">
+                                        SSR 최적화<br>실시간 업데이트
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; gap: 15px; margin-top: 20px; flex-wrap: wrap;">
+                            <a href="https://github.com/maniabang/matchmate-cursor-app" 
+                               style="color: white; text-decoration: none; background: rgba(255,255,255,0.2); 
+                                      padding: 10px 20px; border-radius: 25px; border: 1px solid rgba(255,255,255,0.3);
+                                      transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 8px;">
+                                📂 GitHub Repository
+                            </a>
+                            <div style="color: rgba(255,255,255,0.8); 
+                                        padding: 10px 20px; border-radius: 25px; border: 1px solid rgba(255,255,255,0.2);
+                                        display: inline-flex; align-items: center; gap: 8px; font-size: 14px;">
+                                🚧 현재 개발 진행 중
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="padding: 25px; background: #f8f9fa; border-radius: 0 0 12px 12px;">
+                        <h4 style="color: #333; margin-bottom: 15px; font-size: 18px;">🔧 주요 구현 사항</h4>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                            <div>
+                                <h5 style="color: #667eea; margin-bottom: 8px;">인증 시스템</h5>
+                                <ul style="list-style: none; padding: 0; margin: 0; font-size: 14px; line-height: 1.5;">
+                                    <li>• 이메일 기반 회원가입/로그인</li>
+                                    <li>• SSR/CSR 하이브리드 인증</li>
+                                    <li>• 쿠키 기반 세션 관리</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 style="color: #667eea; margin-bottom: 8px;">백엔드 연동</h5>
+                                <ul style="list-style: none; padding: 0; margin: 0; font-size: 14px; line-height: 1.5;">
+                                    <li>• Supabase Database 설계</li>
+                                    <li>• API Route 핸들러 구현</li>
+                                    <li>• 실시간 데이터 동기화</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 style="color: #667eea; margin-bottom: 8px;">사용자 경험</h5>
+                                <ul style="list-style: none; padding: 0; margin: 0; font-size: 14px; line-height: 1.5;">
+                                    <li>• PWA 오프라인 지원</li>
+                                    <li>• 반응형 모바일 UI</li>
+                                    <li>• 최적화된 로딩 성능</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: 20px; padding: 15px; background: white; border-radius: 8px; border-left: 4px solid #ff6b9d;">
+                            <h5 style="color: #333; margin-bottom: 8px;">💡 기술적 도전과 학습</h5>
+                            <p style="margin: 0; font-size: 14px; color: #666; line-height: 1.5;">
+                                Next.js 13+의 최신 App Router 구조와 Supabase 생태계를 활용하여 
+                                실제 서비스 수준의 매칭 플랫폼을 구현 중. SSR과 CSR을 적절히 조합한 
+                                하이브리드 렌더링과 PWA 기술을 통한 네이티브 앱 수준의 사용자 경험 구현 예정.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </section>
