@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>이광훈 - 프론트엔드 개발자</title>
     <meta property="og:image" content="https://maniabang.github.io/IMG_1505.JPG" />
     <meta property="og:image:width" content="1200" />
@@ -12,934 +12,1199 @@
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://maniabang.github.io/" />
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap');
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap');
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Noto Sans KR', sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background: #f8f9fa;
+        overflow-x: hidden;
+        width: 100%;
+        max-width: 100vw;
+      }
+
+      .container {
+        max-width: 210mm;
+        margin: 0 auto;
+        background: white;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        overflow-x: hidden;
+      }
+
+      .header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 60px 40px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .header::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        right: -50%;
+        width: 200%;
+        height: 200%;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="20" cy="80" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="80" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+        animation: float 20s infinite linear;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateX(-100px) translateY(-100px);
         }
-        
+        100% {
+          transform: translateX(100px) translateY(100px);
+        }
+      }
+
+      .header-content {
+        position: relative;
+        z-index: 2;
+      }
+
+      .profile-img {
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 4px solid #fff;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+        margin-bottom: 18px;
+        display: block;
+      }
+
+      .name {
+        font-size: 48px;
+        font-weight: 700;
+        margin-bottom: 10px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .title {
+        font-size: 24px;
+        font-weight: 300;
+        margin-bottom: 30px;
+        opacity: 0.9;
+      }
+
+      .contact-info {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+        font-size: 16px;
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .main-content {
+        padding: 50px 40px;
+      }
+
+      .section {
+        margin-bottom: 50px;
+      }
+
+      .section-title {
+        font-size: 28px;
+        font-weight: 600;
+        color: #667eea;
+        margin-bottom: 30px;
+        position: relative;
+        padding-bottom: 10px;
+      }
+
+      .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 60px;
+        height: 3px;
+        background: linear-gradient(to right, #667eea, #764ba2);
+        border-radius: 2px;
+      }
+
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+        margin-bottom: 30px;
+        width: 100%;
+        overflow-x: hidden;
+      }
+
+      .skill-category {
+        background: #f8f9fa;
+        padding: 25px;
+        border-radius: 12px;
+        border-left: 4px solid #667eea;
+      }
+
+      .skill-category h3 {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 15px;
+        color: #333;
+      }
+
+      .skill-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .skill-tag {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: white;
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 14px;
+        font-weight: 500;
+      }
+
+      .experience-item {
+        background: white;
+        border: 1px solid #e9ecef;
+        border-radius: 12px;
+        padding: 30px;
+        margin-bottom: 25px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .experience-item:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .experience-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+        gap: 15px;
+      }
+
+      .company-name {
+        font-size: 22px;
+        font-weight: 600;
+        color: #333;
+      }
+
+      .position {
+        font-size: 18px;
+        color: #667eea;
+        font-weight: 500;
+        margin: 5px 0;
+      }
+
+      .period {
+        font-size: 16px;
+        color: #6c757d;
+        background: #f8f9fa;
+        padding: 8px 15px;
+        border-radius: 20px;
+        white-space: nowrap;
+      }
+
+      .project-highlight {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: white;
+        padding: 25px;
+        border-radius: 12px;
+        margin: 20px 0;
+      }
+
+      .project-title {
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 15px;
+      }
+
+      .tech-stack {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 15px;
+        border-radius: 8px;
+        margin: 15px 0;
+      }
+
+      .tech-stack h4 {
+        font-size: 16px;
+        margin-bottom: 10px;
+        color: #fff;
+      }
+
+      .tech-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        width: 100%;
+        overflow-x: auto;
+      }
+
+      .tech-tag-white {
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+        padding: 4px 12px;
+        border-radius: 15px;
+        font-size: 13px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+      }
+
+      .achievements {
+        list-style: none;
+        padding: 0;
+      }
+
+      .achievements li {
+        margin-bottom: 12px;
+        padding-left: 20px;
+        position: relative;
+      }
+
+      .achievements li::before {
+        content: '▸';
+        position: absolute;
+        left: 0;
+        color: #667eea;
+        font-weight: bold;
+      }
+
+      .project-achievements li::before {
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      .project-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 25px;
+      }
+
+      .project-card {
+        background: white;
+        border: 1px solid #e9ecef;
+        border-radius: 12px;
+        padding: 25px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+      }
+
+      .project-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      .project-name {
+        font-size: 20px;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 10px;
+      }
+
+      .project-description {
+        color: #6c757d;
+        margin-bottom: 15px;
+        line-height: 1.6;
+      }
+
+      .project-tech {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-bottom: 15px;
+      }
+
+      .tech-tag {
+        background: #e9ecef;
+        color: #495057;
+        padding: 4px 10px;
+        border-radius: 15px;
+        font-size: 12px;
+      }
+
+      .project-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        color: #667eea;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s ease;
+      }
+
+      .project-link:hover {
+        color: #764ba2;
+      }
+
+      .education-item {
+        background: #f8f9fa;
+        padding: 20px;
+        border-radius: 8px;
+        margin-bottom: 15px;
+      }
+
+      .degree {
+        font-weight: 600;
+        font-size: 18px;
+        margin-bottom: 5px;
+      }
+
+      .school {
+        color: #667eea;
+        font-weight: 500;
+        margin-bottom: 5px;
+      }
+
+      .github-stats {
+        background: linear-gradient(135deg, #24292e, #444d56);
+        color: white;
+        padding: 30px;
+        border-radius: 12px;
+        text-align: center;
+      }
+
+      .stats-title {
+        font-size: 24px;
+        font-weight: 600;
+        margin-bottom: 20px;
+      }
+
+      .github-link {
+        color: #64b5f6;
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: 500;
+      }
+
+      .github-link:hover {
+        text-decoration: underline;
+      }
+
+      .highlight-box {
+        background: #f8f9fa;
+        border-left: 4px solid #667eea;
+        padding: 20px;
+        margin: 15px 0;
+        border-radius: 0 8px 8px 0;
+      }
+
+      .detail-item {
+        margin-bottom: 15px;
+      }
+
+      .detail-label {
+        font-weight: 600;
+        color: #667eea;
+        margin-bottom: 5px;
+      }
+
+      @media print {
         body {
-            font-family: 'Noto Sans KR', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: #f8f9fa;
-            overflow-x: hidden;
-            width: 100%;
-            max-width: 100vw;
+          background: white;
         }
-        
         .container {
-            max-width: 210mm;
-            margin: 0 auto;
-            background: white;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
-            width: 100%;
-            overflow-x: hidden;
+          box-shadow: none;
+          max-width: none;
         }
-        
-        .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 60px 40px;
-            position: relative;
-            overflow: hidden;
-        }
-        
         .header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 200%;
-            height: 200%;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="20" cy="80" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="80" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
-            animation: float 20s infinite linear;
+          animation: none;
         }
-        
-        @keyframes float {
-            0% { transform: translateX(-100px) translateY(-100px); }
-            100% { transform: translateX(100px) translateY(100px); }
-        }
-        
-        .header-content {
-            position: relative;
-            z-index: 2;
-        }
-        
-        .profile-img {
-            width: 120px;
-            height: 120px;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 4px solid #fff;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.15);
-            margin-bottom: 18px;
-            display: block;
-        }
-        
-        .name {
-            font-size: 48px;
-            font-weight: 700;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-        
-        .title {
-            font-size: 24px;
-            font-weight: 300;
-            margin-bottom: 30px;
-            opacity: 0.9;
-        }
-        
-        .contact-info {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
-            font-size: 16px;
-        }
-        
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .main-content {
-            padding: 50px 40px;
-        }
-        
-        .section {
-            margin-bottom: 50px;
-        }
-        
-        .section-title {
-            font-size: 28px;
-            font-weight: 600;
-            color: #667eea;
-            margin-bottom: 30px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-        
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 60px;
-            height: 3px;
-            background: linear-gradient(to right, #667eea, #764ba2);
-            border-radius: 2px;
-        }
-        
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-bottom: 30px;
-            width: 100%;
-            overflow-x: hidden;
-        }
-        
-        .skill-category {
-            background: #f8f9fa;
-            padding: 25px;
-            border-radius: 12px;
-            border-left: 4px solid #667eea;
-        }
-        
-        .skill-category h3 {
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 15px;
-            color: #333;
-        }
-        
-        .skill-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-        
-        .skill-tag {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: 500;
-        }
-        
-        .experience-item {
-            background: white;
-            border: 1px solid #e9ecef;
-            border-radius: 12px;
-            padding: 30px;
-            margin-bottom: 25px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .experience-item:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-        }
-        
-        .experience-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-        
-        .company-name {
-            font-size: 22px;
-            font-weight: 600;
-            color: #333;
-        }
-        
-        .position {
-            font-size: 18px;
-            color: #667eea;
-            font-weight: 500;
-            margin: 5px 0;
-        }
-        
-        .period {
-            font-size: 16px;
-            color: #6c757d;
-            background: #f8f9fa;
-            padding: 8px 15px;
-            border-radius: 20px;
-            white-space: nowrap;
-        }
-        
-        .project-highlight {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            padding: 25px;
-            border-radius: 12px;
-            margin: 20px 0;
-        }
-        
-        .project-title {
-            font-size: 20px;
-            font-weight: 600;
-            margin-bottom: 15px;
-        }
-        
-        .tech-stack {
-            background: rgba(255,255,255,0.1);
-            padding: 15px;
-            border-radius: 8px;
-            margin: 15px 0;
-        }
-        
-        .tech-stack h4 {
-            font-size: 16px;
-            margin-bottom: 10px;
-            color: #fff;
-        }
-        
-        .tech-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            width: 100%;
-            overflow-x: auto;
-        }
-        
-        .tech-tag-white {
-            background: rgba(255,255,255,0.2);
-            color: white;
-            padding: 4px 12px;
-            border-radius: 15px;
-            font-size: 13px;
-            border: 1px solid rgba(255,255,255,0.3);
-        }
-        
-        .achievements {
-            list-style: none;
-            padding: 0;
-        }
-        
-        .achievements li {
-            margin-bottom: 12px;
-            padding-left: 20px;
-            position: relative;
-        }
-        
-        .achievements li::before {
-            content: '▸';
-            position: absolute;
-            left: 0;
-            color: #667eea;
-            font-weight: bold;
-        }
-        
-        .project-achievements li::before {
-            color: rgba(255,255,255,0.8);
-        }
-        
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-        }
-        
-        .project-card {
-            background: white;
-            border: 1px solid #e9ecef;
-            border-radius: 12px;
-            padding: 25px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            transition: all 0.3s ease;
-        }
-        
+        .experience-item:hover,
         .project-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+          transform: none;
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
         }
-        
-        .project-name {
-            font-size: 20px;
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 10px;
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          margin: 0;
+          width: 100%;
+          max-width: 100vw;
+          overflow-x: hidden;
         }
-        
-        .project-description {
-            color: #6c757d;
-            margin-bottom: 15px;
-            line-height: 1.6;
+        .header {
+          padding: 40px 15px;
+          overflow-x: hidden;
         }
-        
-        .project-tech {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            margin-bottom: 15px;
+        .main-content {
+          padding: 30px 15px;
+          overflow-x: hidden;
         }
-        
-        .tech-tag {
-            background: #e9ecef;
-            color: #495057;
-            padding: 4px 10px;
-            border-radius: 15px;
-            font-size: 12px;
+        .name {
+          font-size: 32px;
+          word-break: keep-all;
+          line-height: 1.2;
         }
-        
-        .project-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            color: #667eea;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
+        .title {
+          font-size: 18px;
+          word-break: keep-all;
         }
-        
-        .project-link:hover {
-            color: #764ba2;
+        .contact-info {
+          flex-direction: column;
+          gap: 12px;
+          width: 100%;
         }
-        
-        .education-item {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 15px;
+        .contact-item {
+          font-size: 14px;
+          word-break: break-all;
         }
-        
-        .degree {
-            font-weight: 600;
-            font-size: 18px;
-            margin-bottom: 5px;
+        .experience-header {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 10px;
         }
-        
-        .school {
-            color: #667eea;
-            font-weight: 500;
-            margin-bottom: 5px;
+        .company-name {
+          font-size: 20px;
+          word-break: keep-all;
         }
-        
-        .github-stats {
-            background: linear-gradient(135deg, #24292e, #444d56);
-            color: white;
-            padding: 30px;
-            border-radius: 12px;
-            text-align: center;
+        .position {
+          font-size: 16px;
+          word-break: keep-all;
         }
-        
-        .stats-title {
-            font-size: 24px;
-            font-weight: 600;
-            margin-bottom: 20px;
+        .period {
+          font-size: 14px;
+          white-space: normal;
+          text-align: center;
+          width: fit-content;
         }
-        
-        .github-link {
-            color: #64b5f6;
-            text-decoration: none;
-            font-size: 18px;
-            font-weight: 500;
+        .project-title {
+          font-size: 18px;
+          word-break: keep-all;
+          line-height: 1.3;
         }
-        
-        .github-link:hover {
-            text-decoration: underline;
+        .tech-tags {
+          gap: 6px;
         }
-        
-        .highlight-box {
-            background: #f8f9fa;
-            border-left: 4px solid #667eea;
-            padding: 20px;
-            margin: 15px 0;
-            border-radius: 0 8px 8px 0;
+        .tech-tag-white {
+          font-size: 12px;
+          padding: 3px 8px;
         }
-        
+        .skills-grid {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+        .skill-category {
+          padding: 20px 15px;
+        }
+        .project-grid {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+        .project-card {
+          padding: 20px 15px;
+        }
+        .achievements li {
+          word-break: keep-all;
+          font-size: 14px;
+          line-height: 1.4;
+        }
         .detail-item {
-            margin-bottom: 15px;
+          word-break: break-all;
         }
-        
-        .detail-label {
-            font-weight: 600;
-            color: #667eea;
-            margin-bottom: 5px;
+        .github-link {
+          font-size: 16px;
+          word-break: break-all;
         }
-        
-        @media print {
-            body { background: white; }
-            .container { box-shadow: none; max-width: none; }
-            .header::before { animation: none; }
-            .experience-item:hover,
-            .project-card:hover {
-                transform: none;
-                box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .container { 
-                margin: 0; 
-                width: 100%;
-                max-width: 100vw;
-                overflow-x: hidden;
-            }
-            .header { 
-                padding: 40px 15px; 
-                overflow-x: hidden;
-            }
-            .main-content { 
-                padding: 30px 15px; 
-                overflow-x: hidden;
-            }
-            .name { 
-                font-size: 32px; 
-                word-break: keep-all;
-                line-height: 1.2;
-            }
-            .title { 
-                font-size: 18px; 
-                word-break: keep-all;
-            }
-            .contact-info { 
-                flex-direction: column; 
-                gap: 12px;
-                width: 100%;
-            }
-            .contact-item {
-                font-size: 14px;
-                word-break: break-all;
-            }
-            .experience-header { 
-                flex-direction: column; 
-                align-items: flex-start; 
-                gap: 10px;
-            }
-            .company-name {
-                font-size: 20px;
-                word-break: keep-all;
-            }
-            .position {
-                font-size: 16px;
-                word-break: keep-all;
-            }
-            .period {
-                font-size: 14px;
-                white-space: normal;
-                text-align: center;
-                width: fit-content;
-            }
-            .project-title {
-                font-size: 18px;
-                word-break: keep-all;
-                line-height: 1.3;
-            }
-            .tech-tags {
-                gap: 6px;
-            }
-            .tech-tag-white {
-                font-size: 12px;
-                padding: 3px 8px;
-            }
-            .skills-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-            .skill-category {
-                padding: 20px 15px;
-            }
-            .project-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-            .project-card {
-                padding: 20px 15px;
-            }
-            .achievements li {
-                word-break: keep-all;
-                font-size: 14px;
-                line-height: 1.4;
-            }
-            .detail-item {
-                word-break: break-all;
-            }
-            .github-link {
-                font-size: 16px;
-                word-break: break-all;
-            }
-        }
+      }
 
-        @media (max-width: 480px) {
-            .header { padding: 30px 10px; }
-            .main-content { padding: 20px 10px; }
-            .name { font-size: 28px; }
-            .title { font-size: 16px; }
-            .section-title { font-size: 24px; }
-            .experience-item { padding: 20px 15px; }
-            .project-highlight { padding: 20px 15px; }
-            .skill-category { padding: 15px 10px; }
-            .project-card { padding: 15px 10px; }
+      @media (max-width: 480px) {
+        .header {
+          padding: 30px 10px;
         }
+        .main-content {
+          padding: 20px 10px;
+        }
+        .name {
+          font-size: 28px;
+        }
+        .title {
+          font-size: 16px;
+        }
+        .section-title {
+          font-size: 24px;
+        }
+        .experience-item {
+          padding: 20px 15px;
+        }
+        .project-highlight {
+          padding: 20px 15px;
+        }
+        .skill-category {
+          padding: 15px 10px;
+        }
+        .project-card {
+          padding: 15px 10px;
+        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <header class="header">
-            <div class="header-content">
-                <h1 class="name">이광훈</h1>
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <span>📍</span>
-                        <span>수원특별시 팔달구</span>
-                    </div>
-                    <div class="contact-item">
-                        <span>🎂</span>
-                        <span>1990.02.13 (만 35세)</span>
-                    </div>
-                    <div class="contact-item">
-                        <span>💼</span>
-                        <span>프론트엔드 개발자 (3년 7개월)</span>
-                    </div>
-                    <div class="contact-item">
-                        <span>🔗</span>
-                        <a href="https://github.com/maniabang" target="_blank" style="color: inherit; text-decoration: underline;">github.com/maniabang</a>
-                    </div>
-                </div>
+      <header class="header">
+        <div class="header-content">
+          <h1 class="name">이광훈</h1>
+          <div class="contact-info">
+            <div class="contact-item">
+              <span>📍</span>
+              <span>수원특별시 팔달구</span>
             </div>
-        </header>
+            <div class="contact-item">
+              <span>🎂</span>
+              <span>1990.02.13 (만 35세)</span>
+            </div>
+            <div class="contact-item">
+              <span>💼</span>
+              <span>프론트엔드 개발자 (3년 7개월)</span>
+            </div>
+            <div class="contact-item">
+              <span>🔗</span>
+              <a href="https://github.com/maniabang" target="_blank" style="color: inherit; text-decoration: underline"
+                >github.com/maniabang</a
+              >
+            </div>
+          </div>
+        </div>
+      </header>
 
-        <main class="main-content">
-            <section class="section">
-                <h2 class="section-title">핵심 역량</h2>
-                <div class="skills-grid">
-                    <div class="skill-category">
-                        <h3>프론트엔드 기술</h3>
-                        <div class="skill-list">
-                            <span class="skill-tag">React</span>
-                            <span class="skill-tag">Next.js</span>
-                            <span class="skill-tag">Vue.js</span>
-                            <span class="skill-tag">TypeScript</span>
-                            <span class="skill-tag">JavaScript</span>
-                        </div>
-                    </div>
-                    <div class="skill-category">
-                        <h3>상태 관리 & API</h3>
-                        <div class="skill-list">
-                            <span class="skill-tag">Redux</span>
-                            <span class="skill-tag">Vuex</span>
-                            <span class="skill-tag">React Query</span>
-                            <span class="skill-tag">SWR</span>
-                            <span class="skill-tag">Axios</span>
-                        </div>
-                    </div>
-                    <div class="skill-category">
-                        <h3>UI 프레임워크</h3>
-                        <div class="skill-list">
-                            <span class="skill-tag">Material-UI</span>
-                            <span class="skill-tag">Vuetify</span>
-                            <span class="skill-tag">AG Grid</span>
-                            <span class="skill-tag">Chart.js</span>
-                            <span class="skill-tag">GSAP</span>
-                        </div>
-                    </div>
-                    <div class="skill-category">
-                        <h3>개발 도구</h3>
-                        <div class="skill-list">
-                            <span class="skill-tag">GitHub</span>
-                            <span class="skill-tag">Vite</span>
-                            <span class="skill-tag">Webpack</span>
-                            <span class="skill-tag">Node.js</span>
-                            <span class="skill-tag">REST API</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <section class="section">
-                <h2 class="section-title">경력 사항</h2>
-                
-                <div class="experience-item">
-                    <div class="experience-header">
-                        <div>
-                            <div class="company-name">㈜인텔리코드</div>
-                            <div class="position">Data Service팀 / 사원</div>
-                        </div>
-                        <div class="period">2023.10 ~ 현재 (1년 8개월)</div>
-                    </div>
-                    
-                    <div class="project-highlight">
-                        <div class="project-title">🗳️ 필리핀 선거관리위원회 CCS(Consolidation and Canvassing System)</div>
-                        <p style="margin-bottom: 15px; opacity: 0.9;">
-                            필리핀 전역에서 사용되는 디지털 전자투표 시스템의 SPA 기반 웹페이지 개발 및 배포
-                        </p>
-                        
-                        <div class="tech-stack">
-                            <h4>🛠️ 기술 스택</h4>
-                            <div class="tech-tags">
-                                <span class="tech-tag-white">React (Vite)</span>
-                                <span class="tech-tag-white">Redux</span>
-                                <span class="tech-tag-white">React Query</span>
-                                <span class="tech-tag-white">Material-UI (v5)</span>
-                                <span class="tech-tag-white">Axios</span>
-                                <span class="tech-tag-white">React Router</span>
-                            </div>
-                        </div>
-                        
-                        <ul class="achievements project-achievements">
-                            <li><strong>Vite 기반 빌드 최적화</strong> - React SPA 빠른 개발 환경 구축, HMR로 개발 생산성 향상</li>
-                            <li><strong>Redux Toolkit + React Query 하이브리드 상태 관리</strong> - 서버/클라이언트 상태 분리로 성능 최적화</li>
-                            <li><strong>Suspense + React Query로 로딩 UX 개선</strong> - 사용자 체감 성능 대폭 향상</li>
-                            <li><strong>Material-UI v5 + 커스텀 훅 패턴</strong> - 재사용 가능한 Dialog 시스템 구축</li>
-                            <li><strong>Chart.js 실시간 데이터 시각화</strong> - 5단계 지역 계층 구조 모니터링 최적화</li>
-                            <li><strong>AWS 프록시 서버 연동</strong> - CORS 해결 및 API 통신 안정성 확보</li>
-                            <li><strong>영어 소통을 통한 국제 협업</strong> - 필리핀 선거관리위원회와 직접 소통 및 요구사항 대응</li>
-                        </ul>
-                        
-                        <div class="highlight-box" style="background: rgba(255,255,255,0.1); border-left-color: rgba(255,255,255,0.5);">
-                            <div class="detail-label" style="color: rgba(255,255,255,0.9);">주요 성과</div>
-                            <p style="color: rgba(255,255,255,0.8); margin: 0;">
-                                팀 구성: FE 2명, BE 4명, 인프라 2명으로 대규모 프로젝트 성공적 완료.<br>
-                                실제 필리핀 전국 선거에서 사용되는 공식 시스템 개발 참여.
-                            </p>
-                        </div>
-                    </div>
-                    
-                    <div class="project-highlight" style="background: linear-gradient(135deg, #28a745, #20c997);">
-                        <div class="project-title">🌐 CCS Web Portal - 공개 선거 결과 포털</div>
-                        <p style="margin-bottom: 15px; opacity: 0.9;">
-                            실시간 선거 결과를 시각화하고, 지역별 단계별 집계할 수 있는 UI/UX 제공
-                        </p>
-                        
-                        <div class="tech-stack">
-                            <h4>🛠️ 기술 스택</h4>
-                            <div class="tech-tags">
-                                <span class="tech-tag-white">Vue 2.6.14</span>
-                                <span class="tech-tag-white">Vuex 3.6.2</span>
-                                <span class="tech-tag-white">Vuetify 2.6.0</span>
-                                <span class="tech-tag-white">Chart.js</span>
-                                <span class="tech-tag-white">Vue Router</span>
-                                <span class="tech-tag-white">Axios</span>
-                            </div>
-                        </div>
-                        
-                        <ul class="achievements project-achievements">
-                            <li><strong>Vue CLI 5 + dotenv-cli로 환경 분리</strong> - .env.local, .env.prd 설정 분리하여 사용</li>
-                            <li><strong>Vuex + PersistedState 상태 관리</strong> - LocalStorage 자동 저장으로 새로고침 시에도 상태 유지</li>
-                            <li><strong>AutoComplete 컴포넌트 최적화</strong> - 지역별 필터링 기능으로 직관적인 검색 UX 제공</li>
-                            <li><strong>Chart.js 투표율 시각화</strong> - Bar, Pie, Line 차트로 선거 데이터 수신율(%) 실시간 표시</li>
-                            <li><strong>Vuetify Grid + Breakpoints API 활용</strong> - 모바일 퍼스트 반응형 웹 디자인 구현</li>
-                            <li><strong>AbortController API 성능 최적화</strong> - 불필요한 네트워크 요청 취소로 메모리 효율성 개선</li>
-                        </ul>
-                        
-                        <div class="detail-item">
-                            <div class="detail-label" style="color: rgba(255,255,255,0.9);">🔗 배포 URL</div>
-                            <p style="color: rgba(255,255,255,0.8); margin: 0; line-height: 1.4;">
-                                <a href="https://2025electionresults.comelec.gov.ph/dashboard" 
-                                   style="color: rgba(255,255,255,0.9); text-decoration: underline;"
-                                   target="_blank">
-                                   https://2025electionresults.comelec.gov.ph/dashboard
-                                </a><br>
-                                <small style="opacity: 0.7;">※ 와이파이 환경에서는 방화벽으로 접근 불가 (모바일 데이터 권장)</small>
-                            </p>
-                        </div>
-                    </div>
-                    
-                    <div class="project-highlight" style="background: linear-gradient(135deg, #20c997, #17a2b8);">
-                        <div class="project-title">📱 라이프집 커뮤니티 플랫폼</div>
-                        <p style="margin-bottom: 15px; opacity: 0.95; font-size: 16px;">
-                            사용자들의 일상 기록과 콘텐츠 공유를 위한 SNS형 웹 플랫폼 구축
-                        </p>
-                        
-                        <div class="tech-stack">
-                            <h4>🛠️ 핵심 기술 스택</h4>
-                            <div class="tech-tags">
-                                <span class="tech-tag-white">React</span>
-                                <span class="tech-tag-white">TypeScript</span>
-                                <span class="tech-tag-white">TinyMCE</span>
-                                <span class="tech-tag-white">Zustand</span>
-                                <span class="tech-tag-white">Dropzone</span>
-                                <span class="tech-tag-white">AWS S3</span>
-                            </div>
-                        </div>
-                        
-                        <ul class="achievements project-achievements">
-                            <li><strong>TinyMCE 에디터 커스터마이징</strong> - 유튜브 썸네일 자동 삽입, 이미지 업로드 최적화</li>
-                            <li><strong>useEditorHook 커스텀 훅 개발</strong> - 이미지 자동 압축 (600KB 이상 리사이징)</li>
-                            <li><strong>Dropzone 파일 업로드 최적화</strong> - 드래그 앤 드롭 UI로 사용자 경험 개선</li>
-                            <li><strong>Zustand 전역 상태 관리</strong> - prop drilling 없이 간결한 상태 관리 구조</li>
-                            <li><strong>AWS S3 업로드 최적화</strong> - 이미지 리사이즈 및 압축 자동화</li>
-                        </ul>
-                        
-                        <div class="detail-item">
-                            <div class="detail-label" style="color: rgba(255,255,255,0.9);">🔗 배포 URL</div>
-                            <p style="color: rgba(255,255,255,0.8); margin: 0;">
-                                <a href="https://lifezip.kr" 
-                                   style="color: rgba(255,255,255,0.9); text-decoration: underline;"
-                                   target="_blank">
-                                   https://lifezip.kr
-                                </a>
-                            </p>
-                        </div>
-                    </div>
-                    
-                    <div class="project-highlight" style="background: linear-gradient(135deg, #6f42c1, #e83e8c);">
-                        <div class="project-title">📊 LG 하드웨어 성능 시각화 시스템</div>
-                        <p style="margin-bottom: 15px; opacity: 0.95; font-size: 16px;">
-                            LG 하드웨어 설계/성능 데이터를 Web 기반 시각화 시스템으로 전환하는 프로젝트
-                        </p>
-                        
-                        <div class="tech-stack">
-                            <h4>🛠️ 핵심 기술 스택</h4>
-                            <div class="tech-tags">
-                                <span class="tech-tag-white">React</span>
-                                <span class="tech-tag-white">AG Grid (유료)</span>
-                                <span class="tech-tag-white">데이터 필터링</span>
-                                <span class="tech-tag-white">성능 최적화</span>
-                            </div>
-                        </div>
-                        
-                        <ul class="achievements project-achievements">
-                            <li><strong>AG Grid 유료 버전 활용</strong> - 기업 제출용 고성능 데이터 그리드 구현</li>
-                            <li><strong>검색어 필터 기능 구현</strong> - AG Grid의 강력한 필터링 기능으로 대용량 데이터 처리</li>
-                            <li><strong>성능 측정값 시각화</strong> - 하드웨어 데이터를 직관적인 테이블 형태로 표시</li>
-                            <li><strong>사용자 친화적 관리 페이지</strong> - 복잡한 데이터를 효율적으로 관리하는 인터페이스 구현</li>
-                        </ul>
-                    </div>
-                    
-                    <ul class="achievements">
-                        <li><strong>Figma 기반 디자이너 협업</strong> - 디자인 시스템 구축 및 컴포넌트 라이브러리 개발</li>
-                        <li><strong>운영 중 서비스 유지보수 및 버그 대응</strong> - 안정적인 서비스 운영 경험</li>
-                    </ul>
-                </div>
+      <main class="main-content">
+        <section class="section">
+          <h2 class="section-title">핵심 역량</h2>
+          <div class="skills-grid">
+            <div class="skill-category">
+              <h3>프론트엔드 기술</h3>
+              <div class="skill-list">
+                <span class="skill-tag">React</span>
+                <span class="skill-tag">Next.js</span>
+                <span class="skill-tag">Vue.js</span>
+                <span class="skill-tag">TypeScript</span>
+                <span class="skill-tag">JavaScript</span>
+              </div>
+            </div>
+            <div class="skill-category">
+              <h3>상태 관리 & API</h3>
+              <div class="skill-list">
+                <span class="skill-tag">Redux</span>
+                <span class="skill-tag">Vuex</span>
+                <span class="skill-tag">React Query</span>
+                <span class="skill-tag">SWR</span>
+                <span class="skill-tag">Axios</span>
+              </div>
+            </div>
+            <div class="skill-category">
+              <h3>UI 프레임워크</h3>
+              <div class="skill-list">
+                <span class="skill-tag">Material-UI</span>
+                <span class="skill-tag">Vuetify</span>
+                <span class="skill-tag">AG Grid</span>
+                <span class="skill-tag">Chart.js</span>
+                <span class="skill-tag">GSAP</span>
+              </div>
+            </div>
+            <div class="skill-category">
+              <h3>개발 도구</h3>
+              <div class="skill-list">
+                <span class="skill-tag">GitHub</span>
+                <span class="skill-tag">Vite</span>
+                <span class="skill-tag">Webpack</span>
+                <span class="skill-tag">Node.js</span>
+                <span class="skill-tag">REST API</span>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="section">
+          <h2 class="section-title">경력 사항</h2>
 
-                <div class="experience-item">
-                    <div class="experience-header">
-                        <div>
-                            <div class="company-name">㈜제이앤퍼스트</div>
-                            <div class="position">개발부 / 대리</div>
-                        </div>
-                        <div class="period">2021.11 ~ 2023.09 (1년 11개월)</div>
-                    </div>
-                    
-                    <div class="highlight-box">
-                        <div class="detail-label">🏢 회사 소개</div>
-                        <p>글로벌 기업 라인 협력사 (eCommerce 플랫폼 개발 전문업체)</p>
-                    </div>
-                    
-                    <ul class="achievements">
-                        <li><strong>Monary CMS Line 백오피스</strong> - 금융 컨텐츠 관리 시스템 개발 (팀구성: FE 5인 BE 1인)</li>
-                        <li><strong>WDM Line 백오피스</strong> - Redis 정보 관리 및 암호화 시스템 구현 (팀구성: FE 4인, BE 3인)</li>
-                        <li><strong>My Dashboard Next.js 리팩토링</strong> - 성능 최적화 및 코드 분할을 통한 초기 로딩 시간 단축</li>
-                        <li><strong>Wallet Campaign CMS</strong> - Line 클라이언트 앱 이벤트 관리 시스템 (팀구성: FE 2인)</li>
-                        <li><strong>react-hook-form + useFieldArray</strong> - 동적 배열 관리로 복잡한 폼 상태 최적화</li>
-                        <li><strong>Yup lazy() 함수 활용</strong> - 복잡한 중첩 객체 구조의 유효성 검사 처리</li>
-                        <li><strong>Lottie JSON 파일 헤더 추출</strong> - 미리보기 이미지 자동 생성으로 UX 개선</li>
-                    </ul>
-                </div>
-            </section>
+          <div class="experience-item">
+            <div class="experience-header">
+              <div>
+                <div class="company-name">㈜인텔리코드</div>
+                <div class="position">Data Service팀 / 사원</div>
+              </div>
+              <div class="period">2023.10 ~ 현재 (1년 8개월)</div>
+            </div>
 
-            <section class="section">
-                <h2 class="section-title">사이드 프로젝트</h2>
-                
-                <div class="project-card" style="max-width: none; margin-bottom: 0;">
-                    <div class="project-highlight" style="background: linear-gradient(135deg, #ff6b9d, #ff8e91); margin: 0;">
-                        <div class="project-title">💘 MatchMate Cursor App (현재 개발 중)</div>
-                        <p style="margin-bottom: 20px; opacity: 0.95; font-size: 16px;">
-                            소개팅 기반 매칭 플랫폼 사이드 프로젝트. Next.js 기반의 PWA 앱으로, 
-                            Supabase를 이용한 인증과 실시간 기능을 포함한 실사용 가능한 수준의 매칭 서비스 구현 중
-                        </p>
-                        
-                        <div class="tech-stack">
-                            <h4>🛠️ 핵심 기술 스택</h4>
-                            <div class="tech-tags">
-                                <span class="tech-tag-white">Next.js 13+</span>
-                                <span class="tech-tag-white">TypeScript</span>
-                                <span class="tech-tag-white">Supabase</span>
-                                <span class="tech-tag-white">React Query</span>
-                                <span class="tech-tag-white">Zustand</span>
-                                <span class="tech-tag-white">PWA</span>
-                                <span class="tech-tag-white">Vercel</span>
-                            </div>
-                        </div>
-                        
-                        <ul class="achievements project-achievements">
-                            <li><strong>Next.js 13+ App Router 구조</strong> - SSR(서버사이드 렌더링) 기반 최신 아키텍처 적용</li>
-                            <li><strong>Supabase 풀스택 연동</strong> - Database, Auth, Storage 통합 백엔드 서비스</li>
-                            <li><strong>SSR/CSR 하이브리드 인증</strong> - 쿠키 기반 서버 인증 + 클라이언트 상태 관리</li>
-                            <li><strong>React Query로 서버 상태 관리</strong> - 캐싱, 동기화, 백그라운드 업데이트</li>
-                            <li><strong>PWA 구현</strong> - 오프라인 지원, 앱 설치 가능한 웹 애플리케이션</li>
-                            <li><strong>Zustand 전역 상태 관리</strong> - 가벼운 상태 관리로 사용자 경험 최적화</li>
-                        </ul>
-                        
-                        <div class="highlight-box" style="background: rgba(255,255,255,0.15); border-left-color: rgba(255,255,255,0.5); margin-top: 20px;">
-                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
-                                <div>
-                                    <div class="detail-label" style="color: rgba(255,255,255,0.9);">🎨 디자인</div>
-                                    <p style="color: rgba(255,255,255,0.8); margin: 0; font-size: 14px;">
-                                        Figma 기반 UI/UX<br>모바일 퍼스트 디자인
-                                    </p>
-                                </div>
-                                <div>
-                                    <div class="detail-label" style="color: rgba(255,255,255,0.9);">🚀 배포</div>
-                                    <p style="color: rgba(255,255,255,0.8); margin: 0; font-size: 14px;">
-                                        Vercel 자동 배포<br>GitHub 연동 CI/CD
-                                    </p>
-                                </div>
-                                <div>
-                                    <div class="detail-label" style="color: rgba(255,255,255,0.9);">⚡ 성능</div>
-                                    <p style="color: rgba(255,255,255,0.8); margin: 0; font-size: 14px;">
-                                        SSR 최적화<br>실시간 업데이트
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div style="display: flex; gap: 15px; margin-top: 20px; flex-wrap: wrap;">
-                            <a href="https://github.com/maniabang/matchmate-cursor-app" 
-                               style="color: white; text-decoration: none; background: rgba(255,255,255,0.2); 
-                                      padding: 10px 20px; border-radius: 25px; border: 1px solid rgba(255,255,255,0.3);
-                                      transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 8px;">
-                                📂 GitHub Repository
-                            </a>
-                            <div style="color: rgba(255,255,255,0.8); 
-                                        padding: 10px 20px; border-radius: 25px; border: 1px solid rgba(255,255,255,0.2);
-                                        display: inline-flex; align-items: center; gap: 8px; font-size: 14px;">
-                                🚧 현재 개발 진행 중
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div style="padding: 25px; background: #f8f9fa; border-radius: 0 0 12px 12px;">
-                        <h4 style="color: #333; margin-bottom: 15px; font-size: 18px;">🔧 주요 구현 사항</h4>
-                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
-                            <div>
-                                <h5 style="color: #667eea; margin-bottom: 8px;">인증 시스템</h5>
-                                <ul style="list-style: none; padding: 0; margin: 0; font-size: 14px; line-height: 1.5;">
-                                    <li>• 이메일 기반 회원가입/로그인</li>
-                                    <li>• SSR/CSR 하이브리드 인증</li>
-                                    <li>• 쿠키 기반 세션 관리</li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h5 style="color: #667eea; margin-bottom: 8px;">백엔드 연동</h5>
-                                <ul style="list-style: none; padding: 0; margin: 0; font-size: 14px; line-height: 1.5;">
-                                    <li>• Supabase Database 설계</li>
-                                    <li>• API Route 핸들러 구현</li>
-                                    <li>• 실시간 데이터 동기화</li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h5 style="color: #667eea; margin-bottom: 8px;">사용자 경험</h5>
-                                <ul style="list-style: none; padding: 0; margin: 0; font-size: 14px; line-height: 1.5;">
-                                    <li>• PWA 오프라인 지원</li>
-                                    <li>• 반응형 모바일 UI</li>
-                                    <li>• 최적화된 로딩 성능</li>
-                                </ul>
-                            </div>
-                        </div>
-                        
-                        <div style="margin-top: 20px; padding: 15px; background: white; border-radius: 8px; border-left: 4px solid #ff6b9d;">
-                            <h5 style="color: #333; margin-bottom: 8px;">💡 기술적 도전과 학습</h5>
-                            <p style="margin: 0; font-size: 14px; color: #666; line-height: 1.5;">
-                                Next.js 13+의 최신 App Router 구조와 Supabase 생태계를 활용하여 
-                                실제 서비스 수준의 매칭 플랫폼을 구현 중. SSR과 CSR을 적절히 조합한 
-                                하이브리드 렌더링과 PWA 기술을 통한 네이티브 앱 수준의 사용자 경험 구현 예정.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <div class="project-highlight">
+              <div class="project-title">🗳️ 필리핀 선거관리위원회 CCS(Consolidation and Canvassing System)</div>
+              <p style="margin-bottom: 15px; opacity: 0.9">
+                필리핀 전역에서 사용되는 디지털 전자투표 시스템의 SPA 기반 웹페이지 개발 및 배포
+              </p>
 
-            <section class="section">
-                <h2 class="section-title">GitHub & 포트폴리오</h2>
-                <div class="github-stats">
-                    <h3 class="stats-title">개발 활동</h3>
-                    <p>지속적인 사이드 프로젝트와 기술 학습을 통한 성장</p>
-                    <br>
-                    <a href="https://github.com/maniabang" class="github-link">
-                        🔗 github.com/maniabang
-                    </a>
+              <div class="tech-stack">
+                <h4>🛠️ 기술 스택</h4>
+                <div class="tech-tags">
+                  <span class="tech-tag-white">React (Vite)</span>
+                  <span class="tech-tag-white">Redux</span>
+                  <span class="tech-tag-white">React Query</span>
+                  <span class="tech-tag-white">Material-UI (v5)</span>
+                  <span class="tech-tag-white">Axios</span>
+                  <span class="tech-tag-white">React Router</span>
                 </div>
-            </section>
-        </main>
+              </div>
+
+              <ul class="achievements project-achievements">
+                <li><strong>Vite 기반 빌드 최적화</strong> - React SPA 빠른 개발 환경 구축, HMR로 개발 생산성 향상</li>
+                <li>
+                  <strong>Redux Toolkit + React Query 하이브리드 상태 관리</strong> - 서버/클라이언트 상태 분리로 성능
+                  최적화
+                </li>
+                <li><strong>Suspense + React Query로 로딩 UX 개선</strong> - 사용자 체감 성능 대폭 향상</li>
+                <li><strong>Material-UI v5 + 커스텀 훅 패턴</strong> - 재사용 가능한 Dialog 시스템 구축</li>
+                <li><strong>Chart.js 실시간 데이터 시각화</strong> - 5단계 지역 계층 구조 모니터링 최적화</li>
+                <li><strong>AWS 프록시 서버 연동</strong> - CORS 해결 및 API 통신 안정성 확보</li>
+                <li>
+                  <strong>영어 소통을 통한 국제 협업</strong> - 필리핀 선거관리위원회와 직접 소통 및 요구사항 대응
+                </li>
+              </ul>
+
+              <div
+                class="highlight-box"
+                style="background: rgba(255, 255, 255, 0.1); border-left-color: rgba(255, 255, 255, 0.5)"
+              >
+                <div class="detail-label" style="color: rgba(255, 255, 255, 0.9)">주요 성과</div>
+                <p style="color: rgba(255, 255, 255, 0.8); margin: 0">
+                  팀 구성: FE 2명, BE 4명, 인프라 2명으로 대규모 프로젝트 성공적 완료.<br />
+                  실제 필리핀 전국 선거에서 사용되는 공식 시스템 개발 참여.
+                </p>
+              </div>
+            </div>
+
+            <div class="project-highlight" style="background: linear-gradient(135deg, #28a745, #20c997)">
+              <div class="project-title">🌐 CCS Web Portal - 공개 선거 결과 포털</div>
+              <p style="margin-bottom: 15px; opacity: 0.9">
+                실시간 선거 결과를 시각화하고, 지역별 단계별 집계할 수 있는 UI/UX 제공
+              </p>
+
+              <div class="tech-stack">
+                <h4>🛠️ 기술 스택</h4>
+                <div class="tech-tags">
+                  <span class="tech-tag-white">Vue 2.6.14</span>
+                  <span class="tech-tag-white">Vuex 3.6.2</span>
+                  <span class="tech-tag-white">Vuetify 2.6.0</span>
+                  <span class="tech-tag-white">Chart.js</span>
+                  <span class="tech-tag-white">Vue Router</span>
+                  <span class="tech-tag-white">Axios</span>
+                </div>
+              </div>
+
+              <ul class="achievements project-achievements">
+                <li><strong>Vue CLI 5 + dotenv-cli로 환경 분리</strong> - .env.local, .env.prd 설정 분리하여 사용</li>
+                <li>
+                  <strong>Vuex + PersistedState 상태 관리</strong> - LocalStorage 자동 저장으로 새로고침 시에도 상태
+                  유지
+                </li>
+                <li><strong>AutoComplete 컴포넌트 최적화</strong> - 지역별 필터링 기능으로 직관적인 검색 UX 제공</li>
+                <li>
+                  <strong>Chart.js 투표율 시각화</strong> - Bar, Pie, Line 차트로 선거 데이터 수신율(%) 실시간 표시
+                </li>
+                <li><strong>Vuetify Grid + Breakpoints API 활용</strong> - 모바일 퍼스트 반응형 웹 디자인 구현</li>
+                <li>
+                  <strong>AbortController API 성능 최적화</strong> - 불필요한 네트워크 요청 취소로 메모리 효율성 개선
+                </li>
+              </ul>
+
+              <div class="detail-item">
+                <div class="detail-label" style="color: rgba(255, 255, 255, 0.9)">🔗 배포 URL</div>
+                <p style="color: rgba(255, 255, 255, 0.8); margin: 0; line-height: 1.4">
+                  <a
+                    href="https://2025electionresults.comelec.gov.ph/dashboard"
+                    style="color: rgba(255, 255, 255, 0.9); text-decoration: underline"
+                    target="_blank"
+                  >
+                    https://2025electionresults.comelec.gov.ph/dashboard </a
+                  ><br />
+                  <small style="opacity: 0.7">※ 와이파이 환경에서는 방화벽으로 접근 불가 (모바일 데이터 권장)</small>
+                </p>
+              </div>
+            </div>
+
+            <div class="project-highlight" style="background: linear-gradient(135deg, #20c997, #17a2b8)">
+              <div class="project-title">📱 라이프집 커뮤니티 플랫폼</div>
+              <p style="margin-bottom: 15px; opacity: 0.95; font-size: 16px">
+                사용자들의 일상 기록과 콘텐츠 공유를 위한 SNS형 웹 플랫폼 구축
+              </p>
+
+              <div class="tech-stack">
+                <h4>🛠️ 핵심 기술 스택</h4>
+                <div class="tech-tags">
+                  <span class="tech-tag-white">React</span>
+                  <span class="tech-tag-white">TypeScript</span>
+                  <span class="tech-tag-white">TinyMCE</span>
+                  <span class="tech-tag-white">Zustand</span>
+                  <span class="tech-tag-white">Dropzone</span>
+                  <span class="tech-tag-white">AWS S3</span>
+                </div>
+              </div>
+
+              <ul class="achievements project-achievements">
+                <li><strong>TinyMCE 에디터 커스터마이징</strong> - 유튜브 썸네일 자동 삽입, 이미지 업로드 최적화</li>
+                <li><strong>useEditorHook 커스텀 훅 개발</strong> - 이미지 자동 압축 (600KB 이상 리사이징)</li>
+                <li><strong>Dropzone 파일 업로드 최적화</strong> - 드래그 앤 드롭 UI로 사용자 경험 개선</li>
+                <li><strong>Zustand 전역 상태 관리</strong> - prop drilling 없이 간결한 상태 관리 구조</li>
+                <li><strong>AWS S3 업로드 최적화</strong> - 이미지 리사이즈 및 압축 자동화</li>
+              </ul>
+
+              <div class="detail-item">
+                <div class="detail-label" style="color: rgba(255, 255, 255, 0.9)">🔗 배포 URL</div>
+                <p style="color: rgba(255, 255, 255, 0.8); margin: 0">
+                  <a
+                    href="https://lifezip.kr"
+                    style="color: rgba(255, 255, 255, 0.9); text-decoration: underline"
+                    target="_blank"
+                  >
+                    https://lifezip.kr
+                  </a>
+                </p>
+              </div>
+            </div>
+
+            <div class="project-highlight" style="background: linear-gradient(135deg, #6f42c1, #e83e8c)">
+              <div class="project-title">📊 LG 하드웨어 성능 시각화 시스템</div>
+              <p style="margin-bottom: 15px; opacity: 0.95; font-size: 16px">
+                LG 하드웨어 설계/성능 데이터를 Web 기반 시각화 시스템으로 전환하는 프로젝트
+              </p>
+
+              <div class="tech-stack">
+                <h4>🛠️ 핵심 기술 스택</h4>
+                <div class="tech-tags">
+                  <span class="tech-tag-white">React</span>
+                  <span class="tech-tag-white">AG Grid (유료)</span>
+                  <span class="tech-tag-white">데이터 필터링</span>
+                  <span class="tech-tag-white">성능 최적화</span>
+                </div>
+              </div>
+
+              <ul class="achievements project-achievements">
+                <li><strong>AG Grid 유료 버전 활용</strong> - 기업 제출용 고성능 데이터 그리드 구현</li>
+                <li><strong>검색어 필터 기능 구현</strong> - AG Grid의 강력한 필터링 기능으로 대용량 데이터 처리</li>
+                <li><strong>성능 측정값 시각화</strong> - 하드웨어 데이터를 직관적인 테이블 형태로 표시</li>
+                <li>
+                  <strong>사용자 친화적 관리 페이지</strong> - 복잡한 데이터를 효율적으로 관리하는 인터페이스 구현
+                </li>
+              </ul>
+            </div>
+
+            <ul class="achievements">
+              <li><strong>Figma 기반 디자이너 협업</strong> - 디자인 시스템 구축 및 컴포넌트 라이브러리 개발</li>
+              <li><strong>운영 중 서비스 유지보수 및 버그 대응</strong> - 안정적인 서비스 운영 경험</li>
+            </ul>
+          </div>
+
+          <div class="experience-item">
+            <div class="experience-header">
+              <div>
+                <div class="company-name">㈜제이앤퍼스트</div>
+                <div class="position">개발부 / 대리</div>
+              </div>
+              <div class="period">2021.11 ~ 2023.09 (1년 11개월)</div>
+            </div>
+
+            <div class="highlight-box">
+              <div class="detail-label">🏢 회사 소개</div>
+              <p>글로벌 기업 라인 협력사 (eCommerce 플랫폼 개발 전문업체)</p>
+            </div>
+
+            <ul class="achievements">
+              <li><strong>Monary CMS Line 백오피스</strong> - 금융 컨텐츠 관리 시스템 개발 (팀구성: FE 5인 BE 1인)</li>
+              <li>
+                <strong>WDM Line 백오피스</strong> - Redis 정보 관리 및 암호화 시스템 구현 (팀구성: FE 4인, BE 3인)
+              </li>
+              <li>
+                <strong>My Dashboard Next.js 리팩토링</strong> - 성능 최적화 및 코드 분할을 통한 초기 로딩 시간 단축
+              </li>
+              <li><strong>Wallet Campaign CMS</strong> - Line 클라이언트 앱 이벤트 관리 시스템 (팀구성: FE 2인)</li>
+              <li><strong>react-hook-form + useFieldArray</strong> - 동적 배열 관리로 복잡한 폼 상태 최적화</li>
+              <li><strong>Yup lazy() 함수 활용</strong> - 복잡한 중첩 객체 구조의 유효성 검사 처리</li>
+              <li><strong>Lottie JSON 파일 헤더 추출</strong> - 미리보기 이미지 자동 생성으로 UX 개선</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="section">
+          <h2 class="section-title">사이드 프로젝트</h2>
+
+          <div class="project-card" style="max-width: none; margin-bottom: 0">
+            <div class="project-highlight" style="background: linear-gradient(135deg, #ff6b9d, #ff8e91); margin: 0">
+              <div class="project-title">💘 MatchMate Cursor App (현재 개발 중)</div>
+              <p style="margin-bottom: 20px; opacity: 0.95; font-size: 16px">
+                소개팅 기반 매칭 플랫폼 사이드 프로젝트. Next.js 기반의 PWA 앱으로, Supabase를 이용한 인증과 실시간
+                기능을 포함한 실사용 가능한 수준의 매칭 서비스 구현 중
+              </p>
+
+              <div class="tech-stack">
+                <h4>🛠️ 핵심 기술 스택</h4>
+                <div class="tech-tags">
+                  <span class="tech-tag-white">Next.js 13+</span>
+                  <span class="tech-tag-white">TypeScript</span>
+                  <span class="tech-tag-white">Supabase</span>
+                  <span class="tech-tag-white">React Query</span>
+                  <span class="tech-tag-white">Zustand</span>
+                  <span class="tech-tag-white">PWA</span>
+                  <span class="tech-tag-white">Vercel</span>
+                </div>
+              </div>
+
+              <ul class="achievements project-achievements">
+                <li><strong>Next.js 13+ App Router 구조</strong> - SSR(서버사이드 렌더링) 기반 최신 아키텍처 적용</li>
+                <li><strong>Supabase 풀스택 연동</strong> - Database, Auth, Storage 통합 백엔드 서비스</li>
+                <li><strong>SSR/CSR 하이브리드 인증</strong> - 쿠키 기반 서버 인증 + 클라이언트 상태 관리</li>
+                <li><strong>React Query로 서버 상태 관리</strong> - 캐싱, 동기화, 백그라운드 업데이트</li>
+                <li><strong>PWA 구현</strong> - 오프라인 지원, 앱 설치 가능한 웹 애플리케이션</li>
+                <li><strong>Zustand 전역 상태 관리</strong> - 가벼운 상태 관리로 사용자 경험 최적화</li>
+              </ul>
+
+              <div
+                class="highlight-box"
+                style="
+                  background: rgba(255, 255, 255, 0.15);
+                  border-left-color: rgba(255, 255, 255, 0.5);
+                  margin-top: 20px;
+                "
+              >
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px">
+                  <div>
+                    <div class="detail-label" style="color: rgba(255, 255, 255, 0.9)">🎨 디자인</div>
+                    <p style="color: rgba(255, 255, 255, 0.8); margin: 0; font-size: 14px">
+                      Figma 기반 UI/UX<br />모바일 퍼스트 디자인
+                    </p>
+                  </div>
+                  <div>
+                    <div class="detail-label" style="color: rgba(255, 255, 255, 0.9)">🚀 배포</div>
+                    <p style="color: rgba(255, 255, 255, 0.8); margin: 0; font-size: 14px">
+                      Vercel 자동 배포<br />GitHub 연동 CI/CD
+                    </p>
+                  </div>
+                  <div>
+                    <div class="detail-label" style="color: rgba(255, 255, 255, 0.9)">⚡ 성능</div>
+                    <p style="color: rgba(255, 255, 255, 0.8); margin: 0; font-size: 14px">
+                      SSR 최적화<br />실시간 업데이트
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div style="display: flex; gap: 15px; margin-top: 20px; flex-wrap: wrap">
+                <a
+                  href="https://github.com/maniabang/matchmate-cursor-app"
+                  style="
+                    color: white;
+                    text-decoration: none;
+                    background: rgba(255, 255, 255, 0.2);
+                    padding: 10px 20px;
+                    border-radius: 25px;
+                    border: 1px solid rgba(255, 255, 255, 0.3);
+                    transition: all 0.3s ease;
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 8px;
+                  "
+                >
+                  📂 GitHub Repository
+                </a>
+                <div
+                  style="
+                    color: rgba(255, 255, 255, 0.8);
+                    padding: 10px 20px;
+                    border-radius: 25px;
+                    border: 1px solid rgba(255, 255, 255, 0.2);
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 8px;
+                    font-size: 14px;
+                  "
+                >
+                  🚧 현재 개발 진행 중
+                </div>
+              </div>
+            </div>
+
+            <div style="padding: 25px; background: #f8f9fa; border-radius: 0 0 12px 12px">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 18px">🔧 주요 구현 사항</h4>
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px">
+                <div>
+                  <h5 style="color: #667eea; margin-bottom: 8px">인증 시스템</h5>
+                  <ul style="list-style: none; padding: 0; margin: 0; font-size: 14px; line-height: 1.5">
+                    <li>• 이메일 기반 회원가입/로그인</li>
+                    <li>• SSR/CSR 하이브리드 인증</li>
+                    <li>• 쿠키 기반 세션 관리</li>
+                  </ul>
+                </div>
+                <div>
+                  <h5 style="color: #667eea; margin-bottom: 8px">백엔드 연동</h5>
+                  <ul style="list-style: none; padding: 0; margin: 0; font-size: 14px; line-height: 1.5">
+                    <li>• Supabase Database 설계</li>
+                    <li>• API Route 핸들러 구현</li>
+                    <li>• 실시간 데이터 동기화</li>
+                  </ul>
+                </div>
+                <div>
+                  <h5 style="color: #667eea; margin-bottom: 8px">사용자 경험</h5>
+                  <ul style="list-style: none; padding: 0; margin: 0; font-size: 14px; line-height: 1.5">
+                    <li>• PWA 오프라인 지원</li>
+                    <li>• 반응형 모바일 UI</li>
+                    <li>• 최적화된 로딩 성능</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div
+                style="
+                  margin-top: 20px;
+                  padding: 15px;
+                  background: white;
+                  border-radius: 8px;
+                  border-left: 4px solid #ff6b9d;
+                "
+              >
+                <h5 style="color: #333; margin-bottom: 8px">💡 기술적 도전과 학습</h5>
+                <p style="margin: 0; font-size: 14px; color: #666; line-height: 1.5">
+                  Next.js 13+의 최신 App Router 구조와 Supabase 생태계를 활용하여 실제 서비스 수준의 매칭 플랫폼을 구현
+                  중. SSR과 CSR을 적절히 조합한 하이브리드 렌더링과 PWA 기술을 통한 네이티브 앱 수준의 사용자 경험 구현
+                  예정.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card" style="max-width: none; margin-bottom: 0">
+            <div class="project-highlight" style="background: linear-gradient(135deg, #00b8d4, #0097a7); margin: 0">
+              <div class="project-title">✈️ Travel Record Flutter App</div>
+              <p style="margin-bottom: 20px; opacity: 0.95; font-size: 16px">
+                여행 기록 & 항공권 검색 Flutter 앱. 출입국 증명서 OCR로 국가/날짜를 자동 추출하고, 여행 기록을 저장한 후
+                항공권 최저가 검색까지 한 번에 처리하는 실사용 가능한 여행 플랫폼
+              </p>
+
+              <div class="tech-stack">
+                <h4>🛠️ 핵심 기술 스택</h4>
+                <div class="tech-tags">
+                  <span class="tech-tag-white">Flutter</span>
+                  <span class="tech-tag-white">google_ml_kit</span>
+                  <span class="tech-tag-white">Riverpod</span>
+                  <span class="tech-tag-white">Hive</span>
+                  <span class="tech-tag-white">Dio</span>
+                  <span class="tech-tag-white">OCR</span>
+                  <span class="tech-tag-white">PWA</span>
+                </div>
+              </div>
+
+              <ul class="achievements project-achievements">
+                <li>
+                  <strong>Google ML Kit OCR 로컬 처리</strong> - API 키 불필요, 무료 한글 인식으로 출입국 증명서 텍스트
+                  추출
+                </li>
+                <li><strong>file_picker 다중 파일 업로드</strong> - PDF/이미지 동시 지원으로 사용자 편의성 극대화</li>
+                <li><strong>Riverpod 상태 관리</strong> - Provider 패턴으로 경량화된 앱 상태 관리</li>
+                <li><strong>Hive 로컬 데이터베이스</strong> - NoSQL 기반 오프라인 여행 기록 저장/조회</li>
+                <li><strong>Dio HTTP 클라이언트</strong> - 항공권 API 연동 및 최저가 검색 기능</li>
+                <li><strong>Regex 파싱 최적화</strong> - OCR 결과에서 국가명/날짜 정확도 개선</li>
+              </ul>
+
+              <div
+                class="highlight-box"
+                style="
+                  background: rgba(255, 255, 255, 0.15);
+                  border-left-color: rgba(255, 255, 255, 0.5);
+                  margin-top: 20px;
+                "
+              >
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px">
+                  <div>
+                    <div class="detail-label" style="color: rgba(255, 255, 255, 0.9)">🎨 디자인</div>
+                    <p style="color: rgba(255, 255, 255, 0.8); margin: 0; font-size: 14px">
+                      Figma 기반 UI/UX<br />크로스플랫폼 디자인
+                    </p>
+                  </div>
+                  <div>
+                    <div class="detail-label" style="color: rgba(255, 255, 255, 0.9)">📱 플랫폼</div>
+                    <p style="color: rgba(255, 255, 255, 0.8); margin: 0; font-size: 14px">
+                      Android/iOS<br />PWA 웹 지원 예정
+                    </p>
+                  </div>
+                  <div>
+                    <div class="detail-label" style="color: rgba(255, 255, 255, 0.9)">⚡ 특징</div>
+                    <p style="color: rgba(255, 255, 255, 0.8); margin: 0; font-size: 14px">
+                      오프라인 우선<br />무료 API 활용
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div style="display: flex; gap: 15px; margin-top: 20px; flex-wrap: wrap">
+                <a
+                  href="https://github.com/maniabang/travel-record-flutter"
+                  style="
+                    color: white;
+                    text-decoration: none;
+                    background: rgba(255, 255, 255, 0.2);
+                    padding: 10px 20px;
+                    border-radius: 25px;
+                    border: 1px solid rgba(255, 255, 255, 0.3);
+                    transition: all 0.3s ease;
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 8px;
+                  "
+                >
+                  📂 GitHub Repository
+                </a>
+                <a
+                  href="https://www.figma.com/design/EnKmFNXYHBSnCCvgNdRGid/MyFlight?node-id=0-1&p=f&t=VhAHVGhepppTjhHW-0"
+                  style="
+                    color: white;
+                    text-decoration: none;
+                    background: rgba(255, 255, 255, 0.2);
+                    padding: 10px 20px;
+                    border-radius: 25px;
+                    border: 1px solid rgba(255, 255, 255, 0.3);
+                    transition: all 0.3s ease;
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 8px;
+                  "
+                >
+                  🎨 Figma 디자인
+                </a>
+              </div>
+            </div>
+
+            <div style="padding: 25px; background: #f8f9fa; border-radius: 0 0 12px 12px">
+              <h4 style="color: #333; margin-bottom: 15px; font-size: 18px">🗺️ 1주일 완성 로드맵</h4>
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px">
+                <div>
+                  <h5 style="color: #00b8d4; margin-bottom: 8px">Day 1-2: 환경 설정</h5>
+                  <ul style="list-style: none; padding: 0; margin: 0; font-size: 14px; line-height: 1.5">
+                    <li>• Flutter 프로젝트 생성</li>
+                    <li>• 필수 패키지 설치</li>
+                    <li>• 프로젝트 구조 설계</li>
+                  </ul>
+                </div>
+                <div>
+                  <h5 style="color: #00b8d4; margin-bottom: 8px">Day 3-4: 핵심 기능</h5>
+                  <ul style="list-style: none; padding: 0; margin: 0; font-size: 14px; line-height: 1.5">
+                    <li>• 파일 업로드 & OCR 구현</li>
+                    <li>• 텍스트 파싱 로직</li>
+                    <li>• 기본 UI 개발</li>
+                  </ul>
+                </div>
+                <div>
+                  <h5 style="color: #00b8d4; margin-bottom: 8px">Day 5-7: 완성</h5>
+                  <ul style="list-style: none; padding: 0; margin: 0; font-size: 14px; line-height: 1.5">
+                    <li>• 로컬 저장/조회 기능</li>
+                    <li>• 항공권 API 연동</li>
+                    <li>• QA 및 APK 빌드</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div
+                style="
+                  margin-top: 20px;
+                  padding: 15px;
+                  background: white;
+                  border-radius: 8px;
+                  border-left: 4px solid #00b8d4;
+                "
+              >
+                <h5 style="color: #333; margin-bottom: 8px">💡 주요 특징</h5>
+                <p style="margin: 0; font-size: 14px; color: #666; line-height: 1.5">
+                  <strong>출입국 증명서 OCR</strong> → <strong>국가/날짜 자동 추출</strong> →
+                  <strong>여행 기록 저장</strong> → <strong>항공권 최저가 검색</strong>까지 한 번에 처리하는 통합 여행
+                  플랫폼. Google ML Kit의 로컬 OCR 처리로 개인정보 보호와 무료 사용이 가능하며, Hive 로컬 데이터베이스로
+                  오프라인에서도 완벽하게 동작합니다.
+                </p>
+              </div>
+
+              <div
+                style="
+                  margin-top: 15px;
+                  padding: 15px;
+                  background: #e3f2fd;
+                  border-radius: 8px;
+                  border-left: 4px solid #2196f3;
+                "
+              >
+                <h5 style="color: #333; margin-bottom: 8px">🛠️ 기술적 하이라이트</h5>
+                <div
+                  style="
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                    gap: 10px;
+                    font-size: 13px;
+                    color: #555;
+                  "
+                >
+                  <div>• <strong>무료 OCR:</strong> google_ml_kit 로컬 처리</div>
+                  <div>• <strong>크로스플랫폼:</strong> Android/iOS 동시 지원</div>
+                  <div>• <strong>오프라인 우선:</strong> 로컬 데이터 저장</div>
+                  <div>• <strong>API 연동:</strong> Skyscanner/Kiwi.com</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <h2 class="section-title">GitHub & 포트폴리오</h2>
+          <div class="github-stats">
+            <h3 class="stats-title">개발 활동</h3>
+            <p>지속적인 사이드 프로젝트와 기술 학습을 통한 성장</p>
+            <br />
+            <a href="https://github.com/maniabang" class="github-link"> 🔗 github.com/maniabang </a>
+          </div>
+        </section>
+      </main>
     </div>
 
     <script>
-        // 부드러운 스크롤 효과
-        document.addEventListener('DOMContentLoaded', function() {
-            const cards = document.querySelectorAll('.experience-item, .project-card');
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            });
-            
-            cards.forEach(card => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(20px)';
-                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                observer.observe(card);
-            });
+      // 부드러운 스크롤 효과
+      document.addEventListener('DOMContentLoaded', function () {
+        const cards = document.querySelectorAll('.experience-item, .project-card');
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.style.opacity = '1';
+              entry.target.style.transform = 'translateY(0)';
+            }
+          });
         });
 
-        // 인쇄 기능
-        function printResume() {
-            window.print();
-        }
-        
-        // PDF 내보내기 버튼 (브라우저의 인쇄 기능 활용)
-        document.addEventListener('keydown', function(e) {
-            if (e.ctrlKey && e.key === 'p') {
-                e.preventDefault();
-                printResume();
-            }
+        cards.forEach((card) => {
+          card.style.opacity = '0';
+          card.style.transform = 'translateY(20px)';
+          card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+          observer.observe(card);
         });
+      });
+
+      // 인쇄 기능
+      function printResume() {
+        window.print();
+      }
+
+      // PDF 내보내기 버튼 (브라우저의 인쇄 기능 활용)
+      document.addEventListener('keydown', function (e) {
+        if (e.ctrlKey && e.key === 'p') {
+          e.preventDefault();
+          printResume();
+        }
+      });
     </script>
-</body>
+  </body>
 </html>
