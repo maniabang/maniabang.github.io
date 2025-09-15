@@ -324,6 +324,8 @@
       }
 
       .project-card {
+        position: relative; /* z-index 스태킹 컨텍스트 생성 */
+        z-index: 1; /* 슬라이더보다 아래에 있도록 설정 */
         background: white;
         border: 2px solid #f1f5f9;
         border-radius: 20px;
@@ -332,6 +334,7 @@
         transition: all 0.4s ease;
         opacity: 0;
         transform: translateY(50px);
+        margin-bottom: 30px; /* 카드 간 간격 추가 */
       }
 
       .project-card:hover {
@@ -451,9 +454,10 @@
       /* 스크롤 기반 핸드폰 화면 슬라이더 */
       .phone-slider-container {
         position: relative;
+        z-index: 2; /* 겹침 현상 방지 */
         width: 100%;
         height: 500px;
-        margin: 20px 0;
+        margin: 50px auto; /* 위아래 간격 추가 */
         display: flex;
         justify-content: center;
         align-items: center;
@@ -480,9 +484,9 @@
       }
       .phone-slides-track {
         display: flex;
-        width: 400%;
+        width: 400%; /* (슬라이드 개수 * 100%) */
         height: 100%;
-        transform: translate3d(0, 0, 0);
+        /* transform 속성은 GSAP가 제어하므로 초기값은 제거합니다. */
       }
       .phone-slide {
         flex: 0 0 25%;
@@ -491,7 +495,7 @@
       .phone-slide img {
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        object-fit: cover; /* 이미지가 프레임을 꽉 채우도록 cover로 변경 */
         display: block;
       }
       @media (max-width: 768px) {
@@ -1005,7 +1009,7 @@
         <section class="section">
           <h2 class="section-title">사이드 프로젝트</h2>
 
-          <div class="project-card" style="max-width: none; margin-bottom: 0">
+          <div class="project-card">
             <div class="project-highlight" style="background: linear-gradient(135deg, #ff6b9d, #ff8e91); margin: 0">
               <div class="project-title">💘 MatchMate Cursor App (현재 개발 중)</div>
               <p style="margin-bottom: 20px; opacity: 0.95; font-size: 16px">
@@ -1023,58 +1027,6 @@
                   <span class="tech-tag-white">Zustand</span>
                   <span class="tech-tag-white">PWA</span>
                   <span class="tech-tag-white">Vercel</span>
-                </div>
-              </div>
-
-              <div class="phone-slider-container" id="matchmate-phone-slider">
-                <div class="phone-frame">
-                  <div class="phone-screen">
-                    <div class="phone-slides-track">
-                      <div class="phone-slide"><img src="./matchmate_1.png" alt="MatchMate 로그인 화면" /></div>
-                      <div class="phone-slide"><img src="./matchmate_2.png" alt="MatchMate 메인 화면" /></div>
-                      <div class="phone-slide"><img src="./matchmate_3.png" alt="MatchMate 메시지 화면" /></div>
-                      <div class="phone-slide"><img src="./matchmate_4.png" alt="MatchMate 좋아요 목록" /></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <ul class="achievements project-achievements">
-                <li><strong>Next.js 13+ App Router 구조</strong> - SSR(서버사이드 렌더링) 기반 최신 아키텍처 적용</li>
-                <li><strong>Supabase 풀스택 연동</strong> - Database, Auth, Storage 통합 백엔드 서비스</li>
-                <li><strong>SSR/CSR 하이브리드 인증</strong> - 쿠키 기반 서버 인증 + 클라이언트 상태 관리</li>
-                <li><strong>React Query로 서버 상태 관리</strong> - 캐싱, 동기화, 백그라운드 업데이트</li>
-                <li><strong>PWA 구현</strong> - 오프라인 지원, 앱 설치 가능한 웹 애플리케이션</li>
-                <li><strong>Zustand 전역 상태 관리</strong> - 가벼운 상태 관리로 사용자 경험 최적화</li>
-              </ul>
-
-              <div
-                class="highlight-box"
-                style="
-                  background: rgba(255, 255, 255, 0.15);
-                  border-left-color: rgba(255, 255, 255, 0.5);
-                  margin-top: 20px;
-                "
-              >
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px">
-                  <div>
-                    <div class="detail-label" style="color: rgba(255, 255, 255, 0.9)">🎨 디자인</div>
-                    <p style="color: rgba(255, 255, 255, 0.8); margin: 0; font-size: 14px">
-                      Figma 기반 UI/UX<br />모바일 퍼스트 디자인
-                    </p>
-                  </div>
-                  <div>
-                    <div class="detail-label" style="color: rgba(255, 255, 255, 0.9)">🚀 배포</div>
-                    <p style="color: rgba(255, 255, 255, 0.8); margin: 0; font-size: 14px">
-                      Vercel 자동 배포<br />GitHub 연동 CI/CD
-                    </p>
-                  </div>
-                  <div>
-                    <div class="detail-label" style="color: rgba(255, 255, 255, 0.9)">⚡ 성능</div>
-                    <p style="color: rgba(255, 255, 255, 0.8); margin: 0; font-size: 14px">
-                      SSR 최적화<br />실시간 업데이트
-                    </p>
-                  </div>
                 </div>
               </div>
 
@@ -1161,7 +1113,20 @@
             </div>
           </div>
 
-          <div class="project-card" style="max-width: none; margin-bottom: 0">
+          <div class="phone-slider-container" id="matchmate-phone-slider">
+            <div class="phone-frame">
+              <div class="phone-screen">
+                <div class="phone-slides-track">
+                  <div class="phone-slide"><img src="./matchmate_1.png" alt="MatchMate 로그인 화면" /></div>
+                  <div class="phone-slide"><img src="./matchmate_2.png" alt="MatchMate 메인 화면" /></div>
+                  <div class="phone-slide"><img src="./matchmate_3.png" alt="MatchMate 메시지 화면" /></div>
+                  <div class="phone-slide"><img src="./matchmate_4.png" alt="MatchMate 좋아요 목록" /></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card">
             <div class="project-highlight" style="background: linear-gradient(135deg, #00b8d4, #0097a7); margin: 0">
               <div class="project-title">✈️ Travel Record Flutter App</div>
               <p style="margin-bottom: 20px; opacity: 0.95; font-size: 16px">
@@ -1179,61 +1144,6 @@
                   <span class="tech-tag-white">Dio</span>
                   <span class="tech-tag-white">OCR</span>
                   <span class="tech-tag-white">PWA</span>
-                </div>
-              </div>
-
-              <div class="phone-slider-container" id="travel-phone-slider">
-                <div class="phone-frame">
-                  <div class="phone-screen">
-                    <div class="phone-slides-track">
-                      <div class="phone-slide"><img src="./travel_1.png" alt="Travel Record 스크린샷 1" /></div>
-                      <div class="phone-slide"><img src="./travel_2.png" alt="Travel Record 스크린샷 2" /></div>
-                      <div class="phone-slide"><img src="./travel_3.png" alt="Travel Record 스크린샷 3" /></div>
-                      <div class="phone-slide"><img src="./travel_4.png" alt="Travel Record 스크린샷 4" /></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <ul class="achievements project-achievements">
-                <li>
-                  <strong>Google ML Kit OCR 로컬 처리</strong> - API 키 불필요, 무료 한글 인식으로 출입국 증명서 텍스트
-                  추출
-                </li>
-                <li><strong>file_picker 다중 파일 업로드</strong> - PDF/이미지 동시 지원으로 사용자 편의성 극대화</li>
-                <li><strong>Riverpod 상태 관리</strong> - Provider 패턴으로 경량화된 앱 상태 관리</li>
-                <li><strong>Hive 로컬 데이터베이스</strong> - NoSQL 기반 오프라인 여행 기록 저장/조회</li>
-                <li><strong>Dio HTTP 클라이언트</strong> - 항공권 API 연동 및 최저가 검색 기능</li>
-                <li><strong>Regex 파싱 최적화</strong> - OCR 결과에서 국가명/날짜 정확도 개선</li>
-              </ul>
-
-              <div
-                class="highlight-box"
-                style="
-                  background: rgba(255, 255, 255, 0.15);
-                  border-left-color: rgba(255, 255, 255, 0.5);
-                  margin-top: 20px;
-                "
-              >
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px">
-                  <div>
-                    <div class="detail-label" style="color: rgba(255, 255, 255, 0.9)">🎨 디자인</div>
-                    <p style="color: rgba(255, 255, 255, 0.8); margin: 0; font-size: 14px">
-                      Figma 기반 UI/UX<br />크로스플랫폼 디자인
-                    </p>
-                  </div>
-                  <div>
-                    <div class="detail-label" style="color: rgba(255, 255, 255, 0.9)">📱 플랫폼</div>
-                    <p style="color: rgba(255, 255, 255, 0.8); margin: 0; font-size: 14px">
-                      Android/iOS<br />PWA 웹 지원 예정
-                    </p>
-                  </div>
-                  <div>
-                    <div class="detail-label" style="color: rgba(255, 255, 255, 0.9)">⚡ 특징</div>
-                    <p style="color: rgba(255, 255, 255, 0.8); margin: 0; font-size: 14px">
-                      오프라인 우선<br />무료 API 활용
-                    </p>
-                  </div>
                 </div>
               </div>
 
@@ -1349,6 +1259,19 @@
               </div>
             </div>
           </div>
+
+          <!-- <div class="phone-slider-container" id="travel-phone-slider">
+            <div class="phone-frame">
+              <div class="phone-screen">
+                <div class="phone-slides-track">
+                  <div class="phone-slide"><img src="./travel_1.png" alt="Travel Record 스크린샷 1" /></div>
+                  <div class="phone-slide"><img src="./travel_2.png" alt="Travel Record 스크린샷 2" /></div>
+                  <div class="phone-slide"><img src="./travel_3.png" alt="Travel Record 스크린샷 3" /></div>
+                  <div class="phone-slide"><img src="./travel_4.png" alt="Travel Record 스크린샷 4" /></div>
+                </div>
+              </div>
+            </div>
+          </div> -->
         </section>
 
         <section class="section">
@@ -1499,38 +1422,36 @@
             ease: 'back.out(1.7)',
           });
 
-          // 스크롤 고정 + 사진만 슬라이드되는 핸드폰 슬라이더 (GSAP 타임라인 방식)
-          function createPinnedSlider(containerSelector) {
+          // GSAP 타임라인을 사용한 스크롤 고정 슬라이더 (최종 안정화 버전)
+          function setupPinnedSlider(containerSelector) {
             const container = document.querySelector(containerSelector);
             if (!container) return;
 
             const track = container.querySelector('.phone-slides-track');
+            if (!track) return;
+
             const slides = track.querySelectorAll('.phone-slide');
             const numSlides = slides.length;
 
-            if (numSlides === 0) return;
+            if (numSlides < 2) return;
 
-            // GSAP 타임라인 생성
-            gsap
-              .timeline({
-                scrollTrigger: {
-                  trigger: container,
-                  pin: true, // 컨테이너 고정
-                  scrub: 1, // 스크롤과 부드러움을 제어하므로 ease는 none
-                  start: 'center center', // 화면 중앙에 컨테이너가 오면 시작
-                  end: () => `+=${container.offsetHeight * (numSlides - 1)}`, // 스크롤 거리
-                  invalidateOnRefresh: true, // 반응형 대응
-                },
-              })
-              // 타임라인에 가로 슬라이드 애니메이션 추가
-              .to(track, {
-                xPercent: -100 * (numSlides - 1), // (슬라이드 개수 - 1) * -100% 만큼 이동
-                ease: 'none', // scrub이 부드러움을 제어하므로 ease는 none
-              });
+            // GSAP 애니메이션 설정: pin과 스크롤 연동을 한 번에 처리
+            gsap.to(track, {
+              xPercent: (-100 * (numSlides - 1)) / numSlides, // 예: 4장이면 -75% 이동
+              ease: 'none', // 스크롤에 따라 움직이므로 자체 가속도는 없음
+              scrollTrigger: {
+                trigger: container,
+                start: 'center center', // 컨테이너가 화면 중앙에 오면 애니메이션 시작
+                pin: true, // 컨테이너를 화면에 고정
+                scrub: 2, // 스크롤 연동 시 2초의 부드러운 지연 효과 추가
+                end: '+=3000', // 3000px을 스크롤하는 동안 애니메이션을 완료
+                invalidateOnRefresh: true, // 창 크기 변경 시 재계산
+              },
+            });
           }
 
-          createPinnedSlider('#matchmate-phone-slider');
-          createPinnedSlider('#travel-phone-slider');
+          setupPinnedSlider('#matchmate-phone-slider');
+          setupPinnedSlider('#travel-phone-slider');
         }
       });
     </script>
