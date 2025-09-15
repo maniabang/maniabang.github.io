@@ -1499,35 +1499,38 @@
             ease: 'back.out(1.7)',
           });
 
-          // 섹션 스크롤 기반 핸드폰 슬라이더 (레이아웃 안전)
-          function createScrollPhoneSlider(sliderId) {
-            const container = document.querySelector(sliderId);
+          // 스크롤 고정 + 사진만 슬라이드되는 핸드폰 슬라이더 (GSAP 타임라인 방식)
+          function createPinnedSlider(containerSelector) {
+            const container = document.querySelector(containerSelector);
             if (!container) return;
 
             const track = container.querySelector('.phone-slides-track');
-            const slides = container.querySelectorAll('.phone-slide');
-            const slideCount = slides.length;
+            const slides = track.querySelectorAll('.phone-slide');
+            const numSlides = slides.length;
 
-            if (slideCount === 0) return;
+            if (numSlides === 0) return;
 
-            // 섹션 내에서만 슬라이드 (pin 없이 안전하게)
-            ScrollTrigger.create({
-              trigger: container,
-              start: 'top 80%',
-              end: 'bottom 20%',
-              scrub: 1,
-              onUpdate: (self) => {
-                const progress = self.progress;
-                const slideIndex = Math.min(Math.floor(progress * slideCount), slideCount - 1);
-                const offset = -(slideIndex * (100 / slideCount));
-                track.style.transform = `translate3d(${offset}%, 0, 0)`;
-              },
-            });
+            // GSAP 타임라인 생성
+            gsap
+              .timeline({
+                scrollTrigger: {
+                  trigger: container,
+                  pin: true, // 컨테이너 고정
+                  scrub: 1, // 스크롤과 부드러움을 제어하므로 ease는 none
+                  start: 'center center', // 화면 중앙에 컨테이너가 오면 시작
+                  end: () => `+=${container.offsetHeight * (numSlides - 1)}`, // 스크롤 거리
+                  invalidateOnRefresh: true, // 반응형 대응
+                },
+              })
+              // 타임라인에 가로 슬라이드 애니메이션 추가
+              .to(track, {
+                xPercent: -100 * (numSlides - 1), // (슬라이드 개수 - 1) * -100% 만큼 이동
+                ease: 'none', // scrub이 부드러움을 제어하므로 ease는 none
+              });
           }
 
-          // 매치메이트와 여행앱 슬라이더 초기화
-          createScrollPhoneSlider('#matchmate-phone-slider');
-          createScrollPhoneSlider('#travel-phone-slider');
+          createPinnedSlider('#matchmate-phone-slider');
+          createPinnedSlider('#travel-phone-slider');
         }
       });
     </script>
