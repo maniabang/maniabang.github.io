@@ -146,7 +146,7 @@
         gap: 30px;
         margin-bottom: 30px;
         width: 100%;
-        overflow-x: hidden;
+        overflow: hidden; /* 내부 보조 스크롤 제거 */
       }
 
       .skill-category {
@@ -1443,8 +1443,18 @@
                 trigger: container,
                 start: 'center center', // 컨테이너가 화면 중앙에 오면 애니메이션 시작
                 pin: true, // 컨테이너를 화면에 고정
-                scrub: 2, // 스크롤 연동 시 2초의 부드러운 지연 효과 추가
-                end: '+=3000', // 3000px을 스크롤하는 동안 애니메이션을 완료
+                scrub: 2.5, // 더 부드러운 감속/가속 (빠르게 내릴 때 과하게 튀는 현상 방지)
+                end: '+=4000', // 슬라이드 진행 스크롤 거리를 늘려 민감도 낮춤
+                snap: {
+                  snapTo: (value) => {
+                    const slides = document.querySelectorAll(`${containerSelector} .phone-slide`).length;
+                    if (!slides || slides < 2) return value;
+                    const step = 1 / (slides - 1);
+                    return Math.round(value / step) * step;
+                  },
+                  duration: 0.2,
+                  ease: 'power1.out',
+                },
                 invalidateOnRefresh: true, // 창 크기 변경 시 재계산
               },
             });
