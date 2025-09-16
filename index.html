@@ -1283,7 +1283,7 @@
             </div>
           </div>
 
-          <!-- <div class="phone-slider-container" id="travel-phone-slider">
+          <div class="phone-slider-container" id="travel-phone-slider">
             <div class="phone-frame">
               <div class="phone-screen">
                 <div class="phone-slides-track">
@@ -1294,7 +1294,7 @@
                 </div>
               </div>
             </div>
-          </div> -->
+          </div>
         </section>
 
         <section class="section">
@@ -1491,10 +1491,11 @@
               ease: 'none', // 스크롤에 따라 움직이므로 자체 가속도는 없음
               scrollTrigger: {
                 trigger: container,
-                start: 'center center', // 컨테이너가 화면 중앙에 오면 애니메이션 시작
-                pin: true, // 컨테이너를 화면에 고정
-                scrub: 2.5, // 더 부드러운 감속/가속 (빠르게 내릴 때 과하게 튀는 현상 방지)
-                end: '+=4000', // 슬라이드 진행 스크롤 거리를 늘려 민감도 낮춤
+                start: 'top center',
+                pin: true,
+                scrub: 1.2,
+                end: () => `+=${Math.max(1600, Math.round(container.clientWidth * (numSlides - 1) * 0.7))}`,
+                anticipatePin: 1,
                 snap: {
                   snapTo: (value) => {
                     const slides = document.querySelectorAll(`${containerSelector} .phone-slide`).length;
@@ -1502,10 +1503,10 @@
                     const step = 1 / (slides - 1);
                     return Math.round(value / step) * step;
                   },
-                  duration: 0.2,
-                  ease: 'power1.out',
+                  duration: 0.12,
+                  ease: 'power2.out',
                 },
-                invalidateOnRefresh: true, // 창 크기 변경 시 재계산
+                invalidateOnRefresh: true,
               },
             });
           }
