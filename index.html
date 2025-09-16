@@ -42,9 +42,12 @@
       .header {
         background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
         color: white;
-        padding: 60px 40px;
-        position: relative;
+        padding: 16px 24px;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
         overflow: hidden;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.15);
       }
 
       .header::before {
@@ -54,7 +57,7 @@
         right: -50%;
         width: 200%;
         height: 200%;
-        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="20" cy="80" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="80" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.08)"/><circle cx="80" cy="20" r="2" fill="rgba(255,255,255,0.08)"/><circle cx="20" cy="80" r="2" fill="rgba(255,255,255,0.08)"/><circle cx="80" cy="80" r="2" fill="rgba(255,255,255,0.08)"/></svg>');
         animation: float 20s infinite linear;
       }
 
@@ -70,6 +73,35 @@
       .header-content {
         position: relative;
         z-index: 2;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+      }
+
+      .header .name {
+        font-size: 22px;
+        font-weight: 700;
+        margin: 0;
+        text-shadow: none;
+        letter-spacing: 0.2px;
+      }
+
+      .resume-link {
+        color: #e0e7ff;
+        text-decoration: none;
+        background: rgba(255, 255, 255, 0.15);
+        padding: 8px 14px;
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        font-weight: 600;
+        transition: all 0.2s ease;
+        white-space: nowrap;
+      }
+
+      .resume-link:hover {
+        background: rgba(255, 255, 255, 0.25);
+        color: #fff;
       }
 
       .profile-img {
@@ -83,25 +115,12 @@
         display: block;
       }
 
-      .name {
-        font-size: 48px;
-        font-weight: 700;
-        margin-bottom: 10px;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-      }
-
       .title {
-        font-size: 24px;
-        font-weight: 300;
-        margin-bottom: 30px;
-        opacity: 0.9;
+        display: none;
       }
 
       .contact-info {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 30px;
-        font-size: 16px;
+        display: none;
       }
 
       .contact-item {
@@ -545,8 +564,25 @@
           overflow-x: hidden;
         }
         .header {
-          padding: 40px 15px;
+          padding: 1px 6px 3px;
           overflow-x: hidden;
+        }
+        .header-content {
+          gap: 1px;
+          align-items: flex-end; /* 하단 정렬 */
+        }
+        .resume-link {
+          font-size: 11px;
+          padding: 4px 8px;
+          border-radius: 8px;
+          line-height: 1;
+          transform: translateY(2px); /* 하단에 더 가깝게 */
+        }
+        .header .name {
+          font-size: 18px;
+          line-height: 1.05;
+          white-space: nowrap;
+          transform: translateY(2px); /* 하단에 더 가깝게 */
         }
         .main-content {
           padding: 30px 15px;
@@ -664,27 +700,14 @@
     <div class="container">
       <header class="header">
         <div class="header-content">
-          <h1 class="name">이광훈</h1>
-          <div class="contact-info">
-            <div class="contact-item">
-              <span>📍</span>
-              <span>수원특별시 팔달구</span>
-            </div>
-            <div class="contact-item">
-              <span>🎂</span>
-              <span>1990.02.13 (만 35세)</span>
-            </div>
-            <div class="contact-item">
-              <span>💼</span>
-              <span>프론트엔드 개발자 (3년 11개월)</span>
-            </div>
-            <div class="contact-item">
-              <span>🔗</span>
-              <a href="https://github.com/maniabang" target="_blank" style="color: inherit; text-decoration: underline"
-                >github.com/maniabang</a
-              >
-            </div>
-          </div>
+          <h1 class="name">프론트엔드 · 이광훈</h1>
+          <a
+            class="resume-link"
+            href="https://maniabang.notion.site/9c480cc642b24f5f8d28f891f7e8a581"
+            target="_blank"
+            rel="noopener"
+            >이력서 노션 바로가기 ↗</a
+          >
         </div>
       </header>
 
