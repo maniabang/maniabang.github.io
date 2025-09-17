@@ -170,12 +170,11 @@
       }
 
       .skill-card {
-        background: rgba(0, 0, 0, 0.7);
-        border: 2px solid #00ff88;
+        background: white;
+        border: 2px solid var(--card-border);
         border-radius: 16px;
         padding: 28px;
-        backdrop-filter: blur(20px);
-        box-shadow: 0 8px 32px rgba(0, 255, 136, 0.1);
+        box-shadow: 0 8px 32px var(--card-shadow);
         transition: all 0.3s ease;
         position: relative;
         overflow: hidden;
@@ -183,30 +182,18 @@
         transform: translateY(40px);
       }
 
-      .skill-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: linear-gradient(135deg, rgba(0, 255, 136, 0.1) 0%, rgba(102, 126, 234, 0.1) 100%);
-        z-index: -1;
-      }
-
       .skill-card:hover {
         transform: translateY(-8px);
-        border-color: #00ffaa;
-        box-shadow: 0 16px 48px rgba(0, 255, 136, 0.2);
+        border-color: var(--card-border-hover);
+        box-shadow: 0 16px 48px var(--card-shadow-hover);
       }
 
       .skill-card-title {
-        color: #00ff88;
+        color: var(--card-title-color);
         font-size: 1.5rem;
         font-weight: 700;
         margin-bottom: 20px;
         text-align: center;
-        text-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
       }
 
       .skill-items {
@@ -216,8 +203,8 @@
       }
 
       .skill-item {
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(0, 255, 136, 0.2);
+        background: #f8f9fa;
+        border: 1px solid var(--skill-border-color);
         border-radius: 12px;
         padding: 16px;
         transition: all 0.3s ease;
@@ -226,13 +213,13 @@
       }
 
       .skill-item:hover {
-        background: rgba(0, 255, 136, 0.1);
-        border-color: rgba(0, 255, 136, 0.4);
+        background: var(--skill-bg-hover);
+        border-color: var(--skill-border-hover);
         transform: translateX(8px);
       }
 
       .skill-name {
-        color: #00ff88;
+        color: var(--skill-name-color);
         font-size: 1.1rem;
         font-weight: 600;
         display: block;
@@ -240,10 +227,100 @@
       }
 
       .skill-desc {
-        color: rgba(255, 255, 255, 0.8);
+        color: #6c757d;
         font-size: 0.9rem;
         line-height: 1.5;
         display: block;
+      }
+
+      /* 프론트엔드 - 민트 그린 */
+      .skill-card:nth-child(1) {
+        --card-border: #22d3ee;
+        --card-border-hover: #67e8f9;
+        --card-shadow: rgba(34, 211, 238, 0.2);
+        --card-shadow-hover: rgba(34, 211, 238, 0.35);
+        --card-gradient: linear-gradient(135deg, rgba(34, 211, 238, 0.15) 0%, rgba(103, 232, 249, 0.15) 100%);
+        --card-title-color: #0891b2;
+        --card-title-shadow: rgba(34, 211, 238, 0.4);
+        --skill-name-color: #0891b2;
+        --skill-border-color: rgba(34, 211, 238, 0.4);
+        --skill-border-hover: rgba(34, 211, 238, 0.6);
+        --skill-bg-hover: rgba(34, 211, 238, 0.15);
+      }
+
+      /* 빌드도구 & 배포 - 코랄 핑크 */
+      .skill-card:nth-child(2) {
+        --card-border: #ff7a9a;
+        --card-border-hover: #ffa8cc;
+        --card-shadow: rgba(255, 122, 154, 0.2);
+        --card-shadow-hover: rgba(255, 122, 154, 0.35);
+        --card-gradient: linear-gradient(135deg, rgba(255, 122, 154, 0.15) 0%, rgba(255, 168, 204, 0.15) 100%);
+        --card-title-color: #e11d48;
+        --card-title-shadow: rgba(255, 122, 154, 0.4);
+        --skill-name-color: #e11d48;
+        --skill-border-color: rgba(255, 122, 154, 0.4);
+        --skill-border-hover: rgba(255, 122, 154, 0.6);
+        --skill-bg-hover: rgba(255, 122, 154, 0.15);
+      }
+
+      /* 스타일링 - 라벤더 퍼플 */
+      .skill-card:nth-child(3) {
+        --card-border: #c084fc;
+        --card-border-hover: #ddd6fe;
+        --card-shadow: rgba(192, 132, 252, 0.2);
+        --card-shadow-hover: rgba(192, 132, 252, 0.35);
+        --card-gradient: linear-gradient(135deg, rgba(192, 132, 252, 0.15) 0%, rgba(221, 214, 254, 0.15) 100%);
+        --card-title-color: #7c3aed;
+        --card-title-shadow: rgba(192, 132, 252, 0.4);
+        --skill-name-color: #7c3aed;
+        --skill-border-color: rgba(192, 132, 252, 0.4);
+        --skill-border-hover: rgba(192, 132, 252, 0.6);
+        --skill-bg-hover: rgba(192, 132, 252, 0.15);
+      }
+
+      /* 데이터 시각화 - 스카이 블루 */
+      .skill-card:nth-child(4) {
+        --card-border: #60a5fa;
+        --card-border-hover: #93c5fd;
+        --card-shadow: rgba(96, 165, 250, 0.2);
+        --card-shadow-hover: rgba(96, 165, 250, 0.35);
+        --card-gradient: linear-gradient(135deg, rgba(96, 165, 250, 0.15) 0%, rgba(147, 197, 253, 0.15) 100%);
+        --card-title-color: #2563eb;
+        --card-title-shadow: rgba(96, 165, 250, 0.4);
+        --skill-name-color: #2563eb;
+        --skill-border-color: rgba(96, 165, 250, 0.4);
+        --skill-border-hover: rgba(96, 165, 250, 0.6);
+        --skill-bg-hover: rgba(96, 165, 250, 0.15);
+      }
+
+      /* 상태 관리 & 폼 - 피치 오렌지 */
+      .skill-card:nth-child(5) {
+        --card-border: #fb923c;
+        --card-border-hover: #fdba74;
+        --card-shadow: rgba(251, 146, 60, 0.2);
+        --card-shadow-hover: rgba(251, 146, 60, 0.35);
+        --card-gradient: linear-gradient(135deg, rgba(251, 146, 60, 0.15) 0%, rgba(253, 186, 116, 0.15) 100%);
+        --card-title-color: #ea580c;
+        --card-title-shadow: rgba(251, 146, 60, 0.4);
+        --skill-name-color: #ea580c;
+        --skill-border-color: rgba(251, 146, 60, 0.4);
+        --skill-border-hover: rgba(251, 146, 60, 0.6);
+        --skill-bg-hover: rgba(251, 146, 60, 0.15);
+      }
+
+      /* 협업 - 라임 그린 */
+      .skill-card:nth-child(6) {
+        --card-border: #84cc16;
+        --card-border-hover: #a3e635;
+        --card-shadow: rgba(132, 204, 22, 0.2);
+        --card-shadow-hover: rgba(132, 204, 22, 0.35);
+        --card-gradient: linear-gradient(135deg, rgba(132, 204, 22, 0.15) 0%, rgba(163, 230, 53, 0.15) 100%);
+        --card-title-color: #65a30d;
+        --card-title-shadow: rgba(132, 204, 22, 0.4);
+        --skill-name-color: #65a30d;
+        --skill-border-color: rgba(132, 204, 22, 0.4);
+        --skill-border-hover: rgba(132, 204, 22, 0.6);
+        --skill-bg-hover: rgba(132, 204, 22, 0.15);
       }
 
       @media (max-width: 768px) {
