@@ -860,6 +860,21 @@
         .qa-a {
           font-size: 14px;
         }
+
+        /* Lighthouse 성능 비교 모바일 최적화 */
+        .lighthouse-comparison {
+          grid-template-columns: 1fr !important;
+          gap: 12px !important;
+        }
+
+        .lighthouse-comparison .lighthouse-item {
+          margin-bottom: 15px;
+        }
+
+        .lighthouse-comparison img {
+          max-height: 200px;
+          object-fit: contain;
+        }
       }
     </style>
   </head>
@@ -1150,6 +1165,82 @@
                   <strong>🔥 현재 진행률 50%</strong> - 핵심 기능 구현 중, 마이그레이션 활발히 진행중<br />
                   예상 성과: 개발 생산성 300% 향상, 번들 크기 40% 감소, 초기 로딩 속도 60% 개선
                 </p>
+              </div>
+
+              <!-- Lighthouse 성능 비교 섹션 -->
+              <div
+                class="highlight-box"
+                style="
+                  background: rgba(255, 255, 255, 0.1);
+                  border-left-color: rgba(34, 197, 94, 0.8);
+                  margin-top: 20px;
+                "
+              >
+                <div class="detail-label" style="color: rgba(34, 197, 94, 0.9)">🚀 Lighthouse 성능 개선 성과</div>
+                <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 15px; font-size: 14px">
+                  Vue.js 2 → Next.js 14 마이그레이션으로 <strong style="color: #22c55e">25% 성능 향상</strong> 달성!
+                </p>
+
+                <div
+                  class="lighthouse-comparison"
+                  style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px"
+                >
+                  <div class="lighthouse-item" style="text-align: center">
+                    <div style="color: rgba(255, 255, 255, 0.9); font-weight: 600; margin-bottom: 8px; font-size: 14px">
+                      🔴 Before (Vue.js 2)
+                    </div>
+                    <img
+                      src="./lighthouse_before.png"
+                      alt="Lighthouse Before - Vue.js 2 성능 점수 78점"
+                      style="
+                        width: 100%;
+                        border-radius: 8px;
+                        border: 2px solid rgba(239, 68, 68, 0.5);
+                        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+                      "
+                    />
+                    <div style="color: rgba(239, 68, 68, 0.9); font-size: 20px; font-weight: 700; margin-top: 8px">
+                      Score: 78
+                    </div>
+                  </div>
+
+                  <div class="lighthouse-item" style="text-align: center">
+                    <div style="color: rgba(255, 255, 255, 0.9); font-weight: 600; margin-bottom: 8px; font-size: 14px">
+                      🟢 After (Next.js 14)
+                    </div>
+                    <img
+                      src="./lighthouse_after.png"
+                      alt="Lighthouse After - Next.js 14 성능 점수 98점"
+                      style="
+                        width: 100%;
+                        border-radius: 8px;
+                        border: 2px solid rgba(34, 197, 94, 0.5);
+                        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+                      "
+                    />
+                    <div style="color: rgba(34, 197, 94, 0.9); font-size: 20px; font-weight: 700; margin-top: 8px">
+                      Score: 98
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  style="
+                    margin-top: 15px;
+                    padding: 12px;
+                    background: rgba(34, 197, 94, 0.15);
+                    border-radius: 8px;
+                    text-align: center;
+                    border: 1px solid rgba(34, 197, 94, 0.3);
+                  "
+                >
+                  <div style="color: rgba(34, 197, 94, 0.9); font-weight: 700; font-size: 18px">
+                    ⚡ +20점 향상 (78 → 98)
+                  </div>
+                  <div style="color: rgba(255, 255, 255, 0.8); font-size: 13px; margin-top: 4px">
+                    SSR/SSG 최적화, 번들 크기 축소, 이미지 최적화를 통한 성능 개선
+                  </div>
+                </div>
               </div>
             </div>
 
