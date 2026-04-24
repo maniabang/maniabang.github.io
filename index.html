@@ -1095,8 +1095,86 @@
             </div>
           </div>
         </section>
+
         <section class="section">
           <h2 class="section-title">경력 사항</h2>
+
+          <div class="experience-item">
+            <div class="experience-header">
+              <div>
+                <div class="company-name">에이엠매니지먼트</div>
+                <div class="position">프론트엔드 개발</div>
+              </div>
+              <div class="period">2025.12 ~ 현재 (재직 중)</div>
+            </div>
+
+            <div class="project-highlight" style="background: linear-gradient(135deg, #0f766e, #14b8a6)">
+              <div class="project-title">
+                멀티거래소 가상자산 트레이딩 터미널 (Next.js App Router · REST · TanStack Query)
+              </div>
+              <p style="margin-bottom: 15px; opacity: 0.95">
+                <strong>에이엠매니지먼트</strong> 소속으로 <strong>프로덕션 가상자산 트레이딩 웹 앱</strong> 프론트엔드를 담당합니다.
+                <strong>axios</strong> 기반 REST 연동과 <strong>TanStack Query v5</strong>로 대시보드·전략·자산 데이터를 캐싱·갱신하고,
+                <strong>Zustand</strong>로 사이드바·필터·테이블·datepicker 등 UI 상태를 서버 상태와 분리합니다.
+                스타일은 <strong>SCSS 모듈</strong> 기반이며, 지표 시각화에는 <strong>Chart.js</strong>와
+                <strong>Lightweight Charts</strong>를 사용합니다.
+              </p>
+
+              <div class="tech-stack">
+                <h4>🛠️ 핵심 기술 스택 (실제 코드베이스 기준)</h4>
+                <div class="tech-tags">
+                  <span class="tech-tag-white">Next.js 16</span>
+                  <span class="tech-tag-white">React 19</span>
+                  <span class="tech-tag-white">TypeScript</span>
+                  <span class="tech-tag-white">TanStack Query v5</span>
+                  <span class="tech-tag-white">Zustand</span>
+                  <span class="tech-tag-white">SCSS / CSS Modules</span>
+                  <span class="tech-tag-white">axios</span>
+                  <span class="tech-tag-white">Chart.js</span>
+                  <span class="tech-tag-white">Lightweight Charts</span>
+                </div>
+              </div>
+
+              <ul class="achievements project-achievements">
+                <li>
+                  <strong>App Router 구조</strong> — 대시보드·전략(리스트·디테일·통계)·오버뷰·거래·리포트·문의 등 라우트 단위로 화면 구성
+                </li>
+                <li>
+                  <strong>데이터 계층</strong> — 공통 <code>client_api</code>와 환경별(dev/prod) 엔드포인트 상수로 API 일원화,
+                  세션·전략 조회 훅에서 TanStack Query 패턴 적용
+                </li>
+                <li>
+                  <strong>표시 정합</strong> — <code>PrecisionSync</code> 등으로 페어 소수 자릿수·포맷 유틸과 쿼리 캐시 동기화
+                </li>
+                <li>
+                  <strong>전략 운영 UX</strong> — 전략 리스트·디테일·필터 스토어, 태그/필드 갱신 mutation 및 목록 무효화 흐름
+                </li>
+                <li>
+                  <strong>시각화</strong> — 대시보드·통계 화면에서 Chart.js / Lightweight Charts 기반 지표·차트 구성
+                </li>
+              </ul>
+            </div>
+
+            <div class="project-highlight" style="background: linear-gradient(135deg, #115e59, #0d9488); margin-top: 18px">
+              <div class="project-title">운영 화면 · 인증 · 품질</div>
+              <p style="margin-bottom: 15px; opacity: 0.95">
+                동일 제품 내에서 <strong>로그인·회원가입</strong> 플로우, <strong>오버뷰(AUM·지갑)</strong>,
+                <strong>거래 내역</strong>, <strong>리포트(PDF 뷰어)</strong>, <strong>문의(메일 API)</strong> 등
+                트레이딩 터미널 외 운영·고객 접점 화면을 함께 다룹니다.
+              </p>
+              <ul class="achievements project-achievements">
+                <li>
+                  <strong>대시보드</strong> — 전략별 통계·필터 API 연동 및 집계 UI
+                </li>
+                <li>
+                  <strong>접근성·일관성</strong> — 공통 레이아웃·사이드바·토스트 등 재사용 컴포넌트로 화면 간 경험 통일
+                </li>
+                <li>
+                  <strong>품질 도구</strong> — ESLint·TypeScript 검사 스크립트, 번들 분석(<code>ANALYZE</code>) 등 빌드·유지보수 파이프라인 활용
+                </li>
+              </ul>
+            </div>
+          </div>
 
           <div class="experience-item">
             <div class="experience-header">
@@ -1109,11 +1187,11 @@
 
             <div class="project-highlight" style="background: linear-gradient(135deg, #ef4444, #f87171)">
               <div class="project-title">
-                🚀 대기업 전자제품 제조사 웹 포털 관리 시스템 - Legacy 시스템 모던 마이그레이션 (현재 진행중)
+                🚀 대기업 전자제품 제조사 웹 포털 관리 시스템 - Legacy 시스템 모던 마이그레이션 (2025년 12월 퇴사 시점까지 참여)
               </div>
               <p style="margin-bottom: 15px; opacity: 0.9">
                 대기업 전자제품 제조사 서비스를 위한 웹 포털 관리 시스템<br />
-                <strong>Vue.js 2 → Next.js 15 완전 마이그레이션</strong> (현재 개발 진행중인 레거시 모던화 프로젝트)
+                <strong>Vue.js 2 → Next.js 15 완전 마이그레이션</strong> (2025년 12월 퇴사 시점까지 레거시 모던화 프로젝트 참여)
               </p>
 
               <div class="tech-stack">
@@ -1138,8 +1216,8 @@
                   향상
                 </li>
                 <li>
-                  <strong>성능 최적화</strong> - SSR/SSG 지원으로 초기 로딩 속도 대폭 개선 예정, CDN 의존성 → npm 패키지
-                  관리 전환
+                  <strong>성능 최적화</strong> - SSR/SSG 기반 초기 로딩 개선 방향 수립 및 CDN 의존성 → npm 패키지
+                  관리 전환 작업 진행
                 </li>
                 <li>
                   <strong>상태 관리 현대화</strong> - Vuex → Zustand + React Query 하이브리드 구조로 서버/클라이언트
@@ -1156,7 +1234,7 @@
                 <li><strong>실시간 데이터 시각화</strong> - Chart.js 기반 API 사용량 통계 및 모니터링 대시보드 구축</li>
                 <li>
                   <strong>메시지 스타일</strong> - 명확하고 일관된 커밋 히스토리 관리를 위해 Conventional Commits 사양을
-                  준수합니다.
+                  준수했습니다.
                 </li>
               </ul>
 
@@ -1164,11 +1242,11 @@
                 class="highlight-box"
                 style="background: rgba(255, 255, 255, 0.1); border-left-color: rgba(255, 255, 255, 0.5)"
               >
-                <div class="detail-label" style="color: rgba(255, 255, 255, 0.9)">🎯 마이그레이션 진행 현황</div>
+                <div class="detail-label" style="color: rgba(255, 255, 255, 0.9)">🎯 마이그레이션 진행 요약 (2025년 12월 퇴사 기준)</div>
                 <p style="color: rgba(255, 255, 255, 0.8); margin: 0">
                   <strong>Legacy System:</strong> Vue.js 2 + Bootstrap 4<br />
                   <strong>Modern Stack:</strong> Next.js 15 + TypeScript + Tailwind CSS<br />
-                  <strong>🔥 현재 진행률 50%</strong> - 핵심 기능 구현 중, 마이그레이션 활발히 진행중<br />
+                  <strong>진행률 약 50% 수준</strong>에서 퇴사 — 이후 마이그레이션은 현업 팀에서 지속<br />
                   예상 성과: 개발 생산성 300% 향상, 번들 크기 40% 감소, 초기 로딩 속도 60% 개선
                 </p>
               </div>
