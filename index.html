@@ -1114,12 +1114,13 @@
 
             <div class="project-highlight" style="background: linear-gradient(135deg, #0f766e, #14b8a6)">
               <div class="project-title">
-                멀티거래소 가상자산 트레이딩 터미널 (Next.js App Router · REST · TanStack Query)
+                멀티거래소 가상자산 트레이딩 터미널 (Next.js App Router · REST · WebSocket · BFF · TanStack Query)
               </div>
               <p style="margin-bottom: 15px; opacity: 0.95">
                 <strong>에이엠매니지먼트</strong> 소속으로 <strong>프로덕션 가상자산 트레이딩 웹 앱</strong> 프론트엔드를 담당합니다.
                 <strong>axios</strong> 기반 REST 연동과 <strong>TanStack Query v5</strong>로 대시보드·전략·자산 데이터를 캐싱·갱신하고,
                 <strong>Zustand</strong>로 사이드바·필터·테이블·datepicker 등 UI 상태를 서버 상태와 분리합니다.
+                실시간 시세/오더북은 <strong>WebSocket</strong> 스트림으로 처리하며, 계정·주문 등 민감 영역은 <strong>BFF(Backend for Frontend)</strong>로 분리해 보안과 인터페이스를 일원화합니다.
                 스타일은 <strong>SCSS 모듈</strong> 기반이며, 지표 시각화에는 <strong>Chart.js</strong>와
                 <strong>Lightweight Charts</strong>를 사용합니다.
               </p>
@@ -1130,6 +1131,8 @@
                   <span class="tech-tag-white">Next.js 16</span>
                   <span class="tech-tag-white">React 19</span>
                   <span class="tech-tag-white">TypeScript</span>
+                  <span class="tech-tag-white">WebSocket</span>
+                  <span class="tech-tag-white">BFF 패턴</span>
                   <span class="tech-tag-white">TanStack Query v5</span>
                   <span class="tech-tag-white">Zustand</span>
                   <span class="tech-tag-white">SCSS / CSS Modules</span>
@@ -1146,6 +1149,9 @@
                 <li>
                   <strong>데이터 계층</strong> — 공통 <code>client_api</code>와 환경별(dev/prod) 엔드포인트 상수로 API 일원화,
                   세션·전략 조회 훅에서 TanStack Query 패턴 적용
+                </li>
+                <li>
+                  <strong>실시간 파이프라인</strong> — WebSocket 시세/오더북 스트림 수신·렌더링, Private 기능은 BFF 경유로 키/세션을 보호하며 인터페이스를 표준화
                 </li>
                 <li>
                   <strong>표시 정합</strong> — <code>PrecisionSync</code> 등으로 페어 소수 자릿수·포맷 유틸과 쿼리 캐시 동기화
