@@ -945,7 +945,7 @@
                 </div>
                 <div class="skill-item">
                   <span class="skill-name">Next.js</span>
-                  <span class="skill-desc">App Router 기반 라우팅/레이아웃 구성과 SSR·CSR 하이브리드 전략으로 UX·성능을 함께 최적화했습니다.</span>
+                  <span class="skill-desc">App Router 기반 라우팅/레이아웃에 더해 <code>next/dynamic</code> 분할 로딩, 렌더 경량화(React.memo/useCallback/useMemo), 자료구조 최적화(Map 룩업)로 트레이딩 터미널의 LCP·TTI·실시간 렌더 성능을 개선했습니다.</span>
                 </div>
                 <div class="skill-item">
                   <span class="skill-name">웹 표준/접근성</span>
@@ -1131,6 +1131,9 @@
                   <span class="tech-tag-white">Next.js 16</span>
                   <span class="tech-tag-white">React 19</span>
                   <span class="tech-tag-white">TypeScript</span>
+                  <span class="tech-tag-white">next/dynamic</span>
+                  <span class="tech-tag-white">React.memo</span>
+                  <span class="tech-tag-white">useMemo / useCallback</span>
                   <span class="tech-tag-white">WebSocket</span>
                   <span class="tech-tag-white">BFF 패턴</span>
                   <span class="tech-tag-white">TanStack Query v5</span>
@@ -1143,6 +1146,12 @@
               </div>
 
               <ul class="achievements project-achievements">
+                <li>
+                  <strong>트레이딩 터미널 성능 최적화</strong> — 초기 번들에서 무거운 컴포넌트 5개(약 13,000줄)를 <code>next/dynamic</code> lazy-load로 분리해 LCP·TTI를 단축하고, 실시간 WS 틱 업데이트 시 불필요한 리렌더를 제거
+                </li>
+                <li>
+                  <strong>리렌더 병목 해소</strong> — 250ms 주기 WS 틱으로 발생하던 전역 리렌더 이슈에 대해 <code>React.memo + useCallback</code> 적용, <code>O(n)</code> 선형 탐색을 <code>useMemo Map</code> 기반 <code>O(1)</code> 룩업으로 전환, 포지션 메타 계산을 <code>useMemo</code>로 분리해 틱 업데이트와 포지션 변경을 독립 처리
+                </li>
                 <li>
                   <strong>App Router 구조</strong> — 대시보드·전략(리스트·디테일·통계)·오버뷰·거래·리포트·문의 등 라우트 단위로 화면 구성
                 </li>
