@@ -15,6 +15,23 @@
       @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap');
       @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css');
 
+      :root {
+        --page-max: min(1280px, 94vw);
+        --bg: #eef0f4;
+        --surface: #ffffff;
+        --text: #1a1d21;
+        --text-soft: #4b5563;
+        --text-muted: #6b7280;
+        --accent: #3b5bdb;
+        --border: rgba(15, 23, 42, 0.08);
+        --shadow-xs: 0 1px 2px rgba(15, 23, 42, 0.04);
+        --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.05), 0 6px 16px rgba(15, 23, 42, 0.06);
+        --shadow-md: 0 2px 4px rgba(15, 23, 42, 0.04), 0 14px 32px rgba(15, 23, 42, 0.09);
+        --shadow-lg: 0 4px 8px rgba(15, 23, 42, 0.05), 0 24px 48px rgba(15, 23, 42, 0.11);
+        --radius: 16px;
+        --header-h: 56px;
+      }
+
       * {
         margin: 0;
         padding: 0;
@@ -23,57 +40,39 @@
 
       body {
         font-family: 'Pretendard Variable', 'Noto Sans KR', sans-serif;
-        line-height: 1.6;
-        color: #333;
-        background: #f8f9fa;
+        line-height: 1.55;
+        color: var(--text);
+        background: var(--bg);
         overflow-x: hidden;
         width: 100%;
         max-width: 100vw;
       }
 
       .container {
-        max-width: 210mm;
-        margin: 0 auto;
-        background: white;
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        max-width: var(--page-max);
+        margin: 16px auto 40px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        box-shadow: var(--shadow-lg);
         width: 100%;
         overflow-x: hidden;
       }
 
       .header {
-        background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
-        color: white;
-        padding: 16px 24px;
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        color: var(--text);
+        padding: 12px 28px;
         position: sticky;
         top: 0;
         z-index: 1000;
-        overflow: hidden;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-      }
-
-      .header::before {
-        content: '';
-        position: absolute;
-        top: -50%;
-        right: -50%;
-        width: 200%;
-        height: 200%;
-        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.08)"/><circle cx="80" cy="20" r="2" fill="rgba(255,255,255,0.08)"/><circle cx="20" cy="80" r="2" fill="rgba(255,255,255,0.08)"/><circle cx="80" cy="80" r="2" fill="rgba(255,255,255,0.08)"/></svg>');
-        animation: float 20s infinite linear;
-      }
-
-      @keyframes float {
-        0% {
-          transform: translateX(-100px) translateY(-100px);
-        }
-        100% {
-          transform: translateX(100px) translateY(100px);
-        }
+        border-bottom: 1px solid var(--border);
+        box-shadow: var(--shadow-xs);
       }
 
       .header-content {
-        position: relative;
-        z-index: 2;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -81,28 +80,29 @@
       }
 
       .header .name {
-        font-size: 22px;
-        font-weight: 700;
+        font-size: 1.05rem;
+        font-weight: 800;
         margin: 0;
-        text-shadow: none;
-        letter-spacing: 0.2px;
+        letter-spacing: -0.02em;
       }
 
       .resume-link {
-        color: #e0e7ff;
+        color: var(--text);
         text-decoration: none;
-        background: rgba(255, 255, 255, 0.15);
+        background: var(--surface);
         padding: 8px 14px;
-        border-radius: 10px;
-        border: 1px solid rgba(255, 255, 255, 0.25);
-        font-weight: 600;
-        transition: all 0.2s ease;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        font-size: 0.8rem;
+        font-weight: 700;
+        transition: box-shadow 0.2s ease, transform 0.2s ease;
         white-space: nowrap;
+        box-shadow: var(--shadow-xs);
       }
 
       .resume-link:hover {
-        background: rgba(255, 255, 255, 0.25);
-        color: #fff;
+        box-shadow: var(--shadow-sm);
+        transform: translateY(-1px);
       }
 
       .profile-img {
@@ -131,234 +131,232 @@
       }
 
       .main-content {
-        padding: 50px 40px;
+        padding: 24px 28px 36px;
       }
 
       .section {
-        margin-bottom: 50px;
+        margin-bottom: 28px;
       }
 
       .section-title {
-        font-size: 32px;
-        font-weight: 700;
-        color: #1e293b;
-        margin-bottom: 30px;
-        position: relative;
-        padding-bottom: 15px;
-        opacity: 0;
-        transform: translateY(30px);
+        font-size: 0.72rem;
+        font-weight: 800;
+        color: var(--text-muted);
+        margin-bottom: 14px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        opacity: 1;
+        transform: none;
       }
 
       .section-title::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 80px;
-        height: 4px;
-        background: linear-gradient(to right, #4f46e5, #06b6d4);
-        border-radius: 2px;
+        display: none;
+      }
+
+      /* ── 공통 카드 / 호버 펼침 ── */
+      .surface-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow-sm);
+        transition: box-shadow 0.28s ease, transform 0.28s ease;
+      }
+
+      .surface-card:hover,
+      .surface-card.is-expanded {
+        box-shadow: var(--shadow-md);
+      }
+
+      .expand-hint {
+        display: block;
+        font-size: 0.65rem;
+        font-weight: 600;
+        color: var(--accent);
+        opacity: 0.65;
+        margin-top: 6px;
+      }
+
+      .reveal-card > p,
+      .reveal-card > .tech-stack,
+      .reveal-card > ul.achievements,
+      .reveal-card > .highlight-box,
+      .reveal-card > div[style*="padding"] {
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        margin: 0 !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+        transition: max-height 0.4s ease, opacity 0.28s ease, margin 0.28s ease;
+      }
+
+      @media (hover: hover) {
+        .reveal-card:hover > p,
+        .reveal-card.is-expanded > p,
+        .reveal-card:hover > .tech-stack,
+        .reveal-card.is-expanded > .tech-stack,
+        .reveal-card:hover > ul.achievements,
+        .reveal-card.is-expanded > ul.achievements,
+        .reveal-card:hover > .highlight-box,
+        .reveal-card.is-expanded > .highlight-box,
+        .reveal-card:hover > div[style*="padding"],
+        .reveal-card.is-expanded > div[style*="padding"] {
+          max-height: 4000px;
+          opacity: 1;
+          margin: 10px 0 !important;
+          padding-top: revert !important;
+          padding-bottom: revert !important;
+        }
+
+        .reveal-card:hover .expand-hint,
+        .reveal-card.is-expanded .expand-hint {
+          opacity: 0;
+          max-height: 0;
+          margin: 0;
+          overflow: hidden;
+        }
+      }
+
+      @media (hover: none) {
+        .reveal-card.is-expanded > p,
+        .reveal-card.is-expanded > .tech-stack,
+        .reveal-card.is-expanded > ul.achievements,
+        .reveal-card.is-expanded > .highlight-box,
+        .reveal-card.is-expanded > div[style*="padding"] {
+          max-height: 4000px;
+          opacity: 1;
+          margin: 10px 0 !important;
+        }
+        .reveal-card { cursor: pointer; }
+      }
+
+      .project-preview-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+        margin-top: 8px;
       }
 
       .skills-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-        gap: 32px;
-        margin-bottom: 30px;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
         width: 100%;
-        overflow: hidden;
       }
 
       .skill-card {
-        background: white;
-        border: 2px solid var(--card-border);
-        border-radius: 16px;
-        padding: 28px;
-        box-shadow: 0 8px 32px var(--card-shadow);
-        transition: all 0.3s ease;
-        position: relative;
-        overflow: hidden;
-        opacity: 0;
-        transform: translateY(40px);
-      }
-
-      .skill-card:hover {
-        transform: translateY(-8px);
-        border-color: var(--card-border-hover);
-        box-shadow: 0 16px 48px var(--card-shadow-hover);
-      }
-
-      .skill-card.is-active {
-        border-color: var(--card-border-hover);
-        box-shadow: 0 16px 48px var(--card-shadow-hover);
+        padding: 14px;
+        opacity: 1;
+        transform: none;
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow-sm);
+        --card-title-color: var(--text);
+        --skill-name-color: var(--text);
       }
 
       .skill-card-title {
         color: var(--card-title-color);
-        font-size: 1.5rem;
-        font-weight: 700;
-        margin-bottom: 20px;
-        text-align: center;
+        font-size: 0.85rem;
+        font-weight: 800;
+        margin-bottom: 8px;
+        text-align: left;
       }
 
       .skill-items {
         display: flex;
-        flex-direction: column;
-        gap: 16px;
+        flex-wrap: wrap;
+        gap: 6px;
       }
 
       .skill-item {
-        background: #f8f9fa;
-        border: 1px solid var(--skill-border-color);
-        border-radius: 12px;
-        padding: 16px;
-        transition: all 0.3s ease;
-        opacity: 0;
-        transform: translateY(20px);
+        background: #f3f4f6;
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        padding: 4px 10px;
+        transition: background 0.2s ease;
+        opacity: 1;
+        transform: none;
       }
 
-      .skill-item:hover {
-        background: var(--skill-bg-hover);
-        border-color: var(--skill-border-hover);
-        transform: translateX(8px);
+      .skill-card:hover .skill-item,
+      .skill-card.is-expanded .skill-item {
+        border-radius: 10px;
+        padding: 8px 10px;
+        width: 100%;
       }
 
       .skill-name {
         color: var(--skill-name-color);
-        font-size: 1.1rem;
-        font-weight: 600;
+        font-size: 0.72rem;
+        font-weight: 700;
         display: block;
-        margin-bottom: 8px;
+        line-height: 1.3;
       }
 
       .skill-desc {
-        color: #6c757d;
-        font-size: 0.9rem;
-        line-height: 1.5;
+        color: var(--text-muted);
+        font-size: 0.68rem;
+        line-height: 1.45;
         display: block;
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        margin-top: 0;
+        transition: max-height 0.3s ease, opacity 0.25s ease, margin 0.25s ease;
       }
 
-      /* 프론트엔드 - 민트 그린 */
-      .skill-card:nth-child(1) {
-        --card-border: #22d3ee;
-        --card-border-hover: #67e8f9;
-        --card-shadow: rgba(34, 211, 238, 0.2);
-        --card-shadow-hover: rgba(34, 211, 238, 0.35);
-        --card-gradient: linear-gradient(135deg, rgba(34, 211, 238, 0.15) 0%, rgba(103, 232, 249, 0.15) 100%);
-        --card-title-color: #0891b2;
-        --card-title-shadow: rgba(34, 211, 238, 0.4);
-        --skill-name-color: #0891b2;
-        --skill-border-color: rgba(34, 211, 238, 0.4);
-        --skill-border-hover: rgba(34, 211, 238, 0.6);
-        --skill-bg-hover: rgba(34, 211, 238, 0.15);
+      .skill-card:hover .skill-desc,
+      .skill-card.is-expanded .skill-desc {
+        max-height: 140px;
+        opacity: 1;
+        margin-top: 4px;
       }
 
-      /* 빌드도구 & 배포 - 코랄 핑크 */
-      .skill-card:nth-child(2) {
-        --card-border: #ff7a9a;
-        --card-border-hover: #ffa8cc;
-        --card-shadow: rgba(255, 122, 154, 0.2);
-        --card-shadow-hover: rgba(255, 122, 154, 0.35);
-        --card-gradient: linear-gradient(135deg, rgba(255, 122, 154, 0.15) 0%, rgba(255, 168, 204, 0.15) 100%);
-        --card-title-color: #e11d48;
-        --card-title-shadow: rgba(255, 122, 154, 0.4);
-        --skill-name-color: #e11d48;
-        --skill-border-color: rgba(255, 122, 154, 0.4);
-        --skill-border-hover: rgba(255, 122, 154, 0.6);
-        --skill-bg-hover: rgba(255, 122, 154, 0.15);
+      .skill-card:hover .expand-hint,
+      .skill-card.is-expanded .expand-hint {
+        opacity: 0;
+        max-height: 0;
+        margin: 0;
+        overflow: hidden;
       }
 
-      /* 스타일링 - 라벤더 퍼플 */
-      .skill-card:nth-child(3) {
-        --card-border: #c084fc;
-        --card-border-hover: #ddd6fe;
-        --card-shadow: rgba(192, 132, 252, 0.2);
-        --card-shadow-hover: rgba(192, 132, 252, 0.35);
-        --card-gradient: linear-gradient(135deg, rgba(192, 132, 252, 0.15) 0%, rgba(221, 214, 254, 0.15) 100%);
-        --card-title-color: #7c3aed;
-        --card-title-shadow: rgba(192, 132, 252, 0.4);
-        --skill-name-color: #7c3aed;
-        --skill-border-color: rgba(192, 132, 252, 0.4);
-        --skill-border-hover: rgba(192, 132, 252, 0.6);
-        --skill-bg-hover: rgba(192, 132, 252, 0.15);
+      .skill-card:nth-child(1) { border-left: 3px solid #3b82f6; }
+      .skill-card:nth-child(2) { border-left: 3px solid #8b5cf6; }
+      .skill-card:nth-child(3) { border-left: 3px solid #ec4899; }
+      .skill-card:nth-child(4) { border-left: 3px solid #14b8a6; }
+      .skill-card:nth-child(5) { border-left: 3px solid #f59e0b; }
+      .skill-card:nth-child(6) { border-left: 3px solid #22c55e; }
+
+      @media (max-width: 1024px) {
+        .skills-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      }
+      @media (max-width: 640px) {
+        .skills-grid { grid-template-columns: 1fr; }
       }
 
-      /* 데이터 시각화 - 스카이 블루 */
-      .skill-card:nth-child(4) {
-        --card-border: #60a5fa;
-        --card-border-hover: #93c5fd;
-        --card-shadow: rgba(96, 165, 250, 0.2);
-        --card-shadow-hover: rgba(96, 165, 250, 0.35);
-        --card-gradient: linear-gradient(135deg, rgba(96, 165, 250, 0.15) 0%, rgba(147, 197, 253, 0.15) 100%);
-        --card-title-color: #2563eb;
-        --card-title-shadow: rgba(96, 165, 250, 0.4);
-        --skill-name-color: #2563eb;
-        --skill-border-color: rgba(96, 165, 250, 0.4);
-        --skill-border-hover: rgba(96, 165, 250, 0.6);
-        --skill-bg-hover: rgba(96, 165, 250, 0.15);
-      }
-
-      /* 상태 관리 & 폼 - 피치 오렌지 */
-      .skill-card:nth-child(5) {
-        --card-border: #fb923c;
-        --card-border-hover: #fdba74;
-        --card-shadow: rgba(251, 146, 60, 0.2);
-        --card-shadow-hover: rgba(251, 146, 60, 0.35);
-        --card-gradient: linear-gradient(135deg, rgba(251, 146, 60, 0.15) 0%, rgba(253, 186, 116, 0.15) 100%);
-        --card-title-color: #ea580c;
-        --card-title-shadow: rgba(251, 146, 60, 0.4);
-        --skill-name-color: #ea580c;
-        --skill-border-color: rgba(251, 146, 60, 0.4);
-        --skill-border-hover: rgba(251, 146, 60, 0.6);
-        --skill-bg-hover: rgba(251, 146, 60, 0.15);
-      }
-
-      /* 협업 - 라임 그린 */
-      .skill-card:nth-child(6) {
-        --card-border: #84cc16;
-        --card-border-hover: #a3e635;
-        --card-shadow: rgba(132, 204, 22, 0.2);
-        --card-shadow-hover: rgba(132, 204, 22, 0.35);
-        --card-gradient: linear-gradient(135deg, rgba(132, 204, 22, 0.15) 0%, rgba(163, 230, 53, 0.15) 100%);
-        --card-title-color: #65a30d;
-        --card-title-shadow: rgba(132, 204, 22, 0.4);
-        --skill-name-color: #65a30d;
-        --skill-border-color: rgba(132, 204, 22, 0.4);
-        --skill-border-hover: rgba(132, 204, 22, 0.6);
-        --skill-bg-hover: rgba(132, 204, 22, 0.15);
-      }
-
-      @media (max-width: 768px) {
-        .skills-grid {
-          grid-template-columns: 1fr;
-          gap: 24px;
-        }
-
-        .skill-card {
-          padding: 20px;
-        }
-
-        .skill-card-title {
-          font-size: 1.3rem;
-        }
+      .experience-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
       }
 
       .experience-item {
-        background: white;
-        border: 2px solid #f1f5f9;
-        border-radius: 20px;
-        padding: 40px;
-        margin-bottom: 30px;
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-        transition: all 0.4s ease;
-        opacity: 0;
-        transform: translateY(50px);
-        will-change: transform, opacity, box-shadow;
+        padding: 18px;
+        margin-bottom: 0;
+        opacity: 1;
+        transform: none;
       }
 
       .experience-item.is-active {
-        box-shadow: 0 24px 50px rgba(79, 70, 229, 0.25);
-        border-color: #4f46e5;
+        box-shadow: var(--shadow-md);
+      }
+
+      .project-stack {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 10px;
       }
 
       .experience-header {
@@ -371,73 +369,91 @@
       }
 
       .company-name {
-        font-size: 22px;
-        font-weight: 600;
-        color: #333;
+        font-size: 1rem;
+        font-weight: 800;
+        color: var(--text);
+        letter-spacing: -0.02em;
       }
 
       .position {
-        font-size: 18px;
-        color: #4f46e5;
-        font-weight: 600;
-        margin: 5px 0;
+        font-size: 0.82rem;
+        color: var(--accent);
+        font-weight: 700;
+        margin: 2px 0 0;
       }
 
       .period {
-        font-size: 16px;
-        color: #6c757d;
-        background: #f8f9fa;
-        padding: 8px 15px;
-        border-radius: 20px;
+        font-size: 0.72rem;
+        color: var(--text-muted);
+        background: #f3f4f6;
+        padding: 5px 10px;
+        border-radius: 999px;
         white-space: nowrap;
+        font-weight: 600;
+        border: 1px solid var(--border);
       }
 
       .project-highlight {
-        background: linear-gradient(135deg, #4f46e5, #7c3aed);
-        color: white;
-        padding: 35px;
-        border-radius: 20px;
-        margin: 25px 0;
-        box-shadow: 0 12px 30px rgba(79, 70, 229, 0.2);
-        opacity: 0;
-        transform: translateY(40px);
-        transition: all 0.4s ease;
+        color: var(--text);
+        padding: 14px 16px;
+        border-radius: 14px;
+        margin: 0;
+        opacity: 1;
+        transform: none;
+        background: #fafbfc;
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow-xs);
+        border-left: 3px solid var(--accent);
+        transition: box-shadow 0.28s ease, transform 0.28s ease;
+      }
+
+      .project-highlight:hover,
+      .project-highlight.is-expanded {
+        box-shadow: var(--shadow-sm);
+        transform: translateY(-1px);
       }
 
       .project-title {
-        font-size: 20px;
-        font-weight: 600;
-        margin-bottom: 15px;
+        font-size: 0.84rem;
+        font-weight: 800;
+        margin-bottom: 0;
+        line-height: 1.45;
+        letter-spacing: -0.02em;
       }
 
       .tech-stack {
-        background: rgba(255, 255, 255, 0.1);
-        padding: 15px;
-        border-radius: 8px;
-        margin: 15px 0;
+        background: #f3f4f6;
+        padding: 10px;
+        border-radius: 10px;
+        margin: 10px 0 0;
+        border: 1px solid var(--border);
       }
 
       .tech-stack h4 {
-        font-size: 16px;
-        margin-bottom: 10px;
-        color: #fff;
+        font-size: 0.68rem;
+        margin-bottom: 6px;
+        color: var(--text-muted);
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
       }
 
       .tech-tags {
         display: flex;
         flex-wrap: wrap;
-        gap: 8px;
+        gap: 5px;
         width: 100%;
-        overflow-x: auto;
       }
 
       .tech-tag-white {
-        background: rgba(255, 255, 255, 0.2);
-        color: white;
-        padding: 4px 12px;
-        border-radius: 15px;
-        font-size: 13px;
-        border: 1px solid rgba(255, 255, 255, 0.3);
+        background: var(--surface);
+        color: var(--text-soft);
+        padding: 3px 9px;
+        border-radius: 999px;
+        font-size: 0.65rem;
+        font-weight: 600;
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow-xs);
       }
 
       .achievements {
@@ -446,47 +462,74 @@
       }
 
       .achievements li {
-        margin-bottom: 12px;
-        padding-left: 20px;
+        margin-bottom: 6px;
+        padding-left: 14px;
         position: relative;
+        font-size: 0.75rem;
+        line-height: 1.45;
+        color: var(--text-soft);
       }
 
       .achievements li::before {
-        content: '▸';
+        content: '·';
         position: absolute;
         left: 0;
-        color: #4f46e5;
+        color: var(--accent);
         font-weight: bold;
       }
 
       .project-achievements li::before {
-        color: rgba(255, 255, 255, 0.8);
+        color: var(--accent);
       }
 
       .project-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 25px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+        align-items: start;
       }
 
       .project-card {
-        position: relative; /* z-index 스태킹 컨텍스트 생성 */
-        z-index: 1; /* 슬라이더보다 아래에 있도록 설정 */
-        background: white;
-        border: 2px solid #f1f5f9;
-        border-radius: 20px;
-        padding: 35px;
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-        transition: all 0.4s ease;
-        opacity: 0;
-        transform: translateY(50px);
-        margin-bottom: 30px; /* 카드 간 간격 추가 */
+        position: relative;
+        z-index: 1;
+        padding: 0;
+        margin-bottom: 0;
+        opacity: 1;
+        transform: none;
+        overflow: hidden;
       }
 
-      .project-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
-        border-color: #4f46e5;
+      .project-card .project-highlight {
+        border-radius: var(--radius) var(--radius) 0 0;
+        border-left: none;
+        border-bottom: none;
+        box-shadow: none;
+      }
+
+      .project-card > div[style*="padding"] {
+        padding: 14px !important;
+        background: #fafbfc !important;
+        border-radius: 0 0 var(--radius) var(--radius) !important;
+        border: 1px solid var(--border);
+        border-top: none;
+      }
+
+      .project-card.reveal-card > div[style*="padding"] {
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        padding: 0 !important;
+        border: none;
+        transition: max-height 0.4s ease, opacity 0.28s ease;
+      }
+
+      .project-card.reveal-card:hover > div[style*="padding"],
+      .project-card.reveal-card.is-expanded > div[style*="padding"] {
+        max-height: 4000px;
+        opacity: 1;
+        padding: 14px !important;
+        border: 1px solid var(--border);
+        border-top: none;
       }
 
       .project-name {
@@ -551,28 +594,25 @@
       }
 
       .github-stats {
-        background: linear-gradient(135deg, #1e293b, #334155);
-        color: white;
-        padding: 40px;
-        border-radius: 20px;
+        color: var(--text);
+        padding: 22px;
+        border-radius: var(--radius);
         text-align: center;
-        box-shadow: 0 12px 30px rgba(30, 41, 59, 0.2);
-        opacity: 0;
-        transform: scale(0.9);
-        transition: all 0.4s ease;
+        opacity: 1;
+        transform: none;
       }
 
       .stats-title {
-        font-size: 24px;
-        font-weight: 600;
-        margin-bottom: 20px;
+        font-size: 1rem;
+        font-weight: 800;
+        margin-bottom: 8px;
       }
 
       .github-link {
-        color: #64b5f6;
+        color: var(--accent);
         text-decoration: none;
-        font-size: 18px;
-        font-weight: 500;
+        font-size: 0.9rem;
+        font-weight: 700;
       }
 
       .github-link:hover {
@@ -597,28 +637,66 @@
         margin-bottom: 5px;
       }
 
-      /* 스크롤 기반 핸드폰 화면 슬라이더 */
-      .phone-slider-container {
+      /* 카드 내부 스크롤 기반 핸드폰 슬라이더 */
+      .phone-slider-block {
+        padding: 14px 16px 16px;
+        border-top: 1px solid var(--border);
+        background: #fafbfc;
+      }
+
+      .phone-slider-label {
+        font-size: 0.68rem;
+        font-weight: 700;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin-bottom: 8px;
+        text-align: center;
+      }
+
+      .phone-scroll-viewport {
+        height: 400px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        overscroll-behavior: contain;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        background: #eceef2;
+        box-shadow: inset 0 2px 10px rgba(15, 23, 42, 0.07);
+        scrollbar-width: thin;
+        scrollbar-color: rgba(15, 23, 42, 0.25) transparent;
+      }
+
+      .phone-scroll-track {
         position: relative;
-        z-index: 2; /* 겹침 현상 방지 */
         width: 100%;
-        height: 500px;
-        margin: 24px auto 36px; /* 상단 여백 축소, 하단 약간 유지 */
+      }
+
+      .phone-slider-container {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+        width: 100%;
+        height: 400px;
         display: flex;
         justify-content: center;
         align-items: center;
-        background: linear-gradient(135deg, #1e293b, #334155);
-        border-radius: 20px;
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        margin: 0;
+        border-radius: 0;
         overflow: hidden;
       }
+
       .phone-frame {
         position: relative;
-        width: 260px;
-        height: 520px;
-        background: #000;
-        border-radius: 30px;
-        padding: 12px;
-        box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+        width: 200px;
+        height: 360px;
+        background: #111;
+        border-radius: 28px;
+        padding: 10px;
+        box-shadow: 0 16px 40px rgba(15, 23, 42, 0.28), 0 2px 8px rgba(15, 23, 42, 0.12);
       }
       .phone-screen {
         width: 100%;
@@ -645,23 +723,13 @@
         display: block;
       }
       @media (max-width: 768px) {
+        .phone-scroll-viewport,
         .phone-slider-container {
-          height: 520px;
-          margin: 16px auto 28px;
+          height: 340px;
         }
         .phone-frame {
-          width: 250px;
-          height: 500px;
-          padding: 10px;
-        }
-      }
-      @media (max-width: 480px) {
-        .phone-slider-container {
-          height: 420px;
-        }
-        .phone-frame {
-          width: 200px;
-          height: 400px;
+          width: 180px;
+          height: 300px;
           padding: 8px;
         }
       }
@@ -673,9 +741,6 @@
         .container {
           box-shadow: none;
           max-width: none;
-        }
-        .header::before {
-          animation: none;
         }
         .experience-item:hover,
         .project-card:hover {
@@ -826,40 +891,61 @@
       /* Q&A 섹션 */
       .qa-section {
         display: grid;
-        grid-template-columns: 1fr;
-        gap: 16px;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
       }
       .qa-item {
-        background: linear-gradient(135deg, #4f46e5, #7c3aed);
-        color: #f7f7ff;
-        border: 1px solid rgba(124, 58, 237, 0.35);
-        border-radius: 14px;
-        padding: 24px;
-        box-shadow: 0 12px 32px rgba(79, 70, 229, 0.25);
+        padding: 14px 16px;
       }
       .qa-q {
-        margin: 0 0 8px 0;
-        font-size: 20px;
+        margin: 0;
+        font-size: 0.82rem;
         font-weight: 800;
-        color: #ede9fe;
-        letter-spacing: 0.2px;
+        color: var(--text);
+        letter-spacing: -0.02em;
+        line-height: 1.4;
       }
       .qa-a {
         margin: 0;
-        color: rgba(248, 247, 255, 0.95);
-        line-height: 1.85;
+        color: var(--text-soft);
+        line-height: 1.55;
         word-break: keep-all;
+        font-size: 0.74rem;
       }
+      .qa-item.reveal-card .qa-a {
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transition: max-height 0.35s ease, opacity 0.25s ease, margin 0.25s ease;
+        margin-top: 0;
+      }
+      @media (hover: hover) {
+        .qa-item.reveal-card:hover .qa-a,
+        .qa-item.reveal-card.is-expanded .qa-a {
+          max-height: 400px;
+          opacity: 1;
+          margin-top: 10px;
+        }
+      }
+      @media (hover: none) {
+        .qa-item.reveal-card.is-expanded .qa-a {
+          max-height: 400px;
+          opacity: 1;
+          margin-top: 10px;
+        }
+      }
+      @media (max-width: 1024px) {
+        .qa-section { grid-template-columns: 1fr; }
+        .experience-grid { grid-template-columns: 1fr; }
+        .project-grid { grid-template-columns: 1fr; }
+      }
+
       @media (max-width: 768px) {
-        .qa-item {
-          padding: 18px;
-        }
-        .qa-q {
-          font-size: 18px;
-        }
-        .qa-a {
-          font-size: 14px;
-        }
+        .container { margin: 0; border-radius: 0; max-width: 100%; }
+        .main-content { padding: 16px 14px 28px; }
+        .qa-item { padding: 12px; }
+        .qa-q { font-size: 0.78rem; }
+        .qa-a { font-size: 0.72rem; }
 
         /* Lighthouse 성능 비교 모바일 최적화 */
         .lighthouse-comparison {
@@ -897,26 +983,29 @@
         <section class="section">
           <h2 class="section-title">Interview</h2>
           <div class="qa-section">
-            <div class="qa-item">
+            <div class="qa-item surface-card reveal-card">
               <h3 class="qa-q">Q. 프론트엔드를 지향하는 이유는?</h3>
+              <span class="expand-hint">호버하여 답변 보기 →</span>
               <p class="qa-a">
                 사용자 경험을 최우선으로 생각합니다. 데이터가 많은 서비스에서도
                 <strong>명확한 정보 구조</strong>와 <strong>빠른 상호작용</strong>을 제공하고, 팀과의 협업을 통해
                 <strong>사용자 문제를 해결하는 프론트엔드</strong>에 집중하고 있습니다.
               </p>
             </div>
-            <div class="qa-item">
+            <div class="qa-item surface-card reveal-card">
               <h3 class="qa-q">Q. 일에서 가장 중요하게 생각하는 것은?</h3>
+              <span class="expand-hint">호버하여 답변 보기 →</span>
               <p class="qa-a">
                 현재 <strong>에이엠매니지먼트</strong>에서 <strong>멀티거래소 트레이딩 터미널</strong>과
-                <strong>AM Explore 시장 인텔리전스 플랫폼</strong>을 함께 담당하며, 실시간 데이터·대시보드 UX에 집중합니다.
+                <strong>시장 인텔리전스 플랫폼</strong>을 함께 담당하며, 실시간 데이터·대시보드 UX에 집중합니다.
                 <strong>리팩토링과 마이그레이션</strong>을 즐기고, TypeScript·Next.js 기반으로 성능과 유지보수성을 꾸준히
                 끌어올립니다. Lighthouse/웹바이탈로 성능을 점검하고
                 <strong>코드 스플리팅, ISR 캐싱, React Query 상태 관리</strong>로 체감 속도를 개선합니다.
               </p>
             </div>
-            <div class="qa-item">
+            <div class="qa-item surface-card reveal-card">
               <h3 class="qa-q">Q. 강점은 무엇인가요?</h3>
+              <span class="expand-hint">호버하여 답변 보기 →</span>
               <p class="qa-a">
                 <strong>빠른 이슈 처리와 대응</strong>이 강점입니다. 알람·로그·모니터링을 즉시 분석해 재현 케이스를
                 만들고 원인을 격리합니다. 우선순위에 따라 <strong>핫픽스 → 릴리스</strong>까지 짧은 사이클로 처리합니다.
@@ -927,7 +1016,7 @@
         <section class="section">
           <h2 class="section-title">핵심 역량</h2>
           <div class="skills-grid">
-            <div class="skill-card">
+            <div class="skill-card surface-card reveal-card">
               <h3 class="skill-card-title">프론트엔드</h3>
               <div class="skill-items">
                 <div class="skill-item">
@@ -955,7 +1044,7 @@
               </div>
             </div>
 
-            <div class="skill-card">
+            <div class="skill-card surface-card reveal-card">
               <h3 class="skill-card-title">빌드도구 & 배포</h3>
               <div class="skill-items">
                 <div class="skill-item">
@@ -991,12 +1080,12 @@
               </div>
             </div>
 
-            <div class="skill-card">
+            <div class="skill-card surface-card reveal-card">
               <h3 class="skill-card-title">스타일링</h3>
               <div class="skill-items">
                 <div class="skill-item">
                   <span class="skill-name">TailwindCSS</span>
-                  <span class="skill-desc">유틸리티 클래스 기반 디자인 시스템을 구축했고, AM Explore 대시보드에서 Tailwind 4·Radix UI로 데이터 카드·어드민 UI를 일관되게 구성했습니다.</span>
+                  <span class="skill-desc">유틸리티 클래스 기반 디자인 시스템을 구축했고, 시장 인텔리전스 대시보드에서 Tailwind 4·Radix UI로 데이터 카드·어드민 UI를 일관되게 구성했습니다.</span>
                 </div>
                 <div class="skill-item">
                   <span class="skill-name">SCSS</span>
@@ -1013,7 +1102,7 @@
               </div>
             </div>
 
-            <div class="skill-card">
+            <div class="skill-card surface-card reveal-card">
               <h3 class="skill-card-title">데이터 시각화</h3>
               <div class="skill-items">
                 <div class="skill-item">
@@ -1041,7 +1130,7 @@
               </div>
             </div>
 
-            <div class="skill-card">
+            <div class="skill-card surface-card reveal-card">
               <h3 class="skill-card-title">상태 관리 & 폼</h3>
               <div class="skill-items">
                 <div class="skill-item">
@@ -1050,11 +1139,11 @@
                 </div>
                 <div class="skill-item">
                   <span class="skill-name">TanStack Query</span>
-                  <span class="skill-desc">트레이딩 터미널·AM Explore 대시보드에서 서버 상태를 캐싱·무효화·재시도로 관리해 실시간·집계 데이터 UX를 안정화했습니다.</span>
+                  <span class="skill-desc">트레이딩 터미널·시장 인텔리전스 대시보드에서 서버 상태를 캐싱·무효화·재시도로 관리해 실시간·집계 데이터 UX를 안정화했습니다.</span>
                 </div>
                 <div class="skill-item">
                   <span class="skill-name">Supabase</span>
-                  <span class="skill-desc">AM Explore에서 인증·구독자·피드 아티클 DB를 운영하고, SSR 클라이언트와 Admin API를 분리해 뉴스레터 파이프라인을 구축했습니다.</span>
+                  <span class="skill-desc">시장 인텔리전스 플랫폼에서 인증·구독자·피드 아티클 DB를 운영하고, SSR 클라이언트와 Admin API를 분리해 뉴스레터 파이프라인을 구축했습니다.</span>
                 </div>
                 <div class="skill-item">
                   <span class="skill-name">Redux</span>
@@ -1073,7 +1162,7 @@
               </div>
             </div>
 
-            <div class="skill-card">
+            <div class="skill-card surface-card reveal-card">
               <h3 class="skill-card-title">협업</h3>
               <div class="skill-items">
                 <div class="skill-item">
@@ -1107,8 +1196,9 @@
 
         <section class="section">
           <h2 class="section-title">경력 사항</h2>
+          <div class="experience-grid">
 
-          <div class="experience-item">
+          <div class="experience-item surface-card">
             <div class="experience-header">
               <div>
                 <div class="company-name">에이엠매니지먼트</div>
@@ -1116,10 +1206,11 @@
               </div>
               <div class="period">2025.12 ~ 현재 (재직 중)</div>
             </div>
+            <div class="project-stack">
 
-            <div class="project-highlight" style="background: linear-gradient(135deg, #1d4ed8, #3b82f6)">
+            <div class="project-highlight reveal-card">
               <div class="project-title">
-                AM Explore — Crypto Intelligence Dashboard & Newsletter (Next.js App Router · Supabase · TanStack Query · AI)
+                가상자산 시장 인텔리전스 대시보드 & 뉴스레터 (Next.js App Router · Supabase · TanStack Query · AI)
               </div>
               <p style="margin-bottom: 15px; opacity: 0.95">
                 <strong>에이엠매니지먼트</strong> 가상자산 투자자를 위한 <strong>시장 인텔리전스 플랫폼</strong> 프론트엔드를 담당합니다.
@@ -1165,7 +1256,7 @@
               </ul>
             </div>
 
-            <div class="project-highlight" style="background: linear-gradient(135deg, #0f766e, #14b8a6); margin-top: 18px">
+            <div class="project-highlight reveal-card">
               <div class="project-title">
                 멀티거래소 가상자산 트레이딩 터미널 (Next.js App Router · REST · WebSocket · BFF · TanStack Query)
               </div>
@@ -1227,7 +1318,7 @@
               </ul>
             </div>
 
-            <div class="project-highlight" style="background: linear-gradient(135deg, #115e59, #0d9488); margin-top: 18px">
+            <div class="project-highlight reveal-card">
               <div class="project-title">고객 자산 운용 화면 시각화</div>
               <p style="margin-bottom: 15px; opacity: 0.95">
                 동일 제품 내에서 <strong>로그인·회원가입</strong> 플로우, <strong>오버뷰(AUM·지갑)</strong>,
@@ -1246,9 +1337,10 @@
                 </li>
               </ul>
             </div>
+            </div>
           </div>
 
-          <div class="experience-item">
+          <div class="experience-item surface-card">
             <div class="experience-header">
               <div>
                 <div class="company-name">㈜인텔리코드</div>
@@ -1256,8 +1348,9 @@
               </div>
               <div class="period">2023.10 ~ 2025.12 (2년 2개월)</div>
             </div>
+            <div class="project-stack">
 
-            <div class="project-highlight" style="background: linear-gradient(135deg, #ef4444, #f87171)">
+            <div class="project-highlight reveal-card">
               <div class="project-title">
                 🚀 대기업 전자제품 제조사 웹 포털 관리 시스템 - Legacy 시스템 모던 마이그레이션 (2025년 12월 퇴사 시점까지 참여)
               </div>
@@ -1400,7 +1493,7 @@
               </div>
             </div>
 
-            <div class="project-highlight">
+            <div class="project-highlight reveal-card">
               <div class="project-title">🗳️ 필리핀 선거관리위원회</div>
               <p style="margin-bottom: 15px; opacity: 0.9">
                 필리핀 전역에서 사용되는 디지털 전자투표 시스템의 SPA 기반 웹페이지 개발 및 배포
@@ -1445,7 +1538,7 @@
               </div>
             </div>
 
-            <div class="project-highlight" style="background: linear-gradient(135deg, #28a745, #20c997)">
+            <div class="project-highlight reveal-card">
               <div class="project-title">🌐 CCS Web Portal - 공개 선거 결과 포털</div>
               <p style="margin-bottom: 15px; opacity: 0.9">
                 실시간 선거 결과를 시각화하고, 지역별 단계별 집계할 수 있는 UI/UX 제공
@@ -1494,7 +1587,7 @@
               </div>
             </div>
 
-            <div class="project-highlight" style="background: linear-gradient(135deg, #0d47a1, #1976d2)">
+            <div class="project-highlight reveal-card">
               <div class="project-title">🖥️ MEDIA WORKSTATION (필리핀 선거 산하 운영 페이지)</div>
               <p style="margin-bottom: 15px; opacity: 0.95; font-size: 16px">
                 선거 데이터 운영을 위한 미디어 워크스테이션. 대시보드·로그·미디어 파일 관리 등 운영 기능을 통합한 내부
@@ -1546,7 +1639,7 @@
               </div>
             </div>
 
-            <div class="project-highlight" style="background: linear-gradient(135deg, #20c997, #17a2b8)">
+            <div class="project-highlight reveal-card">
               <div class="project-title">📱 L사 커뮤니티 플랫폼</div>
               <p style="margin-bottom: 15px; opacity: 0.95; font-size: 16px">
                 사용자들의 일상 기록과 콘텐츠 공유를 위한 SNS형 웹 플랫폼 구축
@@ -1586,7 +1679,7 @@
               </div>
             </div>
 
-            <div class="project-highlight" style="background: linear-gradient(135deg, #6f42c1, #e83e8c)">
+            <div class="project-highlight reveal-card">
               <div class="project-title">📊 대기업 하드웨어 성능 시각화 시스템</div>
               <p style="margin-bottom: 15px; opacity: 0.95; font-size: 16px">
                 대기업 하드웨어 설계/성능 데이터를 Web 기반 시각화 시스템으로 전환하는 프로젝트
@@ -1613,9 +1706,10 @@
                 <li><strong>운영 중 서비스 유지보수 및 버그 대응</strong> - 안정적인 서비스 운영 경험</li>
               </ul>
             </div>
+            </div>
           </div>
 
-          <div class="experience-item">
+          <div class="experience-item surface-card">
             <div class="experience-header">
               <div>
                 <div class="company-name">㈜제이앤퍼스트</div>
@@ -1643,13 +1737,15 @@
               <li><strong>Lottie JSON 파일 헤더 추출</strong> - 미리보기 이미지 자동 생성으로 UX 개선</li>
             </ul>
           </div>
+          </div>
         </section>
 
         <section class="section">
           <h2 class="section-title">사이드 프로젝트</h2>
+          <div class="project-grid">
 
-          <div class="project-card">
-            <div class="project-highlight" style="background: linear-gradient(135deg, #f59e0b, #eab308); margin: 0">
+          <div class="project-card surface-card reveal-card">
+            <div class="project-highlight reveal-card">
               <div class="project-title">📈 실시간 디지털 자산 Futures 모니터링 및 주문 패널</div>
               <p style="margin-bottom: 20px; opacity: 0.95; font-size: 16px">
                 WebSocket 및 REST API를 활용한 실시간 암호화폐 선물 거래 모니터링 대시보드. BFF (Backend for Frontend)
@@ -1795,8 +1891,8 @@
             </div>
           </div>
 
-          <div class="project-card">
-            <div class="project-highlight" style="background: linear-gradient(135deg, #ff6b9d, #ff8e91); margin: 0">
+          <div class="project-card surface-card reveal-card">
+            <div class="project-highlight reveal-card">
               <div class="project-title">💘 MatchMate Cursor App (현재 개발 중)</div>
               <p style="margin-bottom: 20px; opacity: 0.95; font-size: 16px">
                 소개팅 기반 매칭 플랫폼 사이드 프로젝트. Next.js 기반의 PWA 앱으로, Supabase를 이용한 인증과 실시간
@@ -1851,6 +1947,34 @@
               </div>
             </div>
 
+            <div class="phone-slider-block">
+              <p class="phone-slider-label">MatchMate · 카드 안에서 스크롤하여 미리보기</p>
+              <div class="phone-scroll-viewport">
+                <div class="phone-scroll-track">
+                  <div class="phone-slider-container" id="matchmate-phone-slider">
+                    <div class="phone-frame">
+                      <div class="phone-screen">
+                        <div class="phone-slides-track">
+                          <div class="phone-slide">
+                            <img src="./matchmate_1.png" alt="MatchMate 로그인 화면" />
+                          </div>
+                          <div class="phone-slide">
+                            <img src="./matchmate_2.png" alt="MatchMate 메인 화면" />
+                          </div>
+                          <div class="phone-slide">
+                            <img src="./matchmate_3.png" alt="MatchMate 메시지 화면" />
+                          </div>
+                          <div class="phone-slide">
+                            <img src="./matchmate_4.png" alt="MatchMate 좋아요 목록" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <div style="padding: 25px; background: #f8f9fa; border-radius: 0 0 12px 12px">
               <h4 style="color: #333; margin-bottom: 15px; font-size: 18px">🔧 주요 구현 사항</h4>
               <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px">
@@ -1899,29 +2023,8 @@
             </div>
           </div>
 
-          <div class="phone-slider-container" id="matchmate-phone-slider">
-            <div class="phone-frame">
-              <div class="phone-screen">
-                <div class="phone-slides-track">
-                  <div class="phone-slide">
-                    <img src="./matchmate_1.png" alt="MatchMate 로그인 화면" />
-                  </div>
-                  <div class="phone-slide">
-                    <img src="./matchmate_2.png" alt="MatchMate 메인 화면" />
-                  </div>
-                  <div class="phone-slide">
-                    <img src="./matchmate_3.png" alt="MatchMate 메시지 화면" />
-                  </div>
-                  <div class="phone-slide">
-                    <img src="./matchmate_4.png" alt="MatchMate 좋아요 목록" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="project-card">
-            <div class="project-highlight" style="background: linear-gradient(135deg, #00b8d4, #0097a7); margin: 0">
+          <div class="project-card surface-card reveal-card">
+            <div class="project-highlight reveal-card">
               <div class="project-title">✈️ Travel Record Flutter App</div>
               <p style="margin-bottom: 20px; opacity: 0.95; font-size: 16px">
                 여행 기록 & 항공권 검색 Flutter 앱. 출입국 증명서 OCR로 국가/날짜를 자동 추출하고, 여행 기록을 저장한 후
@@ -1976,6 +2079,34 @@
                 >
                   🎨 Figma 디자인
                 </a>
+              </div>
+            </div>
+
+            <div class="phone-slider-block">
+              <p class="phone-slider-label">Travel Record · 카드 안에서 스크롤하여 미리보기</p>
+              <div class="phone-scroll-viewport">
+                <div class="phone-scroll-track">
+                  <div class="phone-slider-container" id="travel-phone-slider">
+                    <div class="phone-frame">
+                      <div class="phone-screen">
+                        <div class="phone-slides-track">
+                          <div class="phone-slide">
+                            <img src="./travel_1.PNG" alt="Travel Record 스크린샷 1" />
+                          </div>
+                          <div class="phone-slide">
+                            <img src="./travel_2.PNG" alt="Travel Record 스크린샷 2" />
+                          </div>
+                          <div class="phone-slide">
+                            <img src="./travel_3.PNG" alt="Travel Record 스크린샷 3" />
+                          </div>
+                          <div class="phone-slide">
+                            <img src="./travel_4.PNG" alt="Travel Record 스크린샷 4" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -2054,31 +2185,12 @@
             </div>
           </div>
 
-          <div class="phone-slider-container" id="travel-phone-slider">
-            <div class="phone-frame">
-              <div class="phone-screen">
-                <div class="phone-slides-track">
-                  <div class="phone-slide">
-                    <img src="./travel_1.PNG" alt="Travel Record 스크린샷 1" />
-                  </div>
-                  <div class="phone-slide">
-                    <img src="./travel_2.PNG" alt="Travel Record 스크린샷 2" />
-                  </div>
-                  <div class="phone-slide">
-                    <img src="./travel_3.PNG" alt="Travel Record 스크린샷 3" />
-                  </div>
-                  <div class="phone-slide">
-                    <img src="./travel_4.PNG" alt="Travel Record 스크린샷 4" />
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </section>
 
         <section class="section">
           <h2 class="section-title">GitHub & 포트폴리오</h2>
-          <div class="github-stats">
+          <div class="github-stats surface-card">
             <h3 class="stats-title">개발 활동</h3>
             <p>지속적인 사이드 프로젝트와 기술 학습을 통한 성장</p>
             <br />
@@ -2130,45 +2242,23 @@
             });
           });
 
-          // 스킬 카드 애니메이션 (새로운 안정적인 버전)
-          gsap.utils.toArray('.skill-card').forEach(function (el, index) {
-            gsap.fromTo(
-              el,
-              { y: 50, opacity: 0, scale: 0.9 },
-              {
-                y: 0,
-                opacity: 1,
-                scale: 1,
-                ease: 'power2.out',
-                duration: 1,
-                scrollTrigger: {
-                  trigger: el,
-                  start: 'top 85%',
-                  end: 'bottom top', // 화면에서 완전히 사라질 때까지
-                  toggleClass: 'is-active',
-                  scrub: 1,
-                },
-              }
-            );
-          });
-
-          // 스킬 아이템 애니메이션
-          gsap.utils.toArray('.skill-card').forEach(function (card) {
-            const items = card.querySelectorAll('.skill-item');
-            gsap.to(items, {
+          // 스킬 섹션 — 한 번에 페이드 인
+          const skillsGrid = document.querySelector('.skills-grid');
+          if (skillsGrid) {
+            gsap.from(skillsGrid.querySelectorAll('.skill-card'), {
               scrollTrigger: {
-                trigger: card,
-                start: 'top 80%',
+                trigger: skillsGrid,
+                start: 'top 88%',
                 toggleActions: 'play none none reverse',
               },
-              y: 0,
-              opacity: 1,
-              duration: 0.6,
-              ease: 'back.out(1.7)',
-              stagger: { each: 0.08, from: 'start' },
-              delay: 0.3,
+              y: 16,
+              opacity: 0,
+              duration: 0.5,
+              stagger: 0.05,
+              ease: 'power2.out',
             });
-          });
+            gsap.set(skillsGrid.querySelectorAll('.skill-item'), { opacity: 1, y: 0 });
+          }
 
           // 경력 카드 애니메이션 (진입 시만 페이드/리빌)
           gsap.utils.toArray('.experience-item').forEach(function (el, index) {
@@ -2257,47 +2347,46 @@
             ease: 'back.out(1.7)',
           });
 
-          // GSAP 타임라인을 사용한 스크롤 고정 슬라이더 (최종 안정화 버전)
-          function setupPinnedSlider(containerSelector) {
-            const container = document.querySelector(containerSelector);
+          function setupContainedPhoneSlider(containerId) {
+            const container = document.getElementById(containerId);
             if (!container) return;
 
+            const viewport = container.closest('.phone-scroll-viewport');
+            const scrollTrack = viewport && viewport.querySelector('.phone-scroll-track');
             const track = container.querySelector('.phone-slides-track');
-            if (!track) return;
+            if (!viewport || !scrollTrack || !track) return;
 
             const slides = track.querySelectorAll('.phone-slide');
             const numSlides = slides.length;
-
             if (numSlides < 2) return;
 
-            // GSAP 애니메이션 설정: pin과 스크롤 연동을 한 번에 처리
+            const setScrollHeight = () => {
+              const viewportH = viewport.clientHeight;
+              const step = Math.max(220, Math.round(viewportH * 0.55));
+              scrollTrack.style.height = (numSlides - 1) * step + viewportH + 'px';
+            };
+
+            setScrollHeight();
+
             gsap.to(track, {
-              xPercent: (-100 * (numSlides - 1)) / numSlides, // 예: 4장이면 -75% 이동
-              ease: 'none', // 스크롤에 따라 움직이므로 자체 가속도는 없음
+              xPercent: (-100 * (numSlides - 1)) / numSlides,
+              ease: 'none',
               scrollTrigger: {
-                trigger: container,
-                start: 'center center',
-                pin: true,
-                scrub: 1.2,
-                end: () => `+=${Math.max(1600, Math.round(container.clientWidth * (numSlides - 1) * 0.7))}`,
-                anticipatePin: 1,
-                snap: {
-                  snapTo: (value) => {
-                    const slides = document.querySelectorAll(`${containerSelector} .phone-slide`).length;
-                    if (!slides || slides < 2) return value;
-                    const step = 1 / (slides - 1);
-                    return Math.round(value / step) * step;
-                  },
-                  duration: 0.12,
-                  ease: 'power2.out',
-                },
+                trigger: scrollTrack,
+                scroller: viewport,
+                start: 'top top',
+                end: 'bottom bottom',
+                scrub: 0.45,
                 invalidateOnRefresh: true,
               },
             });
           }
 
-          setupPinnedSlider('#matchmate-phone-slider');
-          setupPinnedSlider('#travel-phone-slider');
+          setupContainedPhoneSlider('matchmate-phone-slider');
+          setupContainedPhoneSlider('travel-phone-slider');
+
+          window.addEventListener('load', () => ScrollTrigger.refresh());
+          window.addEventListener('resize', () => ScrollTrigger.refresh());
         }
       });
     </script>
@@ -2313,6 +2402,50 @@
         if (e.ctrlKey && e.key === 'p') {
           e.preventDefault();
           printResume();
+        }
+      });
+
+      document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.skill-card.reveal-card').forEach(function (card) {
+          if (!card.querySelector('.expand-hint')) {
+            var hint = document.createElement('span');
+            hint.className = 'expand-hint';
+            hint.textContent = '호버하여 상세 보기 →';
+            var title = card.querySelector('.skill-card-title');
+            if (title) title.insertAdjacentElement('afterend', hint);
+          }
+        });
+
+        document.querySelectorAll('.project-highlight.reveal-card').forEach(function (card) {
+          var tags = card.querySelectorAll('.tech-tag-white');
+          if (tags.length && !card.querySelector('.project-preview-tags')) {
+            var preview = document.createElement('div');
+            preview.className = 'project-preview-tags';
+            Array.from(tags).slice(0, 4).forEach(function (tag) {
+              preview.appendChild(tag.cloneNode(true));
+            });
+            var title = card.querySelector('.project-title');
+            if (title) title.insertAdjacentElement('afterend', preview);
+          }
+          if (!card.querySelector('.expand-hint')) {
+            var hint = document.createElement('span');
+            hint.className = 'expand-hint';
+            hint.textContent = '호버하여 상세 보기 →';
+            var anchor = card.querySelector('.project-preview-tags') || card.querySelector('.project-title');
+            if (anchor) anchor.insertAdjacentElement('afterend', hint);
+          }
+        });
+
+        if (window.matchMedia('(hover: none)').matches) {
+          document.querySelectorAll('.reveal-card').forEach(function (el) {
+            el.addEventListener('click', function () {
+              var open = el.classList.contains('is-expanded');
+              document.querySelectorAll('.reveal-card.is-expanded').forEach(function (other) {
+                if (other !== el) other.classList.remove('is-expanded');
+              });
+              el.classList.toggle('is-expanded', !open);
+            });
+          });
         }
       });
     </script>
