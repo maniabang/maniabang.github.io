@@ -400,6 +400,7 @@
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 14px;
+        align-items: start;
       }
 
       .experience-item {
@@ -2298,7 +2299,7 @@
               scrollTrigger: {
                 trigger: skillsGrid,
                 start: 'top 88%',
-                toggleActions: 'play none none reverse',
+                once: true,
               },
               y: 16,
               opacity: 0,
@@ -2309,47 +2310,9 @@
             gsap.set(skillsGrid.querySelectorAll('.skill-item'), { opacity: 1, y: 0 });
           }
 
-          // 경력 카드 애니메이션 (진입 시만 페이드/리빌)
-          gsap.utils.toArray('.experience-item').forEach(function (el, index) {
-            // 들어올 때: 살짝 확대 + 페이드 인
-            gsap.fromTo(
-              el,
-              { y: 30, opacity: 0, scale: 0.96 },
-              {
-                scrollTrigger: {
-                  trigger: el,
-                  start: 'top 85%',
-                  end: 'top 45%',
-                  toggleActions: 'play none none none',
-                  onEnter: () => el.classList.add('is-active'),
-                },
-                y: 0,
-                opacity: 1,
-                scale: 1,
-                duration: 0.8,
-                ease: 'power3.out',
-                delay: index * 0.08,
-              }
-            );
-
-            // 나갈 때: 살짝 축소 + 페이드 아웃 (첫 번째 카드에는 적용하지 않음)
-            if (index > 0) {
-              gsap.to(el, {
-                scrollTrigger: {
-                  trigger: el,
-                  start: 'bottom 10%',
-                  end: 'bottom 0%',
-                  toggleActions: 'play none none reverse',
-                  onLeave: () => el.classList.remove('is-active'),
-                  onEnterBack: () => el.classList.add('is-active'),
-                },
-                opacity: 0.7,
-                scale: 0.985,
-                ease: 'power1.out',
-                duration: 0.4,
-              });
-            }
-          });
+          // 경력 카드: 호버 펼침으로 레이아웃 높이가 수시로 변해
+          // ScrollTrigger 기반 페이드는 위치가 어긋나므로 항상 표시 상태를 유지
+          gsap.set('.experience-item', { clearProps: 'all', opacity: 1 });
 
           // 프로젝트 하이라이트 애니메이션
           gsap.utils.toArray('.project-highlight').forEach(function (el, index) {
@@ -2436,6 +2399,15 @@
 
           window.addEventListener('load', () => ScrollTrigger.refresh());
           window.addEventListener('resize', () => ScrollTrigger.refresh());
+
+          // 호버 펼침으로 카드 높이가 바뀌면 트리거 위치를 다시 계산
+          let revealRefreshTimer;
+          document.addEventListener('transitionend', function (e) {
+            if (e.propertyName === 'max-height') {
+              clearTimeout(revealRefreshTimer);
+              revealRefreshTimer = setTimeout(() => ScrollTrigger.refresh(), 120);
+            }
+          });
         }
       });
     </script>
