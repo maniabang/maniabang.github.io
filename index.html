@@ -239,6 +239,14 @@
           max-height: 4000px;
           opacity: 1;
           margin: 10px 0 !important;
+          padding-top: revert !important;
+          padding-bottom: revert !important;
+        }
+        .reveal-card.is-expanded .expand-hint {
+          opacity: 0;
+          max-height: 0;
+          margin: 0;
+          overflow: hidden;
         }
         .reveal-card { cursor: pointer; }
       }
@@ -2457,14 +2465,39 @@
           }
         });
 
-        if (window.matchMedia('(hover: none)').matches) {
-          document.querySelectorAll('.reveal-card').forEach(function (el) {
-            el.addEventListener('click', function () {
-              var open = el.classList.contains('is-expanded');
-              document.querySelectorAll('.reveal-card.is-expanded').forEach(function (other) {
-                if (other !== el) other.classList.remove('is-expanded');
-              });
-              el.classList.toggle('is-expanded', !open);
+        var isTouchDevice =
+          window.matchMedia('(hover: none)').matches || window.matchMedia('(pointer: coarse)').matches;
+
+        if (isTouchDevice) {
+          // 안내 문구를 탭 기준으로 변경
+          document.querySelectorAll('.expand-hint').forEach(function (hint) {
+            hint.textContent = hint.textContent.replace('호버하여', '탭하여');
+          });
+
+          document.addEventListener('click', function (e) {
+            // 링크/버튼은 본래 동작 유지
+            if (e.target.closest('a, button')) return;
+
+            var card = e.target.closest('.reveal-card');
+            if (!card) return;
+
+            // 탭한 카드와 그 상위 reveal-card 체인을 함께 펼침 (데스크톱 호버와 동일한 효과)
+            var chain = [];
+            var node = card;
+            while (node) {
+              chain.push(node);
+              node = node.parentElement && node.parentElement.closest('.reveal-card');
+            }
+
+            var willOpen = !card.classList.contains('is-expanded');
+
+            // 체인에 속하지 않는 열린 카드는 닫기
+            document.querySelectorAll('.reveal-card.is-expanded').forEach(function (other) {
+              if (chain.indexOf(other) === -1) other.classList.remove('is-expanded');
+            });
+
+            chain.forEach(function (item) {
+              item.classList.toggle('is-expanded', willOpen);
             });
           });
         }
