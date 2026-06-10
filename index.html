@@ -165,19 +165,81 @@
       }
 
       /* ── 공통 카드 / 호버 펼침 (liquid glass) ── */
+      .glass-interactive {
+        position: relative;
+        overflow: hidden;
+        --mouse-x: 50%;
+        --mouse-y: 50%;
+      }
+
+      .glass-interactive::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        background: radial-gradient(
+          480px circle at var(--mouse-x) var(--mouse-y),
+          rgba(255, 255, 255, 0.52) 0%,
+          rgba(255, 255, 255, 0.14) 28%,
+          transparent 58%
+        );
+        opacity: 0;
+        transition: opacity 0.35s ease;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .glass-interactive::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        background: radial-gradient(
+          220px circle at var(--mouse-x) var(--mouse-y),
+          rgba(120, 156, 255, 0.18) 0%,
+          transparent 70%
+        );
+        opacity: 0;
+        transition: opacity 0.35s ease;
+        pointer-events: none;
+        z-index: 0;
+        mix-blend-mode: soft-light;
+      }
+
+      @media (hover: hover) {
+        .glass-interactive:hover::before,
+        .glass-interactive.is-expanded::before,
+        .glass-interactive:hover::after,
+        .glass-interactive.is-expanded::after {
+          opacity: 1;
+        }
+      }
+
+      .glass-interactive > * {
+        position: relative;
+        z-index: 1;
+      }
+
       .surface-card {
-        background: var(--glass);
-        backdrop-filter: blur(16px) saturate(1.35);
-        -webkit-backdrop-filter: blur(16px) saturate(1.35);
-        border: 1px solid var(--glass-border);
+        background: rgba(255, 255, 255, 0.42);
+        backdrop-filter: blur(20px) saturate(1.45);
+        -webkit-backdrop-filter: blur(20px) saturate(1.45);
+        border: 1px solid rgba(255, 255, 255, 0.65);
         border-radius: var(--radius);
-        box-shadow: var(--shadow-sm), inset 0 1px 0 rgba(255, 255, 255, 0.85);
-        transition: box-shadow 0.28s ease, transform 0.28s ease;
+        box-shadow:
+          var(--shadow-sm),
+          inset 0 1px 0 rgba(255, 255, 255, 0.88),
+          inset 0 -1px 0 rgba(255, 255, 255, 0.25);
+        transition: box-shadow 0.28s ease, transform 0.28s ease, border-color 0.28s ease;
       }
 
       .surface-card:hover,
       .surface-card.is-expanded {
-        box-shadow: var(--shadow-md), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+        border-color: rgba(255, 255, 255, 0.82);
+        box-shadow:
+          var(--shadow-md),
+          inset 0 1px 0 rgba(255, 255, 255, 0.95),
+          inset 0 -1px 0 rgba(255, 255, 255, 0.3);
       }
 
       .reveal-card > p,
@@ -307,60 +369,23 @@
         width: 100%;
       }
 
-      .skill-card:nth-child(1) {
-        border-left: 3px solid #3b82f6;
-        background: linear-gradient(140deg, rgba(219, 234, 254, 0.72), rgba(255, 255, 255, 0.55));
-      }
-      .skill-card:nth-child(2) {
-        border-left: 3px solid #8b5cf6;
-        background: linear-gradient(140deg, rgba(237, 233, 254, 0.72), rgba(255, 255, 255, 0.55));
-      }
-      .skill-card:nth-child(3) {
-        border-left: 3px solid #ec4899;
-        background: linear-gradient(140deg, rgba(252, 231, 243, 0.72), rgba(255, 255, 255, 0.55));
-      }
-      .skill-card:nth-child(4) {
-        border-left: 3px solid #14b8a6;
-        background: linear-gradient(140deg, rgba(204, 251, 241, 0.7), rgba(255, 255, 255, 0.55));
-      }
-      .skill-card:nth-child(5) {
-        border-left: 3px solid #f59e0b;
-        background: linear-gradient(140deg, rgba(254, 243, 199, 0.68), rgba(255, 255, 255, 0.55));
-      }
-      .skill-card:nth-child(6) {
-        border-left: 3px solid #22c55e;
-        background: linear-gradient(140deg, rgba(220, 252, 231, 0.7), rgba(255, 255, 255, 0.55));
-      }
+      .skill-card:nth-child(1) { background: rgba(219, 234, 254, 0.32); }
+      .skill-card:nth-child(2) { background: rgba(237, 233, 254, 0.3); }
+      .skill-card:nth-child(3) { background: rgba(252, 231, 243, 0.28); }
+      .skill-card:nth-child(4) { background: rgba(204, 251, 241, 0.28); }
+      .skill-card:nth-child(5) { background: rgba(254, 243, 199, 0.26); }
+      .skill-card:nth-child(6) { background: rgba(220, 252, 231, 0.28); }
 
-      /* Interview 카드 틴트 */
-      .qa-section .qa-item:nth-child(1) {
-        background: linear-gradient(150deg, rgba(219, 234, 254, 0.7), rgba(255, 255, 255, 0.52));
-      }
-      .qa-section .qa-item:nth-child(2) {
-        background: linear-gradient(150deg, rgba(237, 233, 254, 0.7), rgba(255, 255, 255, 0.52));
-      }
-      .qa-section .qa-item:nth-child(3) {
-        background: linear-gradient(150deg, rgba(204, 251, 241, 0.66), rgba(255, 255, 255, 0.52));
-      }
+      .qa-section .qa-item:nth-child(1) { background: rgba(219, 234, 254, 0.3); }
+      .qa-section .qa-item:nth-child(2) { background: rgba(237, 233, 254, 0.28); }
+      .qa-section .qa-item:nth-child(3) { background: rgba(204, 251, 241, 0.26); }
 
-      /* 경력 카드 틴트 */
-      .experience-grid .experience-item:nth-child(odd) {
-        background: linear-gradient(160deg, rgba(224, 231, 255, 0.6), rgba(255, 255, 255, 0.55));
-      }
-      .experience-grid .experience-item:nth-child(even) {
-        background: linear-gradient(160deg, rgba(254, 240, 230, 0.55), rgba(255, 255, 255, 0.55));
-      }
+      .experience-grid .experience-item:nth-child(odd) { background: rgba(224, 231, 255, 0.28); }
+      .experience-grid .experience-item:nth-child(even) { background: rgba(254, 240, 230, 0.24); }
 
-      /* 사이드 프로젝트 카드 틴트 */
-      .project-grid .project-card:nth-child(3n + 1) {
-        background: linear-gradient(160deg, rgba(254, 243, 199, 0.5), rgba(255, 255, 255, 0.58));
-      }
-      .project-grid .project-card:nth-child(3n + 2) {
-        background: linear-gradient(160deg, rgba(252, 231, 243, 0.55), rgba(255, 255, 255, 0.58));
-      }
-      .project-grid .project-card:nth-child(3n) {
-        background: linear-gradient(160deg, rgba(207, 250, 254, 0.55), rgba(255, 255, 255, 0.58));
-      }
+      .project-grid .project-card:nth-child(3n + 1) { background: rgba(254, 243, 199, 0.24); }
+      .project-grid .project-card:nth-child(3n + 2) { background: rgba(252, 231, 243, 0.26); }
+      .project-grid .project-card:nth-child(3n) { background: rgba(207, 250, 254, 0.26); }
 
       @media (max-width: 1024px) {
         .skills-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -435,10 +460,9 @@
         margin: 0;
         opacity: 1;
         transform: none;
-        background: rgba(255, 255, 255, 0.55);
-        border: 1px solid var(--border);
-        box-shadow: var(--shadow-xs);
-        border-left: 3px solid var(--accent);
+        background: rgba(255, 255, 255, 0.38);
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.75);
         transition: box-shadow 0.28s ease, transform 0.28s ease;
       }
 
@@ -690,12 +714,16 @@
         text-decoration: underline;
       }
 
-      .highlight-box {
-        background: #f8f9fa;
-        border-left: 4px solid #667eea;
-        padding: 20px;
+      .highlight-box,
+      .glass-callout {
+        background: rgba(255, 255, 255, 0.38);
+        backdrop-filter: blur(10px) saturate(1.3);
+        -webkit-backdrop-filter: blur(10px) saturate(1.3);
+        border: 1px solid rgba(255, 255, 255, 0.62);
+        padding: 16px;
         margin: 15px 0;
-        border-radius: 0 8px 8px 0;
+        border-radius: 12px;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
       }
 
       .detail-item {
@@ -1473,12 +1501,9 @@
                 </li>
               </ul>
 
-              <div
-                class="highlight-box"
-                style="background: rgba(255, 255, 255, 0.1); border-left-color: rgba(255, 255, 255, 0.5)"
-              >
-                <div class="detail-label" style="color: rgba(255, 255, 255, 0.9)">🎯 마이그레이션 진행 요약 (2025년 12월 퇴사 기준)</div>
-                <p style="color: rgba(255, 255, 255, 0.8); margin: 0">
+              <div class="highlight-box">
+                <div class="detail-label">마이그레이션 진행 요약 (2025년 12월 퇴사 기준)</div>
+                <p style="margin: 0; color: var(--text-soft)">
                   <strong>Legacy System:</strong> Vue.js 2 + Bootstrap 4<br />
                   <strong>Modern Stack:</strong> Next.js 15 + TypeScript + Tailwind CSS<br />
                   <strong>진행률 약 50% 수준</strong>에서 퇴사 — 이후 마이그레이션은 현업 팀에서 지속<br />
@@ -1487,16 +1512,9 @@
               </div>
 
               <!-- Lighthouse 성능 비교 섹션 -->
-              <div
-                class="highlight-box"
-                style="
-                  background: rgba(255, 255, 255, 0.1);
-                  border-left-color: rgba(34, 197, 94, 0.8);
-                  margin-top: 20px;
-                "
-              >
-                <div class="detail-label" style="color: rgba(34, 197, 94, 0.9)">🚀 Lighthouse 성능 개선 성과</div>
-                <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 15px; font-size: 14px">
+              <div class="highlight-box" style="margin-top: 20px">
+                <div class="detail-label">Lighthouse 성능 개선 성과</div>
+                <p style="color: var(--text-soft); margin-bottom: 15px; font-size: 14px">
                   Vue.js 2 → Next.js 15 마이그레이션으로 <strong style="color: #22c55e">30% 성능 향상</strong> 달성!
                 </p>
 
@@ -1505,8 +1523,8 @@
                   style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px"
                 >
                   <div class="lighthouse-item" style="text-align: center">
-                    <div style="color: rgba(255, 255, 255, 0.9); font-weight: 600; margin-bottom: 8px; font-size: 14px">
-                      🔴 Before (Vue.js 2)
+                    <div style="color: var(--text); font-weight: 600; margin-bottom: 8px; font-size: 14px">
+                      Before (Vue.js 2)
                     </div>
                     <img
                       src="./lighthouse_before.png"
@@ -1524,8 +1542,8 @@
                   </div>
 
                   <div class="lighthouse-item" style="text-align: center">
-                    <div style="color: rgba(255, 255, 255, 0.9); font-weight: 600; margin-bottom: 8px; font-size: 14px">
-                      🟢 After (Next.js 15)
+                    <div style="color: var(--text); font-weight: 600; margin-bottom: 8px; font-size: 14px">
+                      After (Next.js 15)
                     </div>
                     <img
                       src="./lighthouse_after.png"
@@ -1556,7 +1574,7 @@
                   <div style="color: rgba(34, 197, 94, 0.9); font-weight: 700; font-size: 18px">
                     ⚡ +20점 향상 (78 → 98)
                   </div>
-                  <div style="color: rgba(255, 255, 255, 0.8); font-size: 13px; margin-top: 4px">
+                  <div style="color: var(--text-soft); font-size: 13px; margin-top: 4px">
                     SSR/SSG 최적화, 번들 크기 축소, 이미지 최적화를 통한 성능 개선
                   </div>
                 </div>
@@ -1596,12 +1614,9 @@
                 </li>
               </ul>
 
-              <div
-                class="highlight-box"
-                style="background: rgba(255, 255, 255, 0.1); border-left-color: rgba(255, 255, 255, 0.5)"
-              >
-                <div class="detail-label" style="color: rgba(255, 255, 255, 0.9)">주요 성과</div>
-                <p style="color: rgba(255, 255, 255, 0.8); margin: 0">
+              <div class="highlight-box">
+                <div class="detail-label">주요 성과</div>
+                <p style="color: var(--text-soft); margin: 0">
                   팀 구성: FE 2명, BE 4명, 인프라 2명으로 대규모 프로젝트 성공적 완료.<br />
                   실제 필리핀 전국 선거에서 사용되는 공식 시스템 개발 참여.
                 </p>
@@ -1643,11 +1658,11 @@
               </ul>
 
               <div class="detail-item">
-                <div class="detail-label" style="color: rgba(255, 255, 255, 0.9)">🔗 배포 URL</div>
-                <p style="color: rgba(255, 255, 255, 0.8); margin: 0; line-height: 1.4">
+                <div class="detail-label">배포 URL</div>
+                <p style="color: var(--text-soft); margin: 0; line-height: 1.4">
                   <a
                     href="https://2025electionresults.comelec.gov.ph/dashboard"
-                    style="color: rgba(255, 255, 255, 0.9); text-decoration: underline"
+                    style="color: var(--accent); text-decoration: underline"
                     target="_blank"
                   >
                     https://2025electionresults.comelec.gov.ph/dashboard </a
@@ -1698,12 +1713,9 @@
                 <li><strong>개발 생산성</strong> - Husky + lint-staged, TypeScript 기반 정적 분석</li>
               </ul>
 
-              <div
-                class="highlight-box"
-                style="background: rgba(255, 255, 255, 0.1); border-left-color: rgba(255, 255, 255, 0.5)"
-              >
-                <div class="detail-label" style="color: rgba(255, 255, 255, 0.9)">팀 구성</div>
-                <p style="color: rgba(255, 255, 255, 0.85); margin: 0">
+              <div class="highlight-box">
+                <div class="detail-label">팀 구성</div>
+                <p style="color: var(--text-soft); margin: 0">
                   FE 1명, BE 2명 / 프론트엔드 단독 담당 (설계 → 개발 → 성능 최적화)
                 </p>
               </div>
@@ -1736,11 +1748,11 @@
               </ul>
 
               <div class="detail-item">
-                <div class="detail-label" style="color: rgba(255, 255, 255, 0.9)">🔗 배포 URL</div>
-                <p style="color: rgba(255, 255, 255, 0.8); margin: 0">
+                <div class="detail-label">배포 URL</div>
+                <p style="color: var(--text-soft); margin: 0">
                   <a
                     href="https://lifezip.kr"
-                    style="color: rgba(255, 255, 255, 0.9); text-decoration: underline"
+                    style="color: var(--accent); text-decoration: underline"
                     target="_blank"
                   >
                     https://lifezip.kr
@@ -1839,8 +1851,8 @@
               </div>
 
               <div style="display: flex; gap: 12px; margin-top: 16px; flex-wrap: wrap">
-                <a href="https://crypto-trading-gilt.vercel.app/" target="_blank" rel="noopener" class="project-link-pill">
-                  🌐 데모 사이트 바로가기
+                <a href="https://crypto-trading-gilt.vercel.app/" target="_blank" rel="noopener" class="project-link-pill project-link-public">
+                  데모 사이트 바로가기
                 </a>
                 <div class="project-status-pill">✅ 프로덕션 배포 완료</div>
               </div>
@@ -1887,16 +1899,8 @@
                 </div>
               </div>
 
-              <div
-                style="
-                  margin-top: 20px;
-                  padding: 15px;
-                  background: white;
-                  border-radius: 8px;
-                  border-left: 4px solid #f59e0b;
-                "
-              >
-                <h5 style="color: #333; margin-bottom: 8px">💡 기술적 하이라이트</h5>
+              <div class="glass-callout" style="margin-top: 20px">
+                <h5 style="color: #333; margin-bottom: 8px">기술적 하이라이트</h5>
                 <p style="margin: 0; font-size: 14px; color: #666; line-height: 1.5">
                   <strong>BFF (Backend for Frontend) 패턴</strong>을 통해 클라이언트와 외부 API 사이에 보안 레이어를
                   구축하여 CSRF 공격을 방어하고 API 키를 안전하게 관리.
@@ -1906,16 +1910,8 @@
                 </p>
               </div>
 
-              <div
-                style="
-                  margin-top: 15px;
-                  padding: 15px;
-                  background: #fef3c7;
-                  border-radius: 8px;
-                  border-left: 4px solid #f59e0b;
-                "
-              >
-                <h5 style="color: #333; margin-bottom: 8px">🏗️ 시스템 아키텍처</h5>
+              <div class="glass-callout" style="margin-top: 15px; background: rgba(254, 243, 199, 0.35)">
+                <h5 style="color: #333; margin-bottom: 8px">시스템 아키텍처</h5>
                 <div style="font-size: 13px; color: #555; line-height: 1.6">
                   <div style="margin-bottom: 8px">
                     <strong>• Public Data Flow:</strong> WebSocket을 통한 실시간 시세/오더북 데이터 (클라이언트 직접
@@ -1955,7 +1951,7 @@
 
               <div style="display: flex; gap: 12px; margin-top: 16px; flex-wrap: wrap">
                 <a href="https://github.com/maniabang/matchmate-cursor-app" target="_blank" rel="noopener" class="project-link-pill">
-                  📂 GitHub Repository
+                  GitHub Repository
                 </a>
                 <div class="project-status-pill">🚧 현재 개발 진행 중</div>
               </div>
@@ -2018,16 +2014,8 @@
                 </div>
               </div>
 
-              <div
-                style="
-                  margin-top: 20px;
-                  padding: 15px;
-                  background: white;
-                  border-radius: 8px;
-                  border-left: 4px solid #ff6b9d;
-                "
-              >
-                <h5 style="color: #333; margin-bottom: 8px">💡 기술적 도전과 학습</h5>
+              <div class="glass-callout" style="margin-top: 20px">
+                <h5 style="color: #333; margin-bottom: 8px">기술적 도전과 학습</h5>
                 <p style="margin: 0; font-size: 14px; color: #666; line-height: 1.5">
                   Next.js 13+의 최신 App Router 구조와 Supabase 생태계를 활용하여 실제 서비스 수준의 매칭 플랫폼을 구현
                   중. SSR과 CSR을 적절히 조합한 하이브리드 렌더링과 PWA 기술을 통한 네이티브 앱 수준의 사용자 경험 구현
@@ -2060,7 +2048,7 @@
 
               <div style="display: flex; gap: 12px; margin-top: 16px; flex-wrap: wrap">
                 <a href="https://github.com/maniabang/flutter" target="_blank" rel="noopener" class="project-link-pill">
-                  📂 GitHub Repository
+                  GitHub Repository
                 </a>
                 <a
                   href="https://www.figma.com/design/EnKmFNXYHBSnCCvgNdRGid/MyFlight?node-id=0-1&p=f&t=VhAHVGhepppTjhHW-0"
@@ -2068,7 +2056,7 @@
                   rel="noopener"
                   class="project-link-pill"
                 >
-                  🎨 Figma 디자인
+                  Figma 디자인
                 </a>
               </div>
             </div>
@@ -2130,16 +2118,8 @@
                 </div>
               </div>
 
-              <div
-                style="
-                  margin-top: 20px;
-                  padding: 15px;
-                  background: white;
-                  border-radius: 8px;
-                  border-left: 4px solid #00b8d4;
-                "
-              >
-                <h5 style="color: #333; margin-bottom: 8px">💡 주요 특징</h5>
+              <div class="glass-callout" style="margin-top: 20px">
+                <h5 style="color: #333; margin-bottom: 8px">주요 특징</h5>
                 <p style="margin: 0; font-size: 14px; color: #666; line-height: 1.5">
                   <strong>출입국 증명서 OCR</strong> → <strong>국가/날짜 자동 추출</strong> →
                   <strong>여행 기록 저장</strong> → <strong>항공권 최저가 검색</strong>까지 한 번에 처리하는 통합 여행
@@ -2148,16 +2128,8 @@
                 </p>
               </div>
 
-              <div
-                style="
-                  margin-top: 15px;
-                  padding: 15px;
-                  background: #e3f2fd;
-                  border-radius: 8px;
-                  border-left: 4px solid #2196f3;
-                "
-              >
-                <h5 style="color: #333; margin-bottom: 8px">🛠️ 기술적 하이라이트</h5>
+              <div class="glass-callout" style="margin-top: 15px; background: rgba(227, 242, 253, 0.35)">
+                <h5 style="color: #333; margin-bottom: 8px">기술적 하이라이트</h5>
                 <div
                   style="
                     display: grid;
@@ -2185,7 +2157,7 @@
             <h3 class="stats-title">개발 활동</h3>
             <p>지속적인 사이드 프로젝트와 기술 학습을 통한 성장</p>
             <br />
-            <a href="https://github.com/maniabang" class="github-link"> 🔗 github.com/maniabang </a>
+            <a href="https://github.com/maniabang" class="github-link">github.com/maniabang</a>
           </div>
         </section>
       </main>
@@ -2368,6 +2340,21 @@
       });
 
       document.addEventListener('DOMContentLoaded', function () {
+        document
+          .querySelectorAll('.surface-card, .skill-card, .qa-item, .experience-item, .project-card, .project-highlight')
+          .forEach(function (el) {
+            el.classList.add('glass-interactive');
+            el.addEventListener('mousemove', function (e) {
+              var rect = el.getBoundingClientRect();
+              el.style.setProperty('--mouse-x', ((e.clientX - rect.left) / rect.width) * 100 + '%');
+              el.style.setProperty('--mouse-y', ((e.clientY - rect.top) / rect.height) * 100 + '%');
+            });
+            el.addEventListener('mouseleave', function () {
+              el.style.setProperty('--mouse-x', '50%');
+              el.style.setProperty('--mouse-y', '50%');
+            });
+          });
+
         document.querySelectorAll('.project-highlight.reveal-card').forEach(function (card) {
           var tags = card.querySelectorAll('.tech-tag-white');
           if (tags.length && !card.querySelector('.project-preview-tags')) {
