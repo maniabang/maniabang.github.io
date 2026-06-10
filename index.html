@@ -2465,42 +2465,56 @@
           }
         });
 
-        var isTouchDevice =
-          window.matchMedia('(hover: none)').matches || window.matchMedia('(pointer: coarse)').matches;
+        // 터치/모바일 여부는 로드 시 한 번이 아니라 매번 판별
+        // (DevTools 기기 에뮬레이션 전환, 창 크기 변경에도 대응)
+        function isTouchLike() {
+          return (
+            window.matchMedia('(hover: none)').matches ||
+            window.matchMedia('(pointer: coarse)').matches ||
+            window.innerWidth <= 768
+          );
+        }
 
-        if (isTouchDevice) {
-          // 안내 문구를 탭 기준으로 변경
+        function updateExpandHints() {
+          var touch = isTouchLike();
           document.querySelectorAll('.expand-hint').forEach(function (hint) {
-            hint.textContent = hint.textContent.replace('호버하여', '탭하여');
-          });
-
-          document.addEventListener('click', function (e) {
-            // 링크/버튼은 본래 동작 유지
-            if (e.target.closest('a, button')) return;
-
-            var card = e.target.closest('.reveal-card');
-            if (!card) return;
-
-            // 탭한 카드와 그 상위 reveal-card 체인을 함께 펼침 (데스크톱 호버와 동일한 효과)
-            var chain = [];
-            var node = card;
-            while (node) {
-              chain.push(node);
-              node = node.parentElement && node.parentElement.closest('.reveal-card');
-            }
-
-            var willOpen = !card.classList.contains('is-expanded');
-
-            // 체인에 속하지 않는 열린 카드는 닫기
-            document.querySelectorAll('.reveal-card.is-expanded').forEach(function (other) {
-              if (chain.indexOf(other) === -1) other.classList.remove('is-expanded');
-            });
-
-            chain.forEach(function (item) {
-              item.classList.toggle('is-expanded', willOpen);
-            });
+            hint.textContent = touch
+              ? hint.textContent.replace('호버하여', '탭하여')
+              : hint.textContent.replace('탭하여', '호버하여');
           });
         }
+
+        updateExpandHints();
+        window.addEventListener('resize', updateExpandHints);
+
+        document.addEventListener('click', function (e) {
+          if (!isTouchLike()) return;
+
+          // 링크/버튼은 본래 동작 유지
+          if (e.target.closest('a, button')) return;
+
+          var card = e.target.closest('.reveal-card');
+          if (!card) return;
+
+          // 탭한 카드와 그 상위 reveal-card 체인을 함께 펼침 (데스크톱 호버와 동일한 효과)
+          var chain = [];
+          var node = card;
+          while (node) {
+            chain.push(node);
+            node = node.parentElement && node.parentElement.closest('.reveal-card');
+          }
+
+          var willOpen = !card.classList.contains('is-expanded');
+
+          // 체인에 속하지 않는 열린 카드는 닫기
+          document.querySelectorAll('.reveal-card.is-expanded').forEach(function (other) {
+            if (chain.indexOf(other) === -1) other.classList.remove('is-expanded');
+          });
+
+          chain.forEach(function (item) {
+            item.classList.toggle('is-expanded', willOpen);
+          });
+        });
       });
     </script>
   </body>
