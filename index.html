@@ -18,7 +18,10 @@
       :root {
         --page-max: min(1280px, 94vw);
         --bg: #eef0f4;
-        --surface: #ffffff;
+        --surface: rgba(255, 255, 255, 0.68);
+        --glass: rgba(255, 255, 255, 0.62);
+        --glass-strong: rgba(255, 255, 255, 0.82);
+        --glass-border: rgba(255, 255, 255, 0.72);
         --text: #1a1d21;
         --text-soft: #4b5563;
         --text-muted: #6b7280;
@@ -42,7 +45,13 @@
         font-family: 'Pretendard Variable', 'Noto Sans KR', sans-serif;
         line-height: 1.55;
         color: var(--text);
-        background: var(--bg);
+        background:
+          radial-gradient(1100px 720px at 6% -8%, rgba(120, 156, 255, 0.4) 0%, transparent 55%),
+          radial-gradient(920px 640px at 96% 8%, rgba(255, 150, 205, 0.34) 0%, transparent 55%),
+          radial-gradient(1000px 760px at 18% 78%, rgba(96, 220, 190, 0.3) 0%, transparent 58%),
+          radial-gradient(820px 600px at 86% 86%, rgba(178, 144, 255, 0.32) 0%, transparent 55%),
+          linear-gradient(180deg, #eef1f8 0%, #e9edf6 100%);
+        background-attachment: fixed;
         overflow-x: hidden;
         width: 100%;
         max-width: 100vw;
@@ -51,18 +60,20 @@
       .container {
         max-width: var(--page-max);
         margin: 16px auto 40px;
-        background: var(--surface);
-        border: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.5);
+        backdrop-filter: blur(30px) saturate(1.5);
+        -webkit-backdrop-filter: blur(30px) saturate(1.5);
+        border: 1px solid var(--glass-border);
         border-radius: 20px;
-        box-shadow: var(--shadow-lg);
+        box-shadow: var(--shadow-lg), inset 0 1px 0 rgba(255, 255, 255, 0.9);
         width: 100%;
         overflow-x: hidden;
       }
 
       .header {
-        background: rgba(255, 255, 255, 0.92);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
+        background: rgba(255, 255, 255, 0.55);
+        backdrop-filter: blur(18px) saturate(1.4);
+        -webkit-backdrop-filter: blur(18px) saturate(1.4);
         color: var(--text);
         padding: 12px 28px;
         position: sticky;
@@ -153,18 +164,20 @@
         display: none;
       }
 
-      /* ── 공통 카드 / 호버 펼침 ── */
+      /* ── 공통 카드 / 호버 펼침 (liquid glass) ── */
       .surface-card {
-        background: var(--surface);
-        border: 1px solid var(--border);
+        background: var(--glass);
+        backdrop-filter: blur(16px) saturate(1.35);
+        -webkit-backdrop-filter: blur(16px) saturate(1.35);
+        border: 1px solid var(--glass-border);
         border-radius: var(--radius);
-        box-shadow: var(--shadow-sm);
+        box-shadow: var(--shadow-sm), inset 0 1px 0 rgba(255, 255, 255, 0.85);
         transition: box-shadow 0.28s ease, transform 0.28s ease;
       }
 
       .surface-card:hover,
       .surface-card.is-expanded {
-        box-shadow: var(--shadow-md);
+        box-shadow: var(--shadow-md), inset 0 1px 0 rgba(255, 255, 255, 0.9);
       }
 
       .expand-hint {
@@ -270,7 +283,7 @@
       }
 
       .skill-item {
-        background: #f3f4f6;
+        background: rgba(255, 255, 255, 0.6);
         border: 1px solid var(--border);
         border-radius: 999px;
         padding: 4px 10px;
@@ -321,12 +334,60 @@
         overflow: hidden;
       }
 
-      .skill-card:nth-child(1) { border-left: 3px solid #3b82f6; }
-      .skill-card:nth-child(2) { border-left: 3px solid #8b5cf6; }
-      .skill-card:nth-child(3) { border-left: 3px solid #ec4899; }
-      .skill-card:nth-child(4) { border-left: 3px solid #14b8a6; }
-      .skill-card:nth-child(5) { border-left: 3px solid #f59e0b; }
-      .skill-card:nth-child(6) { border-left: 3px solid #22c55e; }
+      .skill-card:nth-child(1) {
+        border-left: 3px solid #3b82f6;
+        background: linear-gradient(140deg, rgba(219, 234, 254, 0.72), rgba(255, 255, 255, 0.55));
+      }
+      .skill-card:nth-child(2) {
+        border-left: 3px solid #8b5cf6;
+        background: linear-gradient(140deg, rgba(237, 233, 254, 0.72), rgba(255, 255, 255, 0.55));
+      }
+      .skill-card:nth-child(3) {
+        border-left: 3px solid #ec4899;
+        background: linear-gradient(140deg, rgba(252, 231, 243, 0.72), rgba(255, 255, 255, 0.55));
+      }
+      .skill-card:nth-child(4) {
+        border-left: 3px solid #14b8a6;
+        background: linear-gradient(140deg, rgba(204, 251, 241, 0.7), rgba(255, 255, 255, 0.55));
+      }
+      .skill-card:nth-child(5) {
+        border-left: 3px solid #f59e0b;
+        background: linear-gradient(140deg, rgba(254, 243, 199, 0.68), rgba(255, 255, 255, 0.55));
+      }
+      .skill-card:nth-child(6) {
+        border-left: 3px solid #22c55e;
+        background: linear-gradient(140deg, rgba(220, 252, 231, 0.7), rgba(255, 255, 255, 0.55));
+      }
+
+      /* Interview 카드 틴트 */
+      .qa-section .qa-item:nth-child(1) {
+        background: linear-gradient(150deg, rgba(219, 234, 254, 0.7), rgba(255, 255, 255, 0.52));
+      }
+      .qa-section .qa-item:nth-child(2) {
+        background: linear-gradient(150deg, rgba(237, 233, 254, 0.7), rgba(255, 255, 255, 0.52));
+      }
+      .qa-section .qa-item:nth-child(3) {
+        background: linear-gradient(150deg, rgba(204, 251, 241, 0.66), rgba(255, 255, 255, 0.52));
+      }
+
+      /* 경력 카드 틴트 */
+      .experience-grid .experience-item:nth-child(odd) {
+        background: linear-gradient(160deg, rgba(224, 231, 255, 0.6), rgba(255, 255, 255, 0.55));
+      }
+      .experience-grid .experience-item:nth-child(even) {
+        background: linear-gradient(160deg, rgba(254, 240, 230, 0.55), rgba(255, 255, 255, 0.55));
+      }
+
+      /* 사이드 프로젝트 카드 틴트 */
+      .project-grid .project-card:nth-child(3n + 1) {
+        background: linear-gradient(160deg, rgba(254, 243, 199, 0.5), rgba(255, 255, 255, 0.58));
+      }
+      .project-grid .project-card:nth-child(3n + 2) {
+        background: linear-gradient(160deg, rgba(252, 231, 243, 0.55), rgba(255, 255, 255, 0.58));
+      }
+      .project-grid .project-card:nth-child(3n) {
+        background: linear-gradient(160deg, rgba(207, 250, 254, 0.55), rgba(255, 255, 255, 0.58));
+      }
 
       @media (max-width: 1024px) {
         .skills-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -385,7 +446,7 @@
       .period {
         font-size: 0.72rem;
         color: var(--text-muted);
-        background: #f3f4f6;
+        background: rgba(255, 255, 255, 0.65);
         padding: 5px 10px;
         border-radius: 999px;
         white-space: nowrap;
@@ -400,7 +461,7 @@
         margin: 0;
         opacity: 1;
         transform: none;
-        background: #fafbfc;
+        background: rgba(255, 255, 255, 0.55);
         border: 1px solid var(--border);
         box-shadow: var(--shadow-xs);
         border-left: 3px solid var(--accent);
@@ -422,7 +483,7 @@
       }
 
       .tech-stack {
-        background: #f3f4f6;
+        background: rgba(255, 255, 255, 0.5);
         padding: 10px;
         border-radius: 10px;
         margin: 10px 0 0;
@@ -446,7 +507,7 @@
       }
 
       .tech-tag-white {
-        background: var(--surface);
+        background: rgba(255, 255, 255, 0.78);
         color: var(--text-soft);
         padding: 3px 9px;
         border-radius: 999px;
@@ -508,10 +569,46 @@
 
       .project-card > div[style*="padding"] {
         padding: 14px !important;
-        background: #fafbfc !important;
+        background: rgba(255, 255, 255, 0.55) !important;
         border-radius: 0 0 var(--radius) var(--radius) !important;
         border: 1px solid var(--border);
         border-top: none;
+      }
+
+      /* 프로젝트 링크/상태 pill — 밝은 배경에서도 잘 보이도록 */
+      .project-link-pill {
+        color: var(--accent) !important;
+        text-decoration: none;
+        background: rgba(59, 91, 219, 0.1);
+        padding: 9px 18px;
+        border-radius: 999px;
+        border: 1px solid rgba(59, 91, 219, 0.3);
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.78rem;
+        font-weight: 700;
+        transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+        box-shadow: var(--shadow-xs);
+      }
+
+      .project-link-pill:hover {
+        background: rgba(59, 91, 219, 0.16);
+        box-shadow: var(--shadow-sm);
+        transform: translateY(-1px);
+      }
+
+      .project-status-pill {
+        color: var(--text-soft);
+        padding: 9px 18px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.6);
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.78rem;
+        font-weight: 600;
       }
 
       .project-card.reveal-card > div[style*="padding"] {
@@ -637,11 +734,42 @@
         margin-bottom: 5px;
       }
 
-      /* 카드 내부 스크롤 기반 핸드폰 슬라이더 */
+      /* 카드 내부 스크롤 기반 핸드폰 슬라이더 — 카드가 펼쳐질 때만 표시 */
       .phone-slider-block {
         padding: 14px 16px 16px;
         border-top: 1px solid var(--border);
-        background: #fafbfc;
+        background: rgba(255, 255, 255, 0.45);
+      }
+
+      .project-card.reveal-card > .phone-slider-block {
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        padding-top: 0;
+        padding-bottom: 0;
+        border-top: none;
+        transition: max-height 0.45s ease, opacity 0.3s ease, padding 0.3s ease;
+      }
+
+      @media (hover: hover) {
+        .project-card.reveal-card:hover > .phone-slider-block,
+        .project-card.reveal-card.is-expanded > .phone-slider-block {
+          max-height: 560px;
+          opacity: 1;
+          padding-top: 14px;
+          padding-bottom: 16px;
+          border-top: 1px solid var(--border);
+        }
+      }
+
+      @media (hover: none) {
+        .project-card.reveal-card.is-expanded > .phone-slider-block {
+          max-height: 560px;
+          opacity: 1;
+          padding-top: 14px;
+          padding-bottom: 16px;
+          border-top: 1px solid var(--border);
+        }
       }
 
       .phone-slider-label {
@@ -660,8 +788,8 @@
         overflow-x: hidden;
         overscroll-behavior: contain;
         border-radius: 12px;
-        border: 1px solid var(--border);
-        background: #eceef2;
+        border: 1px solid var(--glass-border);
+        background: rgba(228, 232, 242, 0.7);
         box-shadow: inset 0 2px 10px rgba(15, 23, 42, 0.07);
         scrollbar-width: thin;
         scrollbar-color: rgba(15, 23, 42, 0.25) transparent;
@@ -1768,40 +1896,11 @@
                 </div>
               </div>
 
-              <div style="display: flex; gap: 15px; margin-top: 20px; flex-wrap: wrap">
-                <a
-                  href="https://crypto-trading-gilt.vercel.app/"
-                  target="_blank"
-                  rel="noopener"
-                  style="
-                    color: white;
-                    text-decoration: none;
-                    background: rgba(255, 255, 255, 0.2);
-                    padding: 10px 20px;
-                    border-radius: 25px;
-                    border: 1px solid rgba(255, 255, 255, 0.3);
-                    transition: all 0.3s ease;
-                    display: inline-flex;
-                    align-items: center;
-                    gap: 8px;
-                  "
-                >
+              <div style="display: flex; gap: 12px; margin-top: 16px; flex-wrap: wrap">
+                <a href="https://crypto-trading-gilt.vercel.app/" target="_blank" rel="noopener" class="project-link-pill">
                   🌐 데모 사이트 바로가기
                 </a>
-                <div
-                  style="
-                    color: rgba(255, 255, 255, 0.8);
-                    padding: 10px 20px;
-                    border-radius: 25px;
-                    border: 1px solid rgba(255, 255, 255, 0.2);
-                    display: inline-flex;
-                    align-items: center;
-                    gap: 8px;
-                    font-size: 14px;
-                  "
-                >
-                  ✅ 프로덕션 배포 완료
-                </div>
+                <div class="project-status-pill">✅ 프로덕션 배포 완료</div>
               </div>
             </div>
 
@@ -1912,43 +2011,16 @@
                 </div>
               </div>
 
-              <div style="display: flex; gap: 15px; margin-top: 20px; flex-wrap: wrap">
-                <a
-                  href="https://github.com/maniabang/matchmate-cursor-app"
-                  style="
-                    color: white;
-                    text-decoration: none;
-                    background: rgba(255, 255, 255, 0.2);
-                    padding: 10px 20px;
-                    border-radius: 25px;
-                    border: 1px solid rgba(255, 255, 255, 0.3);
-                    transition: all 0.3s ease;
-                    display: inline-flex;
-                    align-items: center;
-                    gap: 8px;
-                  "
-                >
+              <div style="display: flex; gap: 12px; margin-top: 16px; flex-wrap: wrap">
+                <a href="https://github.com/maniabang/matchmate-cursor-app" target="_blank" rel="noopener" class="project-link-pill">
                   📂 GitHub Repository
                 </a>
-                <div
-                  style="
-                    color: rgba(255, 255, 255, 0.8);
-                    padding: 10px 20px;
-                    border-radius: 25px;
-                    border: 1px solid rgba(255, 255, 255, 0.2);
-                    display: inline-flex;
-                    align-items: center;
-                    gap: 8px;
-                    font-size: 14px;
-                  "
-                >
-                  🚧 현재 개발 진행 중
-                </div>
+                <div class="project-status-pill">🚧 현재 개발 진행 중</div>
               </div>
             </div>
 
             <div class="phone-slider-block">
-              <p class="phone-slider-label">MatchMate · 카드 안에서 스크롤하여 미리보기</p>
+              <p class="phone-slider-label">📱 MatchMate 미리보기 · 이 카드 안에서만 스크롤 해보세요 ↕</p>
               <div class="phone-scroll-viewport">
                 <div class="phone-scroll-track">
                   <div class="phone-slider-container" id="matchmate-phone-slider">
@@ -2044,38 +2116,15 @@
                 </div>
               </div>
 
-              <div style="display: flex; gap: 15px; margin-top: 20px; flex-wrap: wrap">
-                <a
-                  href="https://github.com/maniabang/flutter"
-                  style="
-                    color: white;
-                    text-decoration: none;
-                    background: rgba(255, 255, 255, 0.2);
-                    padding: 10px 20px;
-                    border-radius: 25px;
-                    border: 1px solid rgba(255, 255, 255, 0.3);
-                    transition: all 0.3s ease;
-                    display: inline-flex;
-                    align-items: center;
-                    gap: 8px;
-                  "
-                >
+              <div style="display: flex; gap: 12px; margin-top: 16px; flex-wrap: wrap">
+                <a href="https://github.com/maniabang/flutter" target="_blank" rel="noopener" class="project-link-pill">
                   📂 GitHub Repository
                 </a>
                 <a
                   href="https://www.figma.com/design/EnKmFNXYHBSnCCvgNdRGid/MyFlight?node-id=0-1&p=f&t=VhAHVGhepppTjhHW-0"
-                  style="
-                    color: white;
-                    text-decoration: none;
-                    background: rgba(255, 255, 255, 0.2);
-                    padding: 10px 20px;
-                    border-radius: 25px;
-                    border: 1px solid rgba(255, 255, 255, 0.3);
-                    transition: all 0.3s ease;
-                    display: inline-flex;
-                    align-items: center;
-                    gap: 8px;
-                  "
+                  target="_blank"
+                  rel="noopener"
+                  class="project-link-pill"
                 >
                   🎨 Figma 디자인
                 </a>
@@ -2083,7 +2132,7 @@
             </div>
 
             <div class="phone-slider-block">
-              <p class="phone-slider-label">Travel Record · 카드 안에서 스크롤하여 미리보기</p>
+              <p class="phone-slider-label">📱 Travel Record 미리보기 · 이 카드 안에서만 스크롤 해보세요 ↕</p>
               <div class="phone-scroll-viewport">
                 <div class="phone-scroll-track">
                   <div class="phone-slider-container" id="travel-phone-slider">
